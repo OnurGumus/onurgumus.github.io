@@ -1,7 +1,7 @@
 ---
 layout: default
-comments:true
 ---
+
 <ul>
   {% for post in site.posts %}
     <li>
