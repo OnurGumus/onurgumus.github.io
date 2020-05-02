@@ -1,5 +1,6 @@
 ---
-comments:false
+layout: default
+comments:true
 ---
 
 Hello **World**
