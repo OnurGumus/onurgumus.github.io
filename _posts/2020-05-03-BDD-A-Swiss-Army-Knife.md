@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "BDD: A swiss army knife"
+title: "BDD A swiss army knife"
 date: 2020-05-03-00:00:00 -0100
 comments:true
 ---
