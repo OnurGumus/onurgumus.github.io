@@ -2,11 +2,10 @@
 layout: default
 ---
 
+{% for post in site.posts %}
 
-  {% for post in site.posts %}
-    <p>
-      {{ post.excerpt }}
-      <a href="{{ post.url }}">Read more...</a>
-    </p>
-  {% endfor %}
+    {{ post.excerpt }}
+    [Read more...]({{ post.url }})
+    
+{% endfor %}
 
