@@ -8,6 +8,84 @@ excerpt_separator: <!--more-->
 
 # BDD: a swiss army knife for DDD
 
-One of the things I have been attracted in BDD, that it is a great tool to generate your ubiquitous language. In addition, it can be used together in conjunction an event storming session hence you can easily discover your domain events, nouns and commands. If you are unfamiliar with concepts like event storming, don't worry. I will share a comprehensive example.
+BDD, standing for behavior driven development, can bridge the gap between all stake holders and allows us to discover the domain more throughly . Although sort of test driven development, it's focus on the business behaviour rather than the actual implementation. This offers some benefits to conventional unit testing. BDD allows
+
+- to build your ubiquitous domain language.
+- all stake holders to be part of the development process. 
+- people who can't code to write tests.
+- to drive the UX.
+- to discover the domain and events.
+- to write acceptance criteria for your stories.
 
 <!--more-->
+
+Usualy for BDD, Gherkin Sytax is used. And it is in general in the following format
+
+```
+Given inital state
+When some event happens
+Then assertion for final state.
+```
+
+So in a sense Gherkin syntax offer a step in state machine like applications. The good news is most UI apps are state machines.
+Now we will try to model our sample application FBlazorShop in Gherkin syntax and we will eventually see how it maps to code.
+
+```
+Given there are some pizza configurations
+When I visit the main page
+Then all configurations should be displayed.
+
+Given some configurations displayed
+When I choose the one of them,
+Then details of that configuration should be shown
+
+Given the details of a pizza config shown 
+And there are N pizzas in the order already
+When I add the configuration
+Then a new pizza should be added to orders with configured specs
+And the top item in the orders should be the new added item
+And there should be N + 1 items in the orders.
+
+Given N > 0
+And there are N pizzas in the order already
+When I remove an item
+Then there should be N - 1 pizzas in the order 
+And removed item should not be in the orders
+
+Given at least one pizza added to order list
+When I select Order
+Then I should be at address selecting page
+
+Given I am at address selecting page
+When I select to go back
+Then I should at least see some orders in the box
+
+Given I am at address selecting page
+And address fields are empty
+When I press place order
+Then I should still be at address selecting page
+And some errors should be shown to fill the address page
+
+Given I am at address selecting page
+And address fields are not empty
+And I am not registered
+When I press place order
+Then login screen should appear
+
+Given login screen appeared
+When I entered correct credentials
+Then I should be at signed in status
+
+
+Given I am at address selecting page
+And address fields are not empty
+And I am signed in
+When I press order
+Then I should still be at order following page
+When I select my orders
+Then I should see my order on the screen
+
+Given there are some order displayed on the screen
+When I click track for one of these orders
+Then I should see its details
+```
