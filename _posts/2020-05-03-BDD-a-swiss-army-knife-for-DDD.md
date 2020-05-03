@@ -31,7 +31,7 @@ So in a sense Gherkin syntax offer a step in state machine like applications. Th
 Now we will try to model our sample application FBlazorShop in Gherkin syntax and we will eventually see how it maps to code.
 
 
-<img src="images/pizzaconfig.png" width="70%"/>
+<img src="/assets/pizzaconfig.png" width="70%"/>
 
 ```gherkin
 
@@ -51,10 +51,10 @@ Then details of that configuration should be shown
 ***
 ***
 
-<img src="/_posts/images/config_details.png" width="70%"/>
+<img src="/assets/config_details.png" width="70%"/>
 
 
-<img src="/_posts/images/shopping_cart.png" width="30%"/>
+<img src="/assets/shopping_cart.png" width="30%"/>
 
 
 ```gherkin
@@ -78,7 +78,7 @@ And removed item should not be in the orders
 ***
 ***
 
-<img src="/_posts/images/address_empty.png" width="70%"/>
+<img src="/assets/address_empty.png" width="70%"/>
 
 ```gherkin
 Feature: Place holder
@@ -119,7 +119,7 @@ Then I should see my order on the screen
 ***
 ***
 
-<img src="/_posts/images/Login.png" width="70%"/>
+<img src="/assets/Login.png" width="70%"/>
 
 ```gherkin
 Feature: Login
@@ -132,7 +132,7 @@ Then I should be at signed in status
 ***
 ***
 
-<img src="/_posts/images/Order_Placed.png" width="70%"/>
+<img src="/assets/Order_Placed.png" width="70%"/>
 
 ```gherkin
 Feature: Tracking
