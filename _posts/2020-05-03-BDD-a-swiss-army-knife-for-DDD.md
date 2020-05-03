@@ -21,7 +21,7 @@ BDD, standing for behavior driven development, can bridge the gap between all st
 
 Usualy for BDD, Gherkin Sytax is used. And it is in general in the following format
 
-```
+```gherkin
 Given inital state
 When some event happens
 Then assertion for final state.
@@ -30,15 +30,25 @@ Then assertion for final state.
 So in a sense Gherkin syntax offer a step in state machine like applications. The good news is most UI apps are state machines.
 Now we will try to model our sample application FBlazorShop in Gherkin syntax and we will eventually see how it maps to code.
 
-```
+```gherkin
+
+Feature: Pizza configuration
+
+Scenario: Show pizza configs
 Given there are some pizza configurations
 When I visit the main page
 Then all configurations should be displayed.
 
+Scenario: Choose a pizza config
 Given some configurations displayed
 When I choose the one of them,
 Then details of that configuration should be shown
+```
 
+```gherkin
+Feature: Shopping Cart
+
+Scenario: Add a pizza
 Given the details of a pizza config shown 
 And there are N pizzas in the order already
 When I add the configuration
@@ -46,37 +56,42 @@ Then a new pizza should be added to orders with configured specs
 And the top item in the orders should be the new added item
 And there should be N + 1 items in the orders.
 
+Scenario: Remove a pizza
 Given N > 0
 And there are N pizzas in the order already
 When I remove an item
 Then there should be N - 1 pizzas in the order 
 And removed item should not be in the orders
+```
 
+```gherkin
+Feature: Place holder
+
+Scenario: Initiate place order
 Given at least one pizza added to order list
 When I select Order
 Then I should be at address selecting page
 
+Scenario: Go back from place holder
 Given I am at address selecting page
 When I select to go back
 Then I should at least see some orders in the box
 
+Scenario: Address validation 
 Given I am at address selecting page
 And address fields are empty
 When I press place order
 Then I should still be at address selecting page
 And some errors should be shown to fill the address page
 
+Scenario: Enforce login when placing order
 Given I am at address selecting page
 And address fields are not empty
-And I am not registered
+And I am not logged in
 When I press place order
 Then login screen should appear
 
-Given login screen appeared
-When I entered correct credentials
-Then I should be at signed in status
-
-
+Scenario: Place Order
 Given I am at address selecting page
 And address fields are not empty
 And I am signed in
@@ -84,7 +99,21 @@ When I press order
 Then I should still be at order following page
 When I select my orders
 Then I should see my order on the screen
+```
 
+```gherkin
+Feature: Login
+
+Scenario: Login
+Given login screen appeared
+When I entered correct credentials
+Then I should be at signed in status
+```
+
+```gherkin
+Feature: Tracking
+
+Scenario: Track details
 Given there are some order displayed on the screen
 When I click track for one of these orders
 Then I should see its details
