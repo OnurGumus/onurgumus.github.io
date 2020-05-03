@@ -48,6 +48,9 @@ When I choose the one of them,
 Then details of that configuration should be shown
 ```
 
+***
+***
+
 <img src="/_posts/images/config_details.png" width="70%"/>
 
 
@@ -72,6 +75,8 @@ When I remove an item
 Then there should be N - 1 pizzas in the order 
 And removed item should not be in the orders
 ```
+***
+***
 
 <img src="/_posts/images/address_empty.png" width="70%"/>
 
@@ -111,6 +116,8 @@ Then I should still be at order following page
 When I select my orders
 Then I should see my order on the screen
 ```
+***
+***
 
 <img src="/_posts/images/Login.png" width="70%"/>
 
@@ -122,6 +129,8 @@ Given login screen appeared
 When I entered correct credentials
 Then I should be at signed in status
 ```
+***
+***
 
 <img src="/_posts/images/Order_Placed.png" width="70%"/>
 
