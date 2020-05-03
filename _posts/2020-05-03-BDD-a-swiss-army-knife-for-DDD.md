@@ -31,7 +31,7 @@ So in a sense Gherkin syntax offer a step in state machine like applications. Th
 Now we will try to model our sample application FBlazorShop in Gherkin syntax and we will eventually see how it maps to code.
 
 
-<img src="/_posts/images/pizzaconfig.png" width="70%"/>
+<img src="images/pizzaconfig.png" width="70%"/>
 
 ```gherkin
 
