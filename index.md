@@ -3,9 +3,10 @@ layout: default
 ---
 <div>
 {% for post in site.posts %}
-
+    <p>
     {{ post.excerpt }}
-    [Read more...]({{ post.url }})
+        <a href="{{ post.url }})">Read more...</a>
+    </p>
     
 {% endfor %}
 </div>
