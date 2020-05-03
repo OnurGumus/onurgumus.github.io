@@ -30,6 +30,9 @@ Then assertion for final state.
 So in a sense Gherkin syntax offer a step in state machine like applications. The good news is most UI apps are state machines.
 Now we will try to model our sample application FBlazorShop in Gherkin syntax and we will eventually see how it maps to code.
 
+
+<img src="/_posts/images/pizzaconfig.png" width="70%"/>
+
 ```gherkin
 
 Feature: Pizza configuration
@@ -44,6 +47,12 @@ Given some configurations displayed
 When I choose the one of them,
 Then details of that configuration should be shown
 ```
+
+<img src="/_posts/images/config_details.png" width="70%"/>
+
+
+<img src="/_posts/images/shopping_cart.png" width="30%"/>
+
 
 ```gherkin
 Feature: Shopping Cart
@@ -63,6 +72,8 @@ When I remove an item
 Then there should be N - 1 pizzas in the order 
 And removed item should not be in the orders
 ```
+
+<img src="/_posts/images/address_empty.png" width="70%"/>
 
 ```gherkin
 Feature: Place holder
@@ -101,6 +112,8 @@ When I select my orders
 Then I should see my order on the screen
 ```
 
+<img src="/_posts/images/Login.png" width="70%"/>
+
 ```gherkin
 Feature: Login
 
@@ -109,6 +122,8 @@ Given login screen appeared
 When I entered correct credentials
 Then I should be at signed in status
 ```
+
+<img src="/_posts/images/Order_Placed.png" width="70%"/>
 
 ```gherkin
 Feature: Tracking
