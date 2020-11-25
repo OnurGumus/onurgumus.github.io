@@ -1,5 +1,12 @@
-<!doctype html>
-<html data-reactroot="" lang="en"><head><title>My blog / super post</title></head><body><table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+---
+layout: default
+title: "Fable Web Components"
+date: 2020-05-03-00:00:00 -0000
+comments: true
+excerpt_separator: <!--more-->
+---
+
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 <span class="l">4: </span>
@@ -50,4 +57,4 @@
 <div class="tip" id="22">val x : int</div>
 <div class="tip" id="23">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
 
-<script src="tips.js"></script><link href="style.css" rel="stylesheet" type="text/css" /></body></html>
+<script src="assets/tips.js"></script><link href="assets/style.css" rel="stylesheet" type="text/css" />
