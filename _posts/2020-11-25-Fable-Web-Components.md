@@ -1,10 +1,4 @@
----
-layout: default
-title: "Fable Web Components"
-date: 2020-05-03-00:00:00 -0000
-comments: true
-excerpt_separator: <!--more-->
----
+
 
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
