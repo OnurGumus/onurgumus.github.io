@@ -51,4 +51,4 @@
 <div class="tip" id="22">val x : int</div>
 <div class="tip" id="23">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T</div>
 
-<script src="assets/tips.js"></script><link href="assets/style.css" rel="stylesheet" type="text/css" />
+<script src="/assets/tips.js"></script><link href="/assets/style.css" rel="stylesheet" type="text/css" />
