@@ -198,3 +198,89 @@ again this is a limitation of the Fable Repl environment. In the actual case you
 ```
 Wait a sec! Why am I importing bulma like this in the first place? Can I not just put a **link** tag to my parent html document. Unforuntately you cannot. This is because Shadow dom will not allow you to pass the styles through it. That means you cannot influence this component's css from outside. But the way we use it can cause some duplication. If every component we have using bulma, we would import bulma over and over again. Yes this is some drawback and the solution to this problem is
 [Constructable StyleSheets](https://developers.google.com/web/updates/2019/02/constructable-stylesheets) which allows the browser to reuse the same style without reparsing it. Unfortunately at the moment Safari does not support it. So this is why I prefer to import the styles as above.
+
+After that we set the inner template to our collected style
+```fsharp
+    template.innerHTML <- style + html
+```
+
+and define some constants for reuse later:
+
+```fsharp
+    //Define some constants
+    [<Literal>]
+    let TAG = "modal-window"
+
+    [<Literal>]
+    let IS_ACTIVE = "is-active"
+
+    [<Literal>]
+    let VISIBLE = "visible"
+```
+
+Ok, now we are ready to define our actual web component class:
+
+```fsharp
+ // we are writing our component below
+    [<AllowNullLiteral>]
+    type ModalWindow() as this =
+        inherit HTMLElement()
+        //Get the current dom element
+        let el: Browser.Types.HTMLElement = !!this
+
+        let shadowRoot: ShadowRoot = base.attachShadow {| mode = "open" |}
+
+        // see the html above. We use lazy because the dom element isn't available at this point.
+        let root =
+            lazy (shadowRoot.querySelector "#root" )
+
+
+        do
+            //clone the html text and append to the child
+            let clone = template.content.cloneNode true
+            shadowRoot.appendChild clone
+            //call retartget evetns    
+            //get a reference to #root dom element out of lazy
+            let root = root.Value
+
+            //whenever we receive a close event change isVisible property setter
+            root.addEventListener
+                ("close",
+                (fun _ -> this.isVisible <- false))
+
+        //virtual properties are not mangled by Fable.
+        abstract isVisible: bool with get, set
+        override _.isVisible
+            with get () = el.hasAttribute VISIBLE
+            and set value =
+                if value then el.setAttribute (VISIBLE, "") else el.removeAttribute VISIBLE
+
+        //fire close event if we call .close()
+        abstract close: unit -> unit
+        override this.close() = 
+            root.Value.dispatchEvent (CustomEvent.Create("close", {| bubbles = true ; composed = true|}))
+            |> ignore
+
+        // render function is our custom function where we do the actual rendering and mangled
+        member this.render() =
+            // you can alternatively use ReactDom.render here if you want to use react.
+            let root = root.Value
+
+            // add or remove the is-active bulma class
+            if this.isVisible then
+                if root.classList.contains IS_ACTIVE |> not
+                then root.classList?add IS_ACTIVE
+            else
+                root.classList.remove IS_ACTIVE
+
+        //called by browser when the component is ready to render or any attribute is changed
+        //alternatively use connectedCallback
+        override this.attributeChangedCallback(name, oldVal, newVal) =
+            this.render ()
+  ```
+  So we inherit from our HtmlElement type, then we create the shadow dom by using base.attachShadow and we get a reference to the #root element in lazy manner.
+  The reason we do it lazily because at this point the element is not yet available. In the do block we set up our shadow root and attach an event listener. And then we have *isVisible* virtual property. Remember we use virtual properties to avoid name mangling by fable. We have a *close* function that can be used to close our modal window programatically from JS and then we do the actual rendering in the *render* function.
+  
+  *render* function is not a special one and name can be mangled. it is actually called from *attributeChangedCallback* when the element is attached to the dom. alternatively 
+  we could have used **connectedCallback** which is also triggered when the component is attached.
+  
