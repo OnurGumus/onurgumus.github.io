@@ -17,7 +17,7 @@
 
   <body>
     <header>
-      <div class="inner">
+      <div class="inner"  style="display:flex; justify-content:center">
         <a href="{{ '/' | absolute_url }}">
           <h1>{{ site.title | default: site.github.repository_name }}</h1>
         </a>
@@ -31,7 +31,7 @@
       </div>
     </header>
 
-    <div id="content-wrapper">
+    <div id="content-wrapper" style="display:flex; justify-content:center">
       <div class="inner clearfix">
         <section id="main-content">
           {{ content }}
