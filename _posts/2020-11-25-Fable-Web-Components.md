@@ -18,8 +18,19 @@ Once we gathered the ingredients we register our tag and use it.
 
 # Why use web components?
 
-A common question arises, we could do all complicated dynamic stuff
+This common question arises, as we could do all complicated dynamic stuff by using our fancy SPA frameworks. 
+
+Well, the first benefit is your components become framework agnostic. Since the final output is HTML, once you have written a web component they can be easily consumed by React, Angular, Vue or Web assembly. 
+
+The second benefit is web components give you a *shadow dom* which allows you to hide the CSS classes into the component. So that you could have truly isolated css styling as CSS styles outside of the shadow dom won't penetrate inside and they won't be leaking to outside.
+
+Another great benefit is for the designers. Weather you use react, angular or fable  a common problem is is that you start to write your html with the SPA's language with extra augmentations such as JSX or full Fable F# synfax and then if you have an html designer who is not familiar with F#/react,etc in your team, it becomes a problem to sync the designer's code with your own code. To solve this problem Shadow DOM gives you *html slots*, which allow you to treat html as native templated language with default looks we will investigate slots briefly in our example below.
 
 # We already have React, Angualar, Vue. Are web components an alternative?
 
+React, Angular, Vue and web components are complementary, not rivalry. That is, you can write web components that are rendered via react. Then you can re-consume the custom HTML element from React, like a sandwich.
+
+React --- consumes ---> Html Web Component --> Component itself is written with react.
+
+This way you can end up with SPA framework agnostic components and you can use your SPA where it is needed, that is primarly templating your data, not the looks.
 # How do I build web components with Fable?
