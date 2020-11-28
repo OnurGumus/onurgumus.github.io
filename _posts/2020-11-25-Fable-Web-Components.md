@@ -39,7 +39,7 @@ Basically, web components have 3 ingredients:
 
 
 
-* **A custom element class**: You create an ES 6 class with some special named members
+* **A custom element class**: You create an ES 6 class with some special named members.
 
 
 
@@ -47,7 +47,7 @@ Basically, web components have 3 ingredients:
 
 
 
-* HTML Template: Basically a string of HTML markup, which can include the styling, that will compose our control.
+* **HTML Template**: Basically a string of HTML markup, which can include the styling, that will compose our control.
 
 
 
