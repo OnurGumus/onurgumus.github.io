@@ -1,4 +1,4 @@
-# Motivaton to Web Components and Fable
+## Motivaton to Web Components and Fable
 
 Web Components allow us to create custom html elements with custom behaviour. HTML was originallydesigned primarly for documentation purposes with some form controls. Then by using CSS we developers attempt to style the page and give the looks that we wanted. With HTML 5 new "web components" came up such as *dialog* and *progress*. But they are some what limited and due to that HTML language is almost transformed to the assembly language of the web developer. We tend to abstract and stay away HTML and treat it as a second class citizen where we hook into our shiny SPA web frameworks. We look at the job adds, no one is searching for an html developer any more but they look for React devs, Angular devs, Vue devs. 10 years ago everyone it was hard to land into a job if you didn't know JQuery, 5 years ago it was Angular and the developers have turned into an hamster running in a circle. Perhaps it is time to stick revisit the fundementals, give HTML a some respect and treat it as a first class citizen again. As web components is an attempt to give that respect back to it.
     
