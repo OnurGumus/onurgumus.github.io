@@ -167,7 +167,26 @@ Then you will see some slot definitions
 </h2>
 <p class="has-text-subtle is-size-5 has-text-primary"><slot name="description">Description</slot></p>
 ```
-slots are we put or inject our content. Since web components are in a shadow root they support slots. For more info on slots see [mdn] (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
+slots are we put or inject our content. Since web components are in a shadow root they support slots. For more info on slots see [mdn](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
 
+You can also see clicking some buttons would cause some events to be dispatched
+```javascript
+this.dispatchEvent(new CustomEvent('close', { bubbles: true,composed:true}))
+```
+In this case we fire a custom event called closed. **bubbles** property specifies if the event will bubble to parents whereas **composed** will make the event even go across the shadow dom.
 
+After that you see bulma source code is set to a variable:
+```fsharp
+    let private style = 
+        """/*! bulma.io v0.9.1 | MIT License | github.com/jgthms/bulma */..."""
+```
+again this is a limitation of the Fable Repl environment. In the actual case you would do:
 
+```fsharp
+    (* in your actual app use below code snippet instead of string *)
+    let private style =
+        importDefault "!!raw-loader!./path-to-your.css"
+        |> sprintf "<style>%A</style>"
+```
+Wait a sec! Why am I importing bulma like this in the first place? Can I not just put a **link** tag to my parent html document. Unforuntately you cannot. This is because Shadow dom will not allow you to pass the styles through it. That means you cannot influence this component's css from outside. But the way we use it can cause some duplication. If every component we have using bulma, we would import bulma over and over again. Yes this is some drawback and the solution to this problem is
+[Constructable StyleSheets](https://developers.google.com/web/updates/2019/02/constructable-stylesheets) which allows the browser to reuse the same style without reparsing it. Unfortunately at the moment Safari does not support it. So this is why I prefer to import the styles as above.
