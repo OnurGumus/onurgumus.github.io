@@ -119,5 +119,55 @@ This is just string and we put it there for because it is a special member name.
 
 Now it is time to write our actual ModalWindow module.
 
+We first define and **HTMLTemplateElement** as this is missing with Fable:
+```fsharp
+    //fsharplint:disable
+    let template: HTMLTemplateElement = !! document.createElement "template"
+```
+Notice the fsharplint comment as if you use editors like VSCode, we suppress the linters as F# code conventions are not compatible with HTML or JS.
+
+Then we define our html template as string
+```fsharp
+    let private html: string = """<div class="modal" id="root" style="z-index:10000; font-family:Consolas,monaco,monospace" >
+    <div class="modal-background"></div>
+    <div class="modal-content has-shadow has-margin-bottom-20">
+        <div class="box is-radiusless has-margin-bottom-0 has-background-white has-padding-30">
+            <div class="has-text-left">
+                <h2 class="title is-size-2 is-marginless has-text-primary">
+                    <slot name="title">Title</slot>
+                </h2>
+                <p class="has-text-subtle is-size-5 has-text-primary"><slot name="description">Description</slot></p>
+            </div>
+            <div class="buttons has-margin-top-20 is-right">
+                <button  class="button is-tertiary has-min-width-100 is-radiusless" onClick="this.dispatchEvent(new CustomEvent('close', { bubbles: true,composed:true}))" >Close</button>
+            </div>
+        </div>
+        <button  class="modal-close" aria-label="close" onClick="this.dispatchEvent(new CustomEvent('close', { bubbles: true,composed:true}))"></button>
+    </div>
+</div>"""
+```
+
+Note that in actual application I would recommend the following approach instead of above:
+
+```fsharp
+let private html: string = importDefault "!!raw-loader!./path-to-your.html"
+```
+This way you could put your html and stlying into a proper html file or even your designer could provide it to you. The above html is a bulma modal window component. And ther are few interesting things to mention. In our example since Fable Repl is a limited enviornment, I had to put it right into the code.
+
+Firstly we define root element as #root and our web component will put "is-active" class name to make it visible.
+
+```html
+<div class="modal" id="root" style="z-index:10000; font-family:Consolas,monaco,monospace" >
+```
+
+Then you will see some slot definitions
+```html
+<h2 class="title is-size-2 is-marginless has-text-primary">
+    <slot name="title">Title</slot>
+</h2>
+<p class="has-text-subtle is-size-5 has-text-primary"><slot name="description">Description</slot></p>
+```
+slots are we put or inject our content. Since web components are in a shadow root they support slots. For more info on slots see [mdn] (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
+
 
 
