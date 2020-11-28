@@ -1,4 +1,4 @@
-## Motivaton to Web Components and Fable
+# Motivaton to Web Components and Fable
 
 Web Components allow us to create custom html elements with custom behaviour. HTML was originallydesigned primarly for documentation purposes with some form controls. Then by using CSS we developers attempt to style the page and give the looks that we wanted. With HTML 5 new "web components" came up such as *dialog* and *progress*. But they are some what limited and due to that HTML language is almost transformed to the assembly language of the web developer. We tend to abstract and stay away HTML and treat it as a second class citizen where we hook into our shiny SPA web frameworks. We look at the job adds, no one is searching for an html developer any more but they look for React devs, Angular devs, Vue devs. 10 years ago everyone it was hard to land into a job if you didn't know JQuery, 5 years ago it was Angular and the developers have turned into an hamster running in a circle. Perhaps it is time to stick revisit the fundementals, give HTML a some respect and treat it as a first class citizen again. As web components is an attempt to give that respect back to it.
     
@@ -52,3 +52,70 @@ At the top we create a template element in fable way as they are missing in Fabl
         [<EmitConstructor>]
         abstract Create: unit -> HTMLTemplateElement
 ```
+
+Next we need a shadow dom type and we define it as below:
+
+```fsharp
+    //We create our own ShadowRoot to interact with browser api.
+    [<Global>]
+    type ShadowRoot() =
+        member this.appendChild(el: Browser.Types.Node) = jsNative
+        member this.querySelector(selector: string): Browser.Types.HTMLElement = jsNative
+```
+Again this is primarily for type safety and intellisense support while interacting with Browser's DOM API. Notice the global attribute. This is to say fable, don't generate code for this type, it already exists in the hosting environment in this case the browser. And members are not mangled. Mangling is a mechanism in fable that would change the actual generated member name in order to support things like overloading. Obviously no code is generated here.
+
+The html specification says, in order for a web components to deal with its attributes we need a specially named member *observedAttributes* and this member should be static getter property. As mentioned above Fable by default mangles all property names with some $ and 0 symbols unless the member is virtual or an interface member. To workaround the issue we need some helpers to generate static getters. And here's the code for it:
+
+```fsharp
+    //Below two helpers works around fable limitation: No static members without name mangling.
+    let inline attachStatic<'T> (name: string) (f: obj): unit = jsConstructor<'T>?name <- f
+
+    let inline attachStaticGetter<'T, 'V> (name: string) (f: unit -> 'V): unit =
+        JS.Constructors.Object.defineProperty (jsConstructor<'T>, name, !!{| get = f |})
+        |> ignore
+```
+We will see how these functions are used are used.
+
+All the classes that we will use for the web components must derive from: HtmlElement. Fable already offers one but unfortunately some members we required are missing. So we create on of our own:
+
+```fsharp
+    // The built in html element is missing below props so we use our own
+    [<Global; AbstractClass>]
+    [<AllowNullLiteral>]
+    type HTMLElement() =
+        member _.getAttribute(attr: string): obj = jsNative
+        member _.setAttribute(attr: string, v: obj) = jsNative
+        member _.attachShadow(obj): ShadowRoot = jsNative
+        member _.dispatchEvent(e: CustomEvent): unit = jsNative
+        abstract connectedCallback: unit -> unit
+        default _.connectedCallback() = ()
+        abstract attributeChangedCallback: string * obj * obj -> unit
+        default _.attributeChangedCallback(_, _, _) = ()
+ ```
+
+You can see there are some virtual members (abstract-default pairs make a member virtual in F#)  One is *connectedCallback* and the other is *attributeChangedCallback*
+These member names are special and they are called by the browser. *connectedCallback* is called when the member is attached to the DOM tree and *attributeChangeCallback* is when the attributes are first time set or changed. We will use these members to initate the rendering.
+
+If you are going to use react inside your web component then I advise you to use *react-shadow-dom-retarget-events* as react's way of handling events doesn't work by default with shadow dom. But once you use below snippet everything works fine.
+
+```fsharp
+    (* in your app add react-shadow-dom-retarget-events via yarn uncomment below code to make sure react components work fine 
+       then call it from your component with:  retargetEvents shadowRoot *)
+    let retargetEvents: (ShadowRoot -> unit) =
+        importDefault "react-shadow-dom-retarget-events"
+ ```
+ 
+
+And finally we conclude our module with a special member
+
+```fsharp
+    //special member for html web components
+    [<Literal>]
+    let observedAttributes = "observedAttributes"
+```
+This is just string and we put it there for because it is a special member name.
+
+Now it is time to write our actual ModalWindow module.
+
+
+
