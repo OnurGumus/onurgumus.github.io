@@ -568,13 +568,13 @@ Ok, now we are ready to define our actual web component class:
 
   ```
 
-  So we inherit from our **HtmlElement** type, then we create the shadow dom by using base.attachShadow and we get a reference to the #root element in lazy manner.
+  So we inherit from our **HtmlElement** type, then we create the shadow dom by using base.attachShadow and we get a reference to the #root element in a lazy manner.
 
-  The reason we do it lazily because at this point the element is not yet available. In the do block we set up our shadow root and attach an event listener. And then we have **isVisible** virtual property. Remember we use virtual properties to avoid name mangling by fable. We have a **close** function that can be used to close our modal window programatically from JS and then we do the actual rendering in the **render** function.
+  The reason we do it lazily because at this point the element is not yet available. In the do block, we set up our shadow root and attach an event listener. And then we have **isVisible** virtual property. Remember we use virtual properties to avoid name mangling by fable. We have a **close** function that can be used to close our modal window programmatically from JS and then we do the actual rendering in the **render** function.
 
   
 
-  **render** function is not a special one and name can be mangled. it is actually called from **attributeChangedCallback** when the element is attached to the dom. alternatively 
+  **render** function is not a special one and the name can be mangled. it is actually called from **attributeChangedCallback** when the element is attached to the dom. alternatively 
 
   we could have used **connectedCallback** which is also triggered when the component is attached.
 
@@ -584,13 +584,13 @@ In case you want to use React then you could write your React component in the *
 
 
 
-After writing our class we have to define the attributes by using the **observedAttributes**  member function. Remember Fable does not allow unmangled static members so instead we us our helper
+After writing our class we have to define the attributes by using the **observedAttributes**  member function. Remember Fable does not allow unmangled static members so instead we use our helper
 
 
 
 ```fsharp
 
-    //attach the observed attributres static get property 
+    //attach the observed attributes static get property 
 
     //as this is the only way and required by web components spec.
 
@@ -600,7 +600,7 @@ After writing our class we have to define the attributes by using the **observed
 
 
 
-And finally we register our custom tag with below code:
+And finally, we register our custom tag with the below code:
 
 
 
@@ -616,11 +616,11 @@ And finally we register our custom tag with below code:
 
 ```
 
-Here we chech if our custom tag is defined or not, since you can only define the tag once and re-registering would cause an error. So if you are using Hot module reloading we effectively prevent re-registrations but then you have to refresh the browser. So no hot module reloading for web component sorry.
+Here we check if our custom tag is defined or not, since you can only define the tag once and re-registering would cause an error. So if you are using Hot module reloading we effectively prevent re-registration but then you have to refresh the browser. So no hot module reloading for web component sorry.
 
 
 
-At the bottom of the code we have a dummy function
+At the bottom of the code, we have a dummy function
 
 
 
@@ -634,11 +634,11 @@ At the bottom of the code we have a dummy function
 
 
 
-You can call this function if you use the component from another F# module just to ensure the above code is executed. Because sometimes Fable/F# behaves lazily and won't execute above code unless you access any function.
+You can call this function if you use the component from another F# module just to ensure the above code is executed. Because sometimes Fable/F# behaves lazily and won't execute the above code unless you access any function.
 
 
 
-After this lenghy intro our component is ready to use. How do we use it?
+After this lengthy intro, our component is ready to use. How do we use it?
 
 
 
@@ -683,7 +683,7 @@ After this lenghy intro our component is ready to use. How do we use it?
 
 ```
 
-At the top you would immediately see there are **custom-elements-e5-adapter** polyfill. The reason we use this polyfill is Fable 2 does not generate ES6 classes but web components require them. So that adapter solves that problem. However you must use 2.0.3 exactly, versions after that won't work. 
+At the top, you would immediately see there is **custom-elements-e5-adapter** polyfill. The reason we use this polyfill is Fable 2 does not generate ES6 classes but web components require them. So that adapter solves that problem. However you must use 2.0.3 exactly, versions after that won't work. 
 
 
 
@@ -691,7 +691,7 @@ And another important thing is with Fable 3 you have to remove these polyfills a
 
 
 
-With respect to our compnent you could see modal-window tag and two items a button and some text called Onur is put into Title and Description slots. We have a close button and also we use the title button to trigger the closunf function. The main tag intercepts the event shows an alert window with it's own tagname for demonstration purposes.
+With respect to our component, you could see the modal-window tag and two items a button, and some text called Onur is put into Title and Description slots. We have a close button and also we use the title button to trigger the closing function. The main tag intercepts the event shows an alert window with its own tag name for demonstration purposes.
 
 
 
@@ -703,7 +703,7 @@ And below is how our dom looks like:
 
 
 
-which clearly shows the show dom and other ingredients.
+which clearly shows the show dom and other ingredients. An important point is you can see the slotted elements are indeed outside of the web component although from rendering point of view they are rendered inside the slots.
 
 
 
