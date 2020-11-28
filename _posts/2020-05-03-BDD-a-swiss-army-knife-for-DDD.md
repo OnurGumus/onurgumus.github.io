@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "BDD: a swiss army knife for DDD"
-date: 2020-05-03-00:00:00 -0000
+date: 2022-05-03-00:00:00 -0000
 comments: true
 excerpt_separator: <!--more-->
 ---
