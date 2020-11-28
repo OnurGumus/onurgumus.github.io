@@ -346,5 +346,9 @@ And another important thing is with Fable 3 you have to remove these polyfills a
 With respect to our compnent you could see modal-window tag and two items a button and some text called Onur is put into Title and Description slots. We have a close button and also we use the title button to trigger the closunf function. The main tag intercepts the event shows an alert window with it's own tagname for demonstration purposes.
 
   
-And below is how our dom looks like
+And below is how our dom looks like:
+![shadowdom](/assets/shadowdom.png)
+
+which clearly shows the show dom and other ingredients.
+
 
