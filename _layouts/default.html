@@ -30,10 +30,20 @@
         {% endif %}
       </div>
     </header>
-
-    <div id="content-wrapper" style="display:flex; justify-content:center">
+    <style>
+      @media only screen and (min-width: 800px) {
+      #content-wrapper{
+        display:flex; 
+        justify-content:center;
+      }
+      #main-content{
+        max-width:800px !important
+      }
+      }
+    </style>
+    <div id="content-wrapper">
       <div class="inner clearfix">
-        <section id="main-content" style="max-width:800px !important">
+        <section id="main-content" >
           {{ content }}
                           {% if page.comments %} 
     <div id="disqus_thread"></div>
