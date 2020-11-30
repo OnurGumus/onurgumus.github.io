@@ -362,11 +362,11 @@ is-marginless has-text-primary">
 
 ```
 
-slots are we put or inject our content. Since web components are in a shadow root they support slots. For more info on slots see [mdn](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
+slots are where we put or inject our content. Since web components are in a shadow root they support slots. For more info on slots see [mdn](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
 
 
 
-You can also see clicking some buttons would cause some events to be dispatched
+You can also see, clicking some buttons would cause some events to be dispatched:
 
 ```javascript
 
@@ -374,7 +374,7 @@ this.dispatchEvent(new CustomEvent('close', { bubbles: true,composed:true}))
 
 ```
 
-In this case we fire a custom event called closed. **bubbles** property specifies if the event will bubble to parents whereas **composed** will make the event even go across the shadow dom.
+In this case, we fire a custom event called **close**. **bubbles** property specifies if the event will bubble to parents whereas **composed** will make the event even go across the shadow dom.
 
 
 
@@ -404,13 +404,13 @@ Again this is a limitation of the Fable Repl environment. In the actual case you
 
 ```
 
-Wait a sec! Why am I importing bulma like this in the first place? Can I not just put a **link** tag to my parent HTML document. Unfortunately you cannot. This is because Shadow dom will not allow you to pass the styles through it. That means you cannot influence this component's CSS from outside. But the way we use it can cause some duplication. If every component we have using bulma, we would import bulma over and over again. Yes, this is some drawback and the solution to this problem is
+Wait a sec! Why am I importing bulma like this in the first place? Can I not just put a **link** tag to my parent HTML document. Unfortunately you cannot. This is because shadow dom will not allow you to pass the styles through it. That means you cannot influence this component's CSS from outside. But the way we use, it can cause some duplication. If every component we have using bulma, we would import bulma over and over again. Yes, this is some drawback and the solution to this problem is
 
 [Constructable StyleSheets](https://developers.google.com/web/updates/2019/02/constructable-stylesheets) which allows the browser to reuse the same style without reparsing it. Unfortunately at the moment, Firefox and Safari do not support it. So this is why I prefer to import the styles as above.
 
 
 
-After that we set the inner template to our collected style
+After that we set the inner template to our collected style:
 
 ```fsharp
 
@@ -570,9 +570,8 @@ Ok, now we are ready to define our actual web component class:
 
   ```
 
-  So we inherit from our **HtmlElement** type, then we create the shadow dom by using base.attachShadow and we get a reference to the #root element in a lazy manner.
-
-  The reason we do it lazily because at this point the element is not yet available. In the do block, we set up our shadow root and attach an event listener. And then we have **isVisible** virtual property. Remember we use virtual properties to avoid name mangling by fable. We have a **close** function that can be used to close our modal window programmatically from JS and then we do the actual rendering in the **render** function.
+So we inherit from our **HtmlElement** type, then we create the shadow dom by using base.attachShadow and we get a reference to the #root element in a lazy manner.
+The reason we do it lazily because at this point the element is not yet available. Then in the do block, we set up our shadow root and attach an event listener. And then we have **isVisible** virtual property. Remember we use virtual properties to avoid name mangling by fable. We have a **close** function that can be used to close our modal window programmatically from JS and then we do the actual rendering in the **render** function.
 
   
 
@@ -582,7 +581,7 @@ Ok, now we are ready to define our actual web component class:
 
   
 
-In case you want to use React then you could write your React component in the **render** function and then call **ReactDom.render** inside and that's all (don't forget to call **retargetEvents** in the constructor if you use react).
+In case you want to use React then you could write your React component in the **render** function and then call **ReactDom.render** inside the render function and that's all (don't forget to call **retargetEvents** in the constructor if you use react).
 
 
 
@@ -622,7 +621,7 @@ Here we check if our custom tag is defined or not, since you can only define the
 
 
 
-At the bottom of the code, we have a dummy function
+At the bottom of the code, we have a dummy function:
 
 
 
