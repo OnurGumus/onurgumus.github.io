@@ -14,7 +14,7 @@ excerpt_separator: <!--more-->
 
 # Fable Web Components
 
-Web Components allow us to create custom HTML elements with custom behavior. HTML was originally designed primarily for documentation purposes with some form controls. Then by using CSS, we developers attempted to style the page and give the looks that we wanted. With HTML 5, new "web components" came up such as **dialog** and **progress**. But they are somewhat limited and due to that HTML language is almost transformed into the assembly language of the web developer. We tend to abstract and stay away from HTML and treat it as a second class citizen where we hook into our shiny SPA web frameworks. We look at the job ads, no one is searching for an HTML developer anymore but they look for React devs, Angular devs, Vue devs. 10 years ago, it was hard to land a job if you didn't know jQuery, 5 years ago it was Angular that recruiters wanted and the developers have been turned into hamsters running in a circle. Perhaps it is time to revisit the fundamentals, give HTML some respect and treat it as a first-class citizen. Web components are an attempt to give that respect back to it.
+Web components allow us to create custom HTML elements with custom behavior. HTML was originally designed primarily for documentation purposes with some form controls. Then by using CSS, we developers attempted to style the page and give the looks that we wanted. With HTML 5, new "web components" came up such as **dialog** and **progress**. But they are somewhat limited and due to that HTML language is almost transformed into the assembly language of the web developer. We tend to abstract and stay away from HTML and treat it as a second class citizen where we hook into our shiny SPA web frameworks. We look at the job ads, no one is searching for an HTML developer anymore but they look for React devs, Angular devs, Vue devs. 10 years ago, it was hard to land a job if you didn't know jQuery, 5 years ago it was Angular that recruiters wanted and the developers have been turned into hamsters running in a circle. Perhaps it is time to revisit the fundamentals, give HTML some respect and treat it as a first-class citizen. Web components are an attempt to give that respect back to it.
 
     
 
@@ -22,7 +22,7 @@ In this post, we are going to develop a [Modal Window web component](https://rb.
 
 
 ![shadowdom](/assets/modalwindow.png)
-Although Web components are meant to be written via JavaScript, there is no reason not to do it from Fable. This post will also demonstrate some more capabilities (and limitations) of Fable in terms of JavaScript interop.
+Although web components are meant to be written via JavaScript, there is no reason not to do it from Fable. This post will also demonstrate some more capabilities (and limitations) of Fable in terms of JavaScript interop.
 
 <!--more-->   
 
@@ -62,11 +62,11 @@ This common question arises, as we could do all complicated dynamic stuff by usi
 
 
 
-Well, the first benefit is your components become framework agnostic. Since the final output is HTML, once you have written a web component they can be easily consumed by React, Angular, Vue or Web assembly. 
+Well, the first benefit is your components become framework agnostic. Since the final output is HTML, once you have written a web component it can be easily consumed by React, Angular, Vue or Web assembly. 
 
 
 
-The second benefit is web components give you a **shadow dom** which allows you to hide the CSS classes into the component. So that you could have truly isolated CSS styling as CSS styles outside of the shadow dom won't penetrate inside and the ones inside won't be leaking to outside of the shadow dom.
+The second benefit is, web components give you a **shadow dom** which allows you to hide the CSS classes into the component. So that, you could have truly isolated CSS styling as CSS styles outside of the shadow dom won't penetrate inside and the ones inside won't be leaking to the outside of the shadow dom.
 
 
 Another great benefit is for designers. Whether you use react, angular or fable a common problem is that you start to write your HTML with the SPA's language with extra augmentations such as JSX or full Fable F# syntax, and then if you have an HTML designer who is not familiar with F#/react, etc in your team, it becomes a problem to sync the designer's code with your own code. To solve this problem Shadow DOM gives you **HTML slots**, which allow you to treat HTML as a native templated language with default looks. We will investigate slots briefly in our example below.
