@@ -652,19 +652,10 @@ After this lengthy intro, our component is ready to use. How do we use it?
 <head>
 
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-
-
-
-
-
-
-
-
-
-
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.0.3/custom-elements-es5-adapter.js"></script>
+    <script src="https://unpkg.com/@webcomponents/custom-elements@1.2.0/custom-elements.min.js"></script>
+    <script src="https://unpkg.com/@webcomponents/shadydom@1.1.3/shadydom.min.js"></script>
 </head>
-
-
 
 <body class="app-container">
 
