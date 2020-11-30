@@ -12,11 +12,7 @@ excerpt_separator: <!--more-->
 
 ---
 
-
-
 # Fable Web Components
-
-
 
 Web Components allow us to create custom HTML elements with custom behavior. HTML was originally designed primarily for documentation purposes with some form controls. Then by using CSS, we developers attempted to style the page and give the looks that we wanted. With HTML 5, new "web components" came up such as **dialog** and **progress**. But they are somewhat limited and due to that HTML language is almost transformed into the assembly language of the web developer. We tend to abstract and stay away from HTML and treat it as a second class citizen where we hook into our shiny SPA web frameworks. We look at the job ads, no one is searching for an HTML developer anymore but they look for React devs, Angular devs, Vue devs. 10 years ago, it was hard to land a job if you didn't know jQuery, 5 years ago it was Angular that recruiters wanted and the developers have been turned into a hamsters running in a circle. Perhaps it is time to stick revisit the fundamentals, give HTML some respect and treat it as a first-class citizen. Web components are an attempt to give that respect back to it.
 
@@ -55,16 +51,11 @@ Basically, web components have 3 ingredients:
 
 
 
-* **HTML Template**: Basically a string of HTML markup, which can include the styling, that will compose our control.
-
-
+* **HTML Template**: Basically a string of HTML markup, which can include the styling, that will compose our control
 
 Once we gathered the ingredients we register our tag and use it.
 
-
-
 # Why use web components?
-
 
 
 This common question arises, as we could do all complicated dynamic stuff by using our fancy SPA frameworks. 
@@ -78,10 +69,7 @@ Well, the first benefit is your components become framework agnostic. Since the 
 The second benefit is web components give you a **shadow dom** which allows you to hide the CSS classes into the component. So that you could have truly isolated CSS styling as CSS styles outside of the shadow dom won't penetrate inside and the ones inside won't be leaking to outside of the shadow dom.
 
 
-
 Another great benefit is for designers. Whether you use react, angular or fable a common problem is that you start to write your HTML with the SPA's language with extra augmentations such as JSX or full Fable F# syntax, and then if you have an HTML designer who is not familiar with F#/react, etc in your team, it becomes a problem to sync the designer's code with your own code. To solve this problem Shadow DOM gives you **HTML slots**, which allow you to treat HTML as a native templated language with default looks. We will investigate slots briefly in our example below.
-
-
 
 # We already have React, Angular, Vue. Are web components an alternative?
 
@@ -116,25 +104,18 @@ At the top, we create a template element in Fable way as they are missing in Fab
 ```fsharp
 
     [<AllowNullLiteral>]
-
     type HTMLTemplateElement =
-
         inherit HTMLElement
-
+        
         abstract content: DocumentFragment with get, set
 
 
-
     [<AllowNullLiteral>]
-
     type HTMLTemplateElementType =
 
         //cool way to generate the constctuctor
-
         [<EmitConstructor>]
-
         abstract Create: unit -> HTMLTemplateElement
-
 ```
 
 
@@ -144,11 +125,8 @@ Next we need a shadow dom type and we define it as below:
 
 
 ```fsharp
-
     //We create our own ShadowRoot to interact with browser api.
-
     [<Global>]
-
     type ShadowRoot() =
 
         member this.appendChild(el: Browser.Types.Node) = jsNative
@@ -166,17 +144,12 @@ The HTML specification says, in order for web components to deal with its attrib
 
 
 ```fsharp
-
     //Below two helpers works around fable limitation: 
-
     // No static members without name mangling.
-
     let inline attachStatic<'T> (name: string) (f: obj): unit = jsConstructor<'T>?name <- f
 
     let inline attachStaticGetter<'T, 'V> (name: string) (f: unit -> 'V): unit =
-
         JS.Constructors.Object.defineProperty (jsConstructor<'T>, name, !!{| get = f |})
-
         |> ignore
 
 ```
@@ -194,9 +167,7 @@ All the classes that we will use for the web components must derive from: **Html
     // The built in html element is missing below props so we use our own
 
     [<Global; AbstractClass>]
-
     [<AllowNullLiteral>]
-
     type HTMLElement() =
 
         member _.getAttribute(attr: string): obj = jsNative
@@ -230,17 +201,11 @@ If you are going to use react inside your web component then I advise you to use
 
 
 ```fsharp
-
     (* in your app add react-shadow-dom-retarget-events via yarn uncomment below code 
-
         to make sure react components work fine 
-
        then call it from your component with:  retargetEvents shadowRoot *)
-
     let retargetEvents: (ShadowRoot -> unit) =
-
         importDefault "react-shadow-dom-retarget-events"
-
  ```
 
  
@@ -252,13 +217,9 @@ And finally, we conclude our module with a special member:
 
 
 ```fsharp
-
     //special member for html web components
-
     [<Literal>]
-
     let observedAttributes = "observedAttributes"
-
 ```
 
 This is just string and we put it there for because it is a special member name.
@@ -272,11 +233,8 @@ Now it is time to write our actual ModalWindow module.
 We first define and **HTMLTemplateElement** as this is also missing with Fable:
 
 ```fsharp
-
     //fsharplint:disable
-
     let template: HTMLTemplateElement = !! document.createElement "template"
-
 ```
 
 Notice the fsharplint comment as if you use editors like VSCode, we suppress the linters as F# code conventions are not compatible with HTML or JS.
@@ -286,40 +244,25 @@ Notice the fsharplint comment as if you use editors like VSCode, we suppress the
 Then we define our html template as string:
 
 ```fsharp
-
     let private html: string = """
 
 Consolas,monaco,monospace" >
     <div class="modal-background"></div>
 
     <div class="modal-content has-shadow has-margin-bottom-20">
-
         <div class="box is-radiusless has-margin-bottom-0 has-background-white has-padding-30">
-
             <div class="has-text-left">
-
                 <h2 class="title is-size-2 is-marginless has-text-primary">
-
                     <slot name="title">Title</slot>
-
                 h2>
-
                 <p class="has-text-subtle is-size-5 has-text-primary"><slot name="description">Description</slot></p>
-
             </div>
-
             <div class="buttons has-margin-top-20 is-right">
-
                 is-radiusless" onClick="this.dispatchEvent(new CustomEvent('close', { bubbles: true,composed:true}))" >Close
-
             </div>
-
         </div>
-
         CustomEvent('close', { bubbles: true,composed:true}))">
-
     </div>
-
 </div>"""
 
 ```
@@ -331,9 +274,7 @@ Note that in the actual application I would recommend the following approach ins
 
 
 ```fsharp
-
 let private html: string = importDefault "!!raw-loader!./path-to-your.html"
-
 ```
 
 This way you could put your html and styling into a proper HTML file or even your designer could provide it to you. 
@@ -347,9 +288,7 @@ Firstly, we define root element as #root and our web component will put "is-acti
 
 
 ```html
-
-
-<div class="modal" id="root" style="z-index:10000; font-family:Consolas,monaco,monospace" >
+<div class="modal" id="root" style="z-index:10000; font-family:Consolas,monaco,monospace">
 ```
 
 
@@ -358,14 +297,10 @@ Then you will see some slot definitions:
 
 ```html
 
-
 is-marginless has-text-primary">
     <slot name="title">Title</slot>
-
 </h2>
-
 <p class="has-text-subtle is-size-5 has-text-primary"><slot name="description">Description</slot></p>
-
 ```
 
 slots are where we put or inject our content. Since web components are in a shadow root they support slots. For more info on slots see [mdn](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
@@ -389,7 +324,6 @@ After that you see bulma source code is set to a variable:
 ```fsharp
 
     let private style = 
-
         """/*! bulma.io v0.9.1 | MIT License | github.com/jgthms/bulma */..."""
 
 ```
@@ -419,9 +353,7 @@ Wait a sec! Why am I importing bulma like this in the first place? Can I not jus
 After that we set the inner template to our collected style:
 
 ```fsharp
-
     template.innerHTML <- style + html
-
 ```
 
 
@@ -458,78 +390,56 @@ Ok, now we are ready to define our actual web component class:
     [<AllowNullLiteral>]
 
     type ModalWindow() as this =
-
         inherit HTMLElement()
 
         //Get the current dom element
-
         let el: Browser.Types.HTMLElement = !!this
 
         let shadowRoot: ShadowRoot = base.attachShadow {| mode = "open" |}
 
         // see the html above. We use lazy because the dom element isn't available at this point.
-
         let root =
-
             lazy (shadowRoot.querySelector "#root" )
 
         do
-
             //clone the html text and append to the child
-
             let clone = template.content.cloneNode true
 
             shadowRoot.appendChild clone
 
             //call retartget evetns    
-
             //get a reference to #root dom element out of lazy
 
             let root = root.Value
 
             //whenever we receive a close event change isVisible property setter
-
             root.addEventListener
-
                 ("close",
-
                 (fun _ -> this.isVisible <- false))
 
         //virtual properties are not mangled by Fable.
-
         abstract isVisible: bool with get, set
 
         override _.isVisible
-
             with get () = el.hasAttribute VISIBLE
             and set value =
-
                 if value then el.setAttribute (VISIBLE, "") else el.removeAttribute VISIBLE
 
-
-
         //fire close event if we call .close()
-
         abstract close: unit -> unit
 
         override this.close() = 
-
             root.Value.dispatchEvent 
-
                 (CustomEvent.Create("close", {| bubbles = true ; composed = true|}))
-
                 |> ignore
 
         // render function is our custom function where we do the actual rendering and mangled
 
         member this.render() =
-
             // you can alternatively use ReactDom.render here if you want to use react.
-
             let root = root.Value
 
             // add or remove the is-active bulma class
-
             if this.isVisible then
 
                 if root.classList.contains IS_ACTIVE |> not
@@ -543,9 +453,7 @@ Ok, now we are ready to define our actual web component class:
         //called by browser when the component is ready to render or any attribute is changed
 
         //alternatively use connectedCallback
-
         override this.attributeChangedCallback(name, oldVal, newVal) =
-
             this.render ()
 
   ```
@@ -570,11 +478,8 @@ After writing our class we have to define the attributes by using the **observed
 ```fsharp
 
     //attach the observed attributes static get property 
-
     //as this is the only way and required by web components spec.
-
     attachStaticGetter<ModalWindow, _> observedAttributes (fun () -> [| VISIBLE; |])
-
 ```
 
 
@@ -584,15 +489,9 @@ And finally, we register our custom tag with the below code:
 
 
 ```fsharp
-
-
-
     //define the tag if not defined. A web component can be registered only once
-
     if not (window?customElements?get TAG)
-
     then window?customElements?define (TAG, jsConstructor<ModalWindow>)
-
 ```
 
 Here we check if our custom tag is defined or not, since you can only define the tag once and re-registering would cause an error. So if you are using Hot module reloading we effectively prevent re-registration but then you have to refresh the browser. So no hot module reloading for web component sorry.
@@ -604,11 +503,8 @@ At the bottom of the code, we have a dummy function:
 
 
 ```fsharp
-
     // dummy function to ensure the above code is run
-
     let ensureDefined () = ()
-
 ```
 
 
@@ -622,7 +518,6 @@ After this lengthy intro, our component is ready to use. How do we use it?
 
 
 ```html
-
 <html>
     
 <head>
@@ -645,30 +540,16 @@ After this lengthy intro, our component is ready to use. How do we use it?
 </body>
 
 </html>
-
 ```
 
 At the top, you would immediately see there is **custom-elements-e5-adapter** polyfill. The reason we use this polyfill is Fable 2 does not generate ES6 classes but web components require them. So that adapter solves that problem. However you must use 2.0.3 exactly, versions after that won't work. 
 
-
-
-And another important thing is with Fable 3 you have to remove these polyfills as Fable 3 generates proper ES6 classes. Not removing them would cause an error.
-
-
+And another important thing is with Fable 3 you have to remove these polyfills as Fable 3 generates proper ES6 classes. Not removing them would cause an error
 
 With respect to our component, you could see the modal-window tag and two items a button, and some text called Onur is put into Title and Description slots. We have a close button and also we use the title button to trigger the closing function. The main tag intercepts the event shows an alert window with its own tag name for demonstration purposes.
-
-
-
-  
 
 And below is how our dom looks like:
 
 ![shadowdom](/assets/shadowdom.png)
 
-
-
 which clearly shows the show dom and other ingredients. An important point is you can see the slotted elements are indeed outside of the web component although from rendering point of view they are rendered inside the slots.
-
-
-
