@@ -109,7 +109,6 @@ At the top, we create a template element in Fable way as they are missing in Fab
         
         abstract content: DocumentFragment with get, set
 
-
     [<AllowNullLiteral>]
     type HTMLTemplateElementType =
 
@@ -151,7 +150,6 @@ The HTML specification says, in order for web components to deal with its attrib
     let inline attachStaticGetter<'T, 'V> (name: string) (f: unit -> 'V): unit =
         JS.Constructors.Object.defineProperty (jsConstructor<'T>, name, !!{| get = f |})
         |> ignore
-
 ```
 
 We will see how these functions are used.
@@ -165,7 +163,6 @@ All the classes that we will use for the web components must derive from: **Html
 ```fsharp
 
     // The built in html element is missing below props so we use our own
-
     [<Global; AbstractClass>]
     [<AllowNullLiteral>]
     type HTMLElement() =
@@ -185,7 +182,6 @@ All the classes that we will use for the web components must derive from: **Html
         abstract attributeChangedCallback: string * obj * obj -> unit
 
         default _.attributeChangedCallback(_, _, _) = ()
-
  ```
 
 
@@ -204,6 +200,7 @@ If you are going to use react inside your web component then I advise you to use
     (* in your app add react-shadow-dom-retarget-events via yarn uncomment below code 
         to make sure react components work fine 
        then call it from your component with:  retargetEvents shadowRoot *)
+       
     let retargetEvents: (ShadowRoot -> unit) =
         importDefault "react-shadow-dom-retarget-events"
  ```
@@ -310,9 +307,7 @@ slots are where we put or inject our content. Since web components are in a shad
 You can also see, clicking some buttons would cause some events to be dispatched:
 
 ```javascript
-
 this.dispatchEvent(new CustomEvent('close', { bubbles: true,composed:true}))
-
 ```
 
 In this case, we fire a custom event called **close**. **bubbles** property specifies if the event will bubble to parents whereas **composed** will make the event even go across the shadow dom.
@@ -322,10 +317,8 @@ In this case, we fire a custom event called **close**. **bubbles** property spec
 After that you see bulma source code is set to a variable:
 
 ```fsharp
-
     let private style = 
         """/*! bulma.io v0.9.1 | MIT License | github.com/jgthms/bulma */..."""
-
 ```
 
 Again this is a limitation of the Fable Repl environment. In the actual case you would do:
@@ -335,11 +328,8 @@ Again this is a limitation of the Fable Repl environment. In the actual case you
 ```fsharp
 
     (* in your actual app use below code snippet instead of string *)
-
     let private style =
-
         importDefault "!!raw-loader!./path-to-your.css"
-
         |> sprintf ""
 
 ```
@@ -363,7 +353,6 @@ and define some constants for reuse later:
 
 
 ```fsharp
-
     //Define some constants
 
     [<Literal>]
@@ -448,10 +437,7 @@ Ok, now we are ready to define our actual web component class:
             else
                 root.classList.remove IS_ACTIVE
 
-
-
         //called by browser when the component is ready to render or any attribute is changed
-
         //alternatively use connectedCallback
         override this.attributeChangedCallback(name, oldVal, newVal) =
             this.render ()
@@ -528,13 +514,10 @@ After this lengthy intro, our component is ready to use. How do we use it?
 </head>
 
 <body class="app-container">
-
+    
     <modal-window visible onclose='alert(this.tagName)'>
-
         <span slot="title"><button onclick="this.parentNode.parentNode.close()">Title Button</button></span>
-
         <span slot="description">Onur</span>
-
     </modal-error>
 
 </body>
