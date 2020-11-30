@@ -26,11 +26,11 @@ In this post, we are going to develop a [Modal Window web component](https://fab
 
 
 ![shadowdom](/assets/modalwindow.png)
-Although Web components are meant to be written via JavaScript there is no reason not to do it from Fable. This will also demonstrate some more capabilities (and limitations) of Fable in terms of JavaScript interop.
+Although Web components are meant to be written via JavaScript, there is no reason not to do it from Fable. This post will also demonstrate some more capabilities (and limitations) of Fable in terms of JavaScript interop.
 
 <!--more-->   
 
-And by the way, this is the markup that we are going to use at the very and as our web component:
+And by the way, this is the final markup that we are going to use at the very and as our web component:
 
 ```html
     <modal-window visible onclose='alert(this.tagName)'>
