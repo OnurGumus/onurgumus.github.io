@@ -67,11 +67,11 @@ Well, the first benefit is your components become framework agnostic. Since the 
 
 
 
-The second benefit is web components give you a *shadow dom* which allows you to hide the CSS classes into the component. So that you could have truly isolated CSS styling as CSS styles outside of the shadow dom won't penetrate inside and they won't be leaking to outside.
+The second benefit is web components give you a **shadow dom** which allows you to hide the CSS classes into the component. So that you could have truly isolated CSS styling as CSS styles outside of the shadow dom won't penetrate inside and they won't be leaking to outside.
 
 
 
-Another great benefit is for designers. Whether you use react, angular or fable a common problem is that you start to write your HTML with the SPA's language with extra augmentations such as JSX or full Fable F# syntax, and then if you have an HTML designer who is not familiar with F#/react, etc in your team, it becomes a problem to sync the designer's code with your own code. To solve this problem Shadow DOM gives you *HTML slots*, which allow you to treat HTML as a native templated language with default looks we will investigate slots briefly in our example below.
+Another great benefit is for designers. Whether you use react, angular or fable a common problem is that you start to write your HTML with the SPA's language with extra augmentations such as JSX or full Fable F# syntax, and then if you have an HTML designer who is not familiar with F#/react, etc in your team, it becomes a problem to sync the designer's code with your own code. To solve this problem Shadow DOM gives you **HTML slots**, which allow you to treat HTML as a native templated language with default looks we will investigate slots briefly in our example below.
 
 
 
@@ -83,7 +83,7 @@ React, Angular, Vue, and web components are complementary, not rivalry. That is,
 
 
 
-React --- consumes ---> Html Web Component --> Component itself is written with react.
+React --> Html Web Component --> React
 
 
 
@@ -153,7 +153,7 @@ Again this is primarily for type safety and intellisense support while interacti
 
 
 
-The HTML specification says, in order for web components to deal with its attributes we need a specially named member *observedAttributes* and this member should be static getter property. As mentioned above Fable by default mangles all property names with some $ and 0 symbols unless the member is virtual or an interface member. To work around the issue we need some helpers to generate static getters. And here's the code for it:
+The HTML specification says, in order for web components to deal with its attributes we need a specially named member **observedAttributes** and this member should be static getter property. As mentioned above, Fable by default, mangles all property names with some $ and numerical symbols unless the member is virtual or an interface member. To work around the issue we need some helpers to generate static getters. And here's the code for it:
 
 
 
