@@ -30,7 +30,7 @@ Although Web components are meant to be written via JavaScript there is no reaso
 
 <!--more-->   
 
-And by the way this is the markup that we are going to use at the very and as our web component:
+And by the way, this is the markup that we are going to use at the very and as our web component:
 
 ```html
     <modal-window visible onclose='alert(this.tagName)'>
