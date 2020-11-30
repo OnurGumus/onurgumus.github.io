@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:image" content="/assets/CAPTURE.PNG">
     <meta content="{{ site.title }}" property="og:site_name">
     {% if page.title %}
       <meta content="{{ page.title }}" property="og:title">
@@ -27,12 +26,11 @@
     {% endif %}
     {% if page.date %}
       <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
-      <meta content="{{ site.url }}/about/" property="article:author">
     {% endif %}
     {% if page.image %}
       <meta content="{{ site.url }}/assets/img/posts/{{ page.image }}" property="og:image">
     {% else %}
-      <meta content="{{ site.url }}/assets/img/logo-high-resolution.png" property="og:image">
+      <meta content="{{ site.url }}/assets/img/CAPTURE.PNG" property="og:image">
     {% endif %}
     {% if page.categories %}
       {% for category in page.categories limit:1 %}
