@@ -112,7 +112,7 @@ At the top, we create a template element in Fable way as they are missing in Fab
     [<AllowNullLiteral>]
     type HTMLTemplateElementType =
 
-        //cool way to generate the constctuctor
+        //cool way to generate the constructor
         [<EmitConstructor>]
         abstract Create: unit -> HTMLTemplateElement
 ```
