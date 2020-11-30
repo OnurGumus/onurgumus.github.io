@@ -179,7 +179,7 @@ We will see how these functions are used.
 
 
 
-All the classes that we will use for the web components must derive from: **HtmlElement**. Fable already offers one but unfortunately, some members we required are missing. So we create one of our own:
+All the classes that we will use for the web components must derive from: **HtmlElement**. Fable already offers one but unfortunately, some members we require, are missing. So we create one of our own:
 
 
 
@@ -213,9 +213,9 @@ All the classes that we will use for the web components must derive from: **Html
 
 
 
-You can see there are some virtual members (abstract-default pairs make a member virtual in F#)  One is **connectedCallback** and the other is **attributeChangedCallback**
+You can see there are some virtual members (abstract-default pairs make a member virtual in F#)  One is **connectedCallback** and the other is **attributeChangedCallback**.
 
-These member names are special and they are called by the browser. **connectedCallback** is called when the member is attached to the DOM tree and **attributeChangeCallback** is when the attributes are first time set or changed. We will use these members to initiate the rendering.
+These member names are special and they are called by the browser. **connectedCallback** is called when the member is attached to the DOM tree and **attributeChangeCallback** is called when the attributes are first time set or changed. We will use these members to initiate the rendering.
 
 
 
@@ -263,7 +263,7 @@ Now it is time to write our actual ModalWindow module.
 
 
 
-We first define and **HTMLTemplateElement** as this is missing with Fable:
+We first define and **HTMLTemplateElement** as this is also missing with Fable:
 
 ```fsharp
 
@@ -277,7 +277,7 @@ Notice the fsharplint comment as if you use editors like VSCode, we suppress the
 
 
 
-Then we define our html template as string
+Then we define our html template as string:
 
 ```fsharp
 
@@ -330,7 +330,9 @@ let private html: string = importDefault "!!raw-loader!./path-to-your.html"
 
 ```
 
-This way you could put your html and styling into a proper HTML file or even your designer could provide it to you. The above HTML is a bulma modal window component. And there are a few interesting things to mention. In our example since Fable Repl is a limited environment, I had to put it right into the code.
+This way you could put your html and styling into a proper HTML file or even your designer could provide it to you. 
+
+The above HTML is a bulma modal window component. And there are a few interesting things to mention. In our example since Fable Repl is a limited environment, I had to put it right into the code.
 
 
 
@@ -341,7 +343,7 @@ Firstly, we define root element as #root and our web component will put "is-acti
 ```html
 
 
-Consolas,monaco,monospace" >
+<div class="modal" id="root" style="z-index:10000; font-family:Consolas,monaco,monospace" >
 ```
 
 
