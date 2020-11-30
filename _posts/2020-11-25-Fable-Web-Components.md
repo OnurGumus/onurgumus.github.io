@@ -75,7 +75,7 @@ Well, the first benefit is your components become framework agnostic. Since the 
 
 
 
-The second benefit is web components give you a **shadow dom** which allows you to hide the CSS classes into the component. So that you could have truly isolated CSS styling as CSS styles outside of the shadow dom won't penetrate inside and they won't be leaking to outside.
+The second benefit is web components give you a **shadow dom** which allows you to hide the CSS classes into the component. So that you could have truly isolated CSS styling as CSS styles outside of the shadow dom won't penetrate inside and the ones inside won't be leaking to outside of the shadow dom.
 
 
 
@@ -111,7 +111,7 @@ At we first we have a reusable WebComponent module which is the basis and encaps
 
 
 
-At the top, we create a template element in Fable way as they are missing in Fable library. This for getting type safety and intellisense
+At the top, we create a template element in Fable way as they are missing in Fable library. This for getting type safety and auto-complete.
 
 ```fsharp
 
@@ -157,7 +157,7 @@ Next we need a shadow dom type and we define it as below:
 
 ```
 
-Again this is primarily for type safety and intellisense support while interacting with Browser's DOM API. Notice the global attribute. This is to say Fable, don't generate code for this type, it already exists in the hosting environment in this case the browser. And members are not mangled. Mangling is a mechanism in fable that would change the actual generated member name in order to support things like overloading. Obviously no code is generated here.
+Again this is primarily for type safety and auto-complete support while interacting with Browser's DOM API. Notice the global attribute. This is to say Fable, don't generate code for this type, it already exists in the hosting environment in this case the browser. And members are not mangled. Mangling is a mechanism in fable that would change the actual generated member name in order to support things like overloading. Obviously no code is generated here.
 
 
 
