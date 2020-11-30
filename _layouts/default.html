@@ -28,9 +28,11 @@
       <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
     {% endif %}
     {% if page.image %}
+   
       <meta content="{{ site.url }}/assets/img/posts/{{ page.image }}" property="og:image">
     {% else %}
       <meta content="{{ site.url }}/assets/me.png" property="og:image">
+
     {% endif %}
     {% if page.categories %}
       {% for category in page.categories limit:1 %}
@@ -43,7 +45,7 @@
       {% endfor %}
     {% endif %}
 
-
+    <link rel="shortcut icon" type="image/png" href="{{ site.url }}/assets/me.png" />
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen" type="text/css">
     <link rel="stylesheet" href="{{ '/assets/css/print.css' | relative_url }}" media="print" type="text/css">
 
