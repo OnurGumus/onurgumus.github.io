@@ -102,7 +102,6 @@ At we first we have a reusable WebComponent module which is the basis and encaps
 At the top, we create a template element in Fable way as they are missing in Fable library. This for getting type safety and auto-complete.
 
 ```fsharp
-
     [<AllowNullLiteral>]
     type HTMLTemplateElement =
         inherit HTMLElement
@@ -131,7 +130,6 @@ Next we need a shadow dom type and we define it as below:
         member this.appendChild(el: Browser.Types.Node) = jsNative
 
         member this.querySelector(selector: string): Browser.Types.HTMLElement = jsNative
-
 ```
 
 Again this is primarily for type safety and auto-complete support while interacting with Browser's DOM API. Notice the global attribute. This is to say Fable, don't generate code for this type, it already exists in the hosting environment in this case the browser. And members are not mangled. Mangling is a mechanism in fable that would change the actual generated member name in order to support things like overloading. Obviously no code is generated here.
@@ -144,7 +142,7 @@ The HTML specification says, in order for web components to deal with its attrib
 
 ```fsharp
     //Below two helpers works around fable limitation: 
-    // No static members without name mangling.
+    //No static members without name mangling.
     let inline attachStatic<'T> (name: string) (f: obj): unit = jsConstructor<'T>?name <- f
 
     let inline attachStaticGetter<'T, 'V> (name: string) (f: unit -> 'V): unit =
@@ -161,7 +159,6 @@ All the classes that we will use for the web components must derive from: **Html
 
 
 ```fsharp
-
     // The built in html element is missing below props so we use our own
     [<Global; AbstractClass>]
     [<AllowNullLiteral>]
@@ -293,7 +290,6 @@ Firstly, we define root element as #root and our web component will put "is-acti
 Then you will see some slot definitions:
 
 ```html
-
 is-marginless has-text-primary">
     <slot name="title">Title</slot>
 </h2>
@@ -326,12 +322,10 @@ Again this is a limitation of the Fable Repl environment. In the actual case you
 
 
 ```fsharp
-
     (* in your actual app use below code snippet instead of string *)
     let private style =
         importDefault "!!raw-loader!./path-to-your.css"
         |> sprintf ""
-
 ```
 
 Wait a sec! Why am I importing bulma like this in the first place? Can I not just put a **link** tag to my parent HTML document. Unfortunately you cannot. This is because shadow dom will not allow you to pass the styles through it. That means you cannot influence this component's CSS from outside. But the way we use, it can cause some duplication. If every component we have using bulma, we would import bulma over and over again. Yes, this is some drawback and the solution to this problem is
@@ -363,7 +357,6 @@ and define some constants for reuse later:
 
     [<Literal>]
     let VISIBLE = "visible"
-
 ```
 
 
@@ -373,7 +366,6 @@ Ok, now we are ready to define our actual web component class:
 
 
 ```fsharp
-
  // we are writing our component below
 
     [<AllowNullLiteral>]
@@ -441,7 +433,6 @@ Ok, now we are ready to define our actual web component class:
         //alternatively use connectedCallback
         override this.attributeChangedCallback(name, oldVal, newVal) =
             this.render ()
-
   ```
 
 So we inherit from our **HtmlElement** type, then we create the shadow dom by using base.attachShadow and we get a reference to the #root element in a lazy manner.
