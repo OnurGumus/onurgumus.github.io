@@ -79,7 +79,7 @@ The second benefit is web components give you a **shadow dom** which allows you 
 
 
 
-Another great benefit is for designers. Whether you use react, angular or fable a common problem is that you start to write your HTML with the SPA's language with extra augmentations such as JSX or full Fable F# syntax, and then if you have an HTML designer who is not familiar with F#/react, etc in your team, it becomes a problem to sync the designer's code with your own code. To solve this problem Shadow DOM gives you **HTML slots**, which allow you to treat HTML as a native templated language with default looks we will investigate slots briefly in our example below.
+Another great benefit is for designers. Whether you use react, angular or fable a common problem is that you start to write your HTML with the SPA's language with extra augmentations such as JSX or full Fable F# syntax, and then if you have an HTML designer who is not familiar with F#/react, etc in your team, it becomes a problem to sync the designer's code with your own code. To solve this problem Shadow DOM gives you **HTML slots**, which allow you to treat HTML as a native templated language with default looks. We will investigate slots briefly in our example below.
 
 
 
