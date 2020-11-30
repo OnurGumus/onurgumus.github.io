@@ -435,19 +435,12 @@ and define some constants for reuse later:
     //Define some constants
 
     [<Literal>]
-
     let TAG = "modal-window"
 
-
-
     [<Literal>]
-
     let IS_ACTIVE = "is-active"
 
-
-
     [<Literal>]
-
     let VISIBLE = "visible"
 
 ```
@@ -472,21 +465,13 @@ Ok, now we are ready to define our actual web component class:
 
         let el: Browser.Types.HTMLElement = !!this
 
-
-
         let shadowRoot: ShadowRoot = base.attachShadow {| mode = "open" |}
-
-
 
         // see the html above. We use lazy because the dom element isn't available at this point.
 
         let root =
 
             lazy (shadowRoot.querySelector "#root" )
-
-
-
-
 
         do
 
@@ -502,8 +487,6 @@ Ok, now we are ready to define our actual web component class:
 
             let root = root.Value
 
-
-
             //whenever we receive a close event change isVisible property setter
 
             root.addEventListener
@@ -512,8 +495,6 @@ Ok, now we are ready to define our actual web component class:
 
                 (fun _ -> this.isVisible <- false))
 
-
-
         //virtual properties are not mangled by Fable.
 
         abstract isVisible: bool with get, set
@@ -521,7 +502,6 @@ Ok, now we are ready to define our actual web component class:
         override _.isVisible
 
             with get () = el.hasAttribute VISIBLE
-
             and set value =
 
                 if value then el.setAttribute (VISIBLE, "") else el.removeAttribute VISIBLE
@@ -540,8 +520,6 @@ Ok, now we are ready to define our actual web component class:
 
                 |> ignore
 
-
-
         // render function is our custom function where we do the actual rendering and mangled
 
         member this.render() =
@@ -550,18 +528,14 @@ Ok, now we are ready to define our actual web component class:
 
             let root = root.Value
 
-
-
             // add or remove the is-active bulma class
 
             if this.isVisible then
 
                 if root.classList.contains IS_ACTIVE |> not
-
                 then root.classList?add IS_ACTIVE
 
             else
-
                 root.classList.remove IS_ACTIVE
 
 
