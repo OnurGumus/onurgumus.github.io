@@ -388,7 +388,7 @@ Ok, now we are ready to define our actual web component class:
 
             shadowRoot.appendChild clone
 
-            //call retartget evetns    
+            //call retarget events    
             //get a reference to #root dom element out of lazy
 
             let root = root.Value
