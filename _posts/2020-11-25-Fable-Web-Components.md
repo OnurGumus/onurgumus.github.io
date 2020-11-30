@@ -583,9 +583,7 @@ The reason we do it lazily because at this point the element is not yet availabl
 
   
 
-  **render** function is not a special one and the name can be mangled. it is actually called from **attributeChangedCallback** when the element is attached to the dom. alternatively 
-
-  we could have used **connectedCallback** which is also triggered when the component is attached.
+  **render** function is not a special one and the name can be mangled. it is actually called from **attributeChangedCallback** when the element is attached to the dom. alternatively we could have used **connectedCallback** which is also triggered when the component is attached.
 
   
 
