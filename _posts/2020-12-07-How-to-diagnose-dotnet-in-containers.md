@@ -14,7 +14,7 @@ List the pods withe below command
  ```
 Then find the relevant container from the list and login to it with
 ```bash
-kubectl exec --stdin --tty irma-ensemble-analytics-559dbc6547-g2kk8 -- /bin/bash
+kubectl exec --stdin --tty <podname> -- /bin/bash
 ```
 
 * **Download .net core sdk:** You need .net core sdk in in the container, so get the relevant from https://dotnet.microsoft.com/download/dotnet-core. 
