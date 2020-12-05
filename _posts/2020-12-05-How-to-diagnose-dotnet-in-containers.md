@@ -101,7 +101,7 @@ The default process runs with process id 1 in the container so:
 dotnet-counters monitor -p 1
 ```
 
-You see something like below:
+You see something like below (arrows added by me):
 
 ```
 Press p to pause, r to resume, q to quit.
@@ -130,7 +130,7 @@ Press p to pause, r to resume, q to quit.
     Working Set (MB)                                             352 <-- physical memory used (from container/pod point of view)
  ```
 
-Here we observe several performance counters. We can observe the CPU percentage to find out if this is a CPU bound problem. If you use a number stuck to 12 or 15 or 25 and not much fluctuating, be careful, it is likely this means you are using 100% of a single core and since you have many cores, the tool only shows a number like 12 (100/8 cores) Also as of now there is no built-in performance counter showing total private memory consumption including the unmanaged parts.
+Here we observe several performance counters. We can observe the CPU percentage to find out if this is a CPU bound problem. If you see a number stuck to 12 or 15 or 25 and not much fluctuating, be careful, it is likely this means you are using 100% of a single core and since you have many cores, the tool only shows a number like 12 (100/8 cores) Also as of now there is no built-in performance counter showing total private memory consumption including the unmanaged parts.
 
 
 
