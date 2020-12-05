@@ -221,9 +221,9 @@ docker cp <container_id>:<path_to_source_file> <local_path_including_the_file_na
 Then when you open the trace file with [Perfview](https://github.com/Microsoft/perfview/releases)  (Use the latest perfview, not trace view) 
 you could see wall clock CPU analysis:
 
-[!CPU](/assets/cpu.jpg)
+[!CPU](/assets/cpu.png)
 Or the exceptions:
-[!CPU](/assets/exceptions.png)
+[!exceptions](/assets/exceptions.png)
 
 
 
