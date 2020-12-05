@@ -2,7 +2,7 @@
 
 layout: default
 
-title: "How to diagnose a .net process running inside kubernetes/docker"
+title: "How to diagnose a .net process running inside Kubernetes/docker"
 
 date: 2022-12-05-00:00:00 -0000
 
@@ -17,7 +17,7 @@ excerpt_separator: <!--more-->
 ---
 
 
-# How to diagnose a .net process running inside kubernetes/docker
+# How to diagnose a .net process running inside Kubernetes/docker
 
 ![kube-perf-docker](/assets/kube-perf-docker.png)
 
