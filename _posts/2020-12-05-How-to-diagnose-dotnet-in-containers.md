@@ -10,12 +10,17 @@ comments: true
 
 published: true
 
+image: kube-perf-docker.png
+
 excerpt_separator: <!--more-->
 
 ---
 
 
 # How to diagnose a .net process running inside kubernetes/docker
+
+![kube-perf-docker](/assets/kube-perf-docker.png)
+
 Let's say we have deployed our .net application into a container that runs in Kubernetes (or a docker container) and somehow our users report some sort of slowness in that application. How do we find out the problem? Let's find out, step by step!
 <!--more-->
 
