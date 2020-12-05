@@ -28,9 +28,10 @@
       <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
     {% endif %}
     {% if page.image %}
-   
+      <meta content="{{ site.url }}/assets/{{ page.image }}" name="twitter:image">
       <meta content="{{ site.url }}/assets/{{ page.image }}" property="og:image">
     {% else %}
+      <meta name="twitter:image" content="{{ site.url }}/assets/me.png" />
       <meta content="{{ site.url }}/assets/me.png" property="og:image">
 
     {% endif %}
