@@ -148,7 +148,7 @@ Wait like 60 sec, then stop by hitting CTRL+C, In my case, it creates a file:
 Output File    : /root/trace.nettrace
 ```
 
-This is a trace file you should open via tool like perfview. This kind of perfview trace will include wall-clock thread-time (find the slowest functions including I/O), all exceptions and other memory statistics.
+This is a trace file you should open via a tool like perfview. This kind of trace will include wall-clock thread-time (find the slowest functions including I/O), all exceptions and other memory statistics.
 
 * **Download the trace file:**
 Once you collected the trace copy the file from container to your local
