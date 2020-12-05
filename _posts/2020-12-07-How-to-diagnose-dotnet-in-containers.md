@@ -192,7 +192,7 @@ Output File    : /root/trace.nettrace
 
 ```
 
-This is a trace file you should open via tool like perfview.
+This is a trace file you should open via tool like perfview. This kind of perfview trace will include wall-clock thread-time (find the slowest functions including I/O), all exceptions and other memory statistics.
 
 Once you collected the trace copy the file from container to your local
 
@@ -218,5 +218,12 @@ docker cp <container_id>:<path_to_source_file> <local_path_including_the_file_na
 
 
 
-Then when you open the trace file with Perfview you could see:
+Then when you open the trace file with [Perfview](https://github.com/Microsoft/perfview/releases)  (Use the latest perfview, not trace view) 
+you could see wall clock CPU analysis:
+
+[!CPU](/assets/cpu.jpg)
+Or the exceptions:
+[!CPU](/assets/exceptions.png)
+
+
 
