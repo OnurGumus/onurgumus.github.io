@@ -4,11 +4,11 @@ layout: default
 
 title: "How to diagnose .net core process in kubernetes/docker"
 
-date: 2022-12-07-00:00:00 -0000
+date: 2022-12-05-00:00:00 -0000
 
 comments: true
 
-published: false
+published: true
 
 excerpt_separator: <!--more-->
 
@@ -17,7 +17,7 @@ excerpt_separator: <!--more-->
 
 
 Let's say we have deployed our .net application into a container that runs in Kubernetes (or a docker container) and somehow our users report some sort of slowness in that application. How do we find out the problem? Let's find out, step by step!
-
+<!--more-->
 
 
 **Login to a terminal in your container:** If you use Kubernetes, make sure you have your kube .config is ready and deployed in ~/.kube/config. If you do use WSL with docker desktop, the /.kube/config file is shared within windows and WSL. 
