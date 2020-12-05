@@ -157,7 +157,7 @@ Once you collected the trace copy the file from container to your local
 kubectl cp -n <name_space> <pod_name>:<path_to_source_file> <local_path_including_the_file_name>
 ```
 
-where <path_to_source> will be `/root/trace.nettrace` and <local_path_including_the_file_name> could be `trace.nettrace`
+where path_to_source could be `/root/trace.nettrace` whereas local_path_including_the_file_name could be `trace.nettrace`.
 
 
 
