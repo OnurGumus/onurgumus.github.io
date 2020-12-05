@@ -2,7 +2,7 @@
 
 layout: default
 
-title: "How to diagnose .net core process in kubernetes/docker"
+title: "How to diagnose a .net process running inside kubernetes/docker"
 
 date: 2022-12-05-00:00:00 -0000
 
