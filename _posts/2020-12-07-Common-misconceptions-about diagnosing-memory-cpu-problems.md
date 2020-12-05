@@ -2,15 +2,16 @@
 
 layout: default
 
-title: "Fable Web Components"
+title: "Common misconceptions about diagnosing memory cpu-problems"
 
 date: 2020-12-07-00:00:00 -0000
 
 comments: true
 
+published: false
+
 excerpt_separator: <!--more-->
 
-published: false
 
 ---
 
@@ -28,7 +29,7 @@ But it is quite possible, significant portion of your process may not be on the 
 pages to the disk. Then what should we do? It's the commit size (or private bytes) is what we want. You could see the the private bytes for a process as below:
 
 
-![Task-Manager-Commit](/assets/task-manager-commit.png)
+![Task-Manager-Commit](/assets/posts/2020-12-07-Common-misconceptions-about diagnosing-memory-cpu-problems/task-manager-commit.png)
 
 Note the difference. Basically avoid anything that contains the term "Working Set". On Linux, you can rely on **VMEM** column with **htop**. 
 
@@ -47,7 +48,7 @@ But there is one section called **Large Object Heap** which larger objects are p
 As a result, it is possible that we could have a chese like memory with lot of small holes. 
 
 
-![cheese-memory](/assets/chese-memory.png)
+![cheese-memory](/assets/posts/2020-12-07-Common-misconceptions-about diagnosing-memory-cpu-problems/chese-memory.png)
 
 So even though we have 1.2 GB Ram but if the largest space available in our large object heap 
 let's say 1MB and we attempt to allocate 2MB then boom! we have an **OutOfMemoryException**
@@ -55,5 +56,26 @@ let's say 1MB and we attempt to allocate 2MB then boom! we have an **OutOfMemory
 ## Mistake #3: My system has 16 GB ram whereas my app uses around only 20 GB, my system will slowdown even crash
 
 Not necesarily, If your app isn't accessing some pages frequently those pages will remain dormant on the disk. The real slowness wouldn't be because of high memory usage.
-But due to hard page faults. A hard page fault happens, when the memory manager cannot find the requested page on the physical ram,so it loads it from the disk. 
+But due to hard page faults. A hard page fault (on Linux it is called, major page fault) happens, when the memory manager cannot find the requested page on the physical ram,so it loads it from the disk. 
 And that is real slow. But if you don't cause a page fault, there is not much problem excessive memory is spilled to the disk since you don't read these memory.
+
+In Windows, I am aware only one place that shows the hard page fault per second, and not aware any command line access to this value:
+
+
+![windows-hard-page-fault](/assets/posts/2020-12-07-Common-misconceptions-about diagnosing-memory-cpu-problems/hard-memory.png)
+
+In Linux, you could use the following to see major page faults:
+```bash
+ps -o min_flt,maj_flt <process_id>
+```
+
+
+## Mistake #4: My app is using only 25% of CPU so it should be working fine
+
+![windows-hard-page-fault](/assets/posts/2020-12-07-Common-misconceptions-about diagnosing-memory-cpu-problems/cpu-bound.png)
+
+This problem is mostly Windows specific as **htop** on Linux behaves more sanely. On windows task bar the percentage you see is divided among the logical cores. So a fixated number 
+like 8,12,15,25,50 could be 100% of an entire logical core  (100 divided by the # of logical cores) and this usually indicates that your process having a CPU bottleneck. 
+
+
+
