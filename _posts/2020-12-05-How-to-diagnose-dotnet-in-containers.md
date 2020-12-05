@@ -15,16 +15,16 @@ excerpt_separator: <!--more-->
 ---
 
 
-
+# How to diagnose a .net process running inside kubernetes/docker
 Let's say we have deployed our .net application into a container that runs in Kubernetes (or a docker container) and somehow our users report some sort of slowness in that application. How do we find out the problem? Let's find out, step by step!
 <!--more-->
 
 
-**Login to a terminal in your container:** If you use Kubernetes, make sure you have your kube .config is ready and deployed in ~/.kube/config. If you do use WSL with docker desktop, the /.kube/config file is shared within windows and WSL. 
+* **Login to a terminal in your container:** If you use Kubernetes, make sure you have your kube .config is ready and deployed in ~/.kube/config. If you do use WSL with docker desktop, the /.kube/config file is shared within windows and WSL. 
 
 
 
-List the pods with the below command
+List the pods with the below command:
 
 ```bash
 
@@ -32,7 +32,7 @@ List the pods with the below command
 
  ```
 
-Then find the relevant container from the list and login into it with
+Then find the relevant container from the list and login into it with:
 
 ```bash
 
@@ -42,7 +42,7 @@ kubectl exec --stdin --tty <podname> -- /bin/bash
 
 
 
-If you don't run Kubernetes but just docker use
+If you don't run Kubernetes but just docker use:
 
 
 
@@ -174,7 +174,7 @@ Here we observe several performance counters. We can observe the CPU percentage 
 
 
 
-To collect a trace:
+* **Collect a perfview trace:**
 
 ```bash
 
@@ -194,6 +194,7 @@ Output File    : /root/trace.nettrace
 
 This is a trace file you should open via tool like perfview. This kind of perfview trace will include wall-clock thread-time (find the slowest functions including I/O), all exceptions and other memory statistics.
 
+* **Download the trace file:**
 Once you collected the trace copy the file from container to your local
 
 ```bash
@@ -221,9 +222,11 @@ docker cp <container_id>:<path_to_source_file> <local_path_including_the_file_na
 Then when you open the trace file with [Perfview](https://github.com/Microsoft/perfview/releases)  (Use the latest perfview, not trace view) 
 you could see wall clock CPU analysis:
 
-[!CPU](/assets/cpu.png)
+![CPU](/assets/cpu.png)
+
 Or the exceptions:
-[!exceptions](/assets/exceptions.png)
+
+![!exceptions](/assets/exceptions.png)
 
 
 
