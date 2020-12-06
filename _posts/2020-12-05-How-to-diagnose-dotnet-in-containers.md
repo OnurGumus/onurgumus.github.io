@@ -27,30 +27,21 @@ Let's say we have deployed our .net application into a pod that runs in Kubernet
 
 - **Login to a terminal in your container:** If you use Kubernetes, make sure you have your kube .config is ready and deployed in ~/.kube/config. If you do use WSL with docker desktop, the /.kube/config file is shared within windows and WSL. 
 
-
-
-List the pods with the below command:
+   List the pods with the below command:
 
 ```bash
  kubectl get pods -n <target-namespace>
  ```
-
-Then find the relevant container from the list and login into it with:
-
+   Then find the relevant container from the list and login into it with:
+   
 ```bash
 kubectl exec --stdin --tty <podname> -- /bin/bash
 ```
-
-
-
-If you don't run Kubernetes but just docker use:
-
-
-
+   If you don't run Kubernetes but just docker use:
+   
 ```bash
 docker exec -it <container_id> /bin/bash
 ```
-
 
 - **Download .net core SDK:** Now we will need diagnostic tools and for the installation of these tools we need .net SDK installed since typically production containers won't ship with these tools (unless you a sidecar). Get the relevant SDK from https://dotnet.microsoft.com/download/dotnet-core. 
 
