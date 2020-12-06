@@ -29,15 +29,15 @@ Let's say we have deployed our .net application into a pod that runs in Kubernet
 
    List the pods with the below command:
 
-```bash
- kubectl get pods -n <target-namespace>
- ```
-   Then find the relevant container from the list and login into it with:
+  ```bash
+   kubectl get pods -n <target-namespace>
+  ```
+  Then find the relevant container from the list and login into it with:
    
 ```bash
 kubectl exec --stdin --tty <podname> -- /bin/bash
 ```
-   If you don't run Kubernetes but just docker use:
+  If you don't run Kubernetes but just docker use:
    
 ```bash
 docker exec -it <container_id> /bin/bash
