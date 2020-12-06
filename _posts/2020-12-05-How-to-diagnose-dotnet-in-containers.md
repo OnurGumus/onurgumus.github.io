@@ -92,32 +92,32 @@ Let's say we have deployed our .net application into a pod that runs in Kubernet
 
   You see something like below (arrows added by me):
 
-```
-Press p to pause, r to resume, q to quit.
+  ```
+  Press p to pause, r to resume, q to quit.
+  
+      Status: Running
 
-    Status: Running
-
-[System.Runtime]
-    % Time in GC since last GC (%)                                 0
-    Allocation Rate (B / 1 sec)                               65,344
-    CPU Usage (%)                                                 12 <-- problem here!
-    Exception Count (Count / 1 sec)                                0 
-    GC Heap Size (MB)                                              7
-    Gen 0 GC Count (Count / 1 sec)                                 0
-    Gen 0 Size (B)                                         3,925,096
-    Gen 1 GC Count (Count / 1 sec)                                 0
-    Gen 1 Size (B)                                           878,544
-    Gen 2 GC Count (Count / 1 sec)                                 0
-    Gen 2 Size (B)                                         6,063,648
-    LOH Size (B)                                          77,639,656 <-- Add Gen0 Size, Gen1 Size and LOH size to find out total managed memory
-    Monitor Lock Contention Count (Count / 1 sec)                  0
-    Number of Active Timers                                        6
-    Number of Assemblies Loaded                                  158
-    ThreadPool Completed Work Item Count (Count / 1 sec)           2
-    ThreadPool Queue Length                                        0
-    ThreadPool Thread Count                                        3
-    Working Set (MB)                                             352 <-- physical memory used (from container/pod point of view)
-   ```
+  [System.Runtime]
+      % Time in GC since last GC (%)                                 0
+      Allocation Rate (B / 1 sec)                               65,344
+      CPU Usage (%)                                                 12 <-- problem here!
+      Exception Count (Count / 1 sec)                                0 
+      GC Heap Size (MB)                                              7
+      Gen 0 GC Count (Count / 1 sec)                                 0
+      Gen 0 Size (B)                                         3,925,096
+      Gen 1 GC Count (Count / 1 sec)                                 0
+      Gen 1 Size (B)                                           878,544
+      Gen 2 GC Count (Count / 1 sec)                                 0
+      Gen 2 Size (B)                                         6,063,648
+      LOH Size (B)                                          77,639,656 <-- Add Gen0 Size, Gen1 Size and LOH size to find out total managed memory
+      Monitor Lock Contention Count (Count / 1 sec)                  0
+      Number of Active Timers                                        6
+      Number of Assemblies Loaded                                  158
+      ThreadPool Completed Work Item Count (Count / 1 sec)           2
+      ThreadPool Queue Length                                        0
+      ThreadPool Thread Count                                        3
+      Working Set (MB)                                             352 <-- physical memory used (from container/pod point of view)
+  ```
 
   Here we observe several performance counters. We can observe the CPU percentage to find out if this is a CPU bound problem. If you see a number stuck to 12 or 15 or 25 and not much fluctuating, be careful, it is likely this means you are using 100% of a single core and since you have many cores, the tool only shows a number like 12 (100/8 cores) Also as of now there is no built-in performance counter showing total private memory consumption including the unmanaged parts.
 
