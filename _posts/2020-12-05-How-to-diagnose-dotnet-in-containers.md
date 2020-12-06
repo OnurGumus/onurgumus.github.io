@@ -92,8 +92,8 @@ Let's say we have deployed our .net application into a pod that runs in Kubernet
 
   You see something like below (arrows added by me):
 
-  ```
-  Press p to pause, r to resume, q to quit.
+```
+Press p to pause, r to resume, q to quit.
 
     Status: Running
 
