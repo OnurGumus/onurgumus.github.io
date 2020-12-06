@@ -4,7 +4,7 @@ layout: default
 
 title: "Common misconceptions about diagnosing memory cpu-problems"
 
-date: 2020-12-07-00:00:00 -0000
+date: 2020-12-09-00:00:00 -0000
 
 comments: true
 
