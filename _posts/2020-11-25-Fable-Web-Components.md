@@ -241,8 +241,7 @@ Then we define our html template as string:
 
 ```fsharp
     let private html: string = """
-
-Consolas,monaco,monospace" >
+<div class="modal" id="root" style="z-index:10000; font-family:Consolas,monaco,monospace">
     <div class="modal-background"></div>
 
     <div class="modal-content has-shadow has-margin-bottom-20">
