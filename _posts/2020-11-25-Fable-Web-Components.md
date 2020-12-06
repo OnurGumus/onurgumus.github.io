@@ -97,7 +97,7 @@ After going through the above intro now let's get our hands dirty. I have alread
 
 
 
-At we first we have a reusable WebComponent module which is the basis and encapsulating common code for our future web controls.
+Firstly, we have a reusable WebComponent module which is the basis and encapsulating common code for our future web controls.
 
 
 
