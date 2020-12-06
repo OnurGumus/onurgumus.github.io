@@ -25,7 +25,7 @@ Let's say we have deployed our .net application into a pod that runs in Kubernet
 <!--more-->
 
 
-* **Login to a terminal in your container:** If you use Kubernetes, make sure you have your kube .config is ready and deployed in ~/.kube/config. If you do use WSL with docker desktop, the /.kube/config file is shared within windows and WSL. 
+- **Login to a terminal in your container:** If you use Kubernetes, make sure you have your kube .config is ready and deployed in ~/.kube/config. If you do use WSL with docker desktop, the /.kube/config file is shared within windows and WSL. 
 
 
 
@@ -52,7 +52,7 @@ docker exec -it <container_id> /bin/bash
 ```
 
 
-1. **Download .net core SDK:** Now we will need diagnostic tools and for the installation of these tools we need .net SDK installed since typically production containers won't ship with these tools (unless you a sidecar). Get the relevant SDK from https://dotnet.microsoft.com/download/dotnet-core. 
+- **Download .net core SDK:** Now we will need diagnostic tools and for the installation of these tools we need .net SDK installed since typically production containers won't ship with these tools (unless you a sidecar). Get the relevant SDK from https://dotnet.microsoft.com/download/dotnet-core. 
 
 You could use a command like below on Linux shell (this is for .net core 3.1, use a different link for .net 5):
 
@@ -60,7 +60,7 @@ You could use a command like below on Linux shell (this is for .net core 3.1, us
 curl https://download.visualstudio.microsoft.com/download/pr/ec187f12-929e-4aa7-8abc-2f52e147af1d/56b0dbb5da1c191bff2c271fcd6e6394/dotnet-sdk-3.1.404-linux-x64.tar.gz --output dotnet-sdk-3.1.404-linux-x64.tar.gz
 ```
 
-2. **Extract and install .net core sdk:**
+- **Extract and install .net core sdk:**
 
 ```bash
 mkdir -p "$HOME/dotnet" && tar xzf dotnet-sdk-3.1.404-linux-x64.tar.gz -C "$HOME/dotnet"
@@ -68,7 +68,7 @@ export DOTNET_ROOT=$HOME/dotnet
 export PATH=$PATH:$HOME/dotnet
 ```
 
-3. **Switch to dotnet folder:**
+- **Switch to dotnet folder:**
 
 Although we added dotnet directory to the path, it is likely the dotnet runtime binary will have priority so we need to switch to the directory which we have extracted the zip file:
 
@@ -76,14 +76,14 @@ Although we added dotnet directory to the path, it is likely the dotnet runtime 
 cd ~/dotnet
 ```
 
-4. **Install the tools:**
+- **Install the tools:**
 
 ```bash
 ./dotnet tool install --global dotnet-counters
 ./dotnet tool install --global dotnet-trace
 ```
 
-5. **Add tools directory to the path:**
+- **Add tools directory to the path:**
 
 In order to access the tools, we add tools to the path
 
@@ -93,7 +93,7 @@ export PATH="$PATH:/root/.dotnet/tools"
 
 
 
-6. **Observe the root process:**
+- **Observe the root process:**
 
 The default process runs with process id 1 in the container so:
 
@@ -134,7 +134,7 @@ Here we observe several performance counters. We can observe the CPU percentage 
 
 
 
-7. **Collect a perfview trace:**
+- **Collect a perfview trace:**
 
 ```bash
 dotnet-trace collect -p 1
@@ -150,7 +150,7 @@ Output File    : /root/trace.nettrace
 
 This is a trace file you should open via a tool like perfview. This kind of trace will include wall-clock thread-time (find the slowest functions including I/O), all exceptions and other memory statistics.
 
-8. **Download the trace file:**
+- **Download the trace file:**
 Once you collected the trace copy the file from container to your local
 
 ```bash
