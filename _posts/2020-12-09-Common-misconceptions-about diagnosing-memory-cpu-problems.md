@@ -22,16 +22,18 @@ As a developer, diagnosing problems is an important skill, almost as important a
 ## Mistake #1: I use task manager on Windows to find out memory usage for a process
 
 Typically on windows platform when we are asked how much memory is consumed by a process, what we do is fire-up task manager and look at:
-![Task-Manager-Working-set](/assets/task-manager-working-set.png)
+![Task-Manager-Working-set](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/task-manager-working-set.png)
 
 If you measure the memory consumption as above I have one word for you: Ouch! What you are looking at is actually **Working set** which means that's only the physical memory consumption.
 But it is quite possible, significant portion of your process may not be on the physical memory but on the disk. Windows memory manager will happily put the less frequently accessed 
 pages to the disk. Then what should we do? It's the commit size (or private bytes) is what we want. You could see the the private bytes for a process as below:
 
 
-![Task-Manager-Commit](/assets/posts/2020-12-07-Common-misconceptions-about diagnosing-memory-cpu-problems/task-manager-commit.png)
+![Task-Manager-Commit](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/task-manager-commit.png)
 
 Note the difference. Basically avoid anything that contains the term "Working Set". On Linux, you can rely on **VMEM** column with **htop**. 
+
+![htop](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/htop.png)
 
 The true memory consumption of a process is a complicated matter as there is the shared part of it. But Committed memory (or private bytes from perfview) and VMEM from htop 
 is roughly accurate assuming you don't use things like memory mapped files.
@@ -48,7 +50,7 @@ But there is one section called **Large Object Heap** which larger objects are p
 As a result, it is possible that we could have a chese like memory with lot of small holes. 
 
 
-![cheese-memory](/assets/posts/2020-12-07-Common-misconceptions-about diagnosing-memory-cpu-problems/chese-memory.png)
+![cheese-memory](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/chese-memory.png)
 
 So even though we have 1.2 GB Ram but if the largest space available in our large object heap 
 let's say 1MB and we attempt to allocate 2MB then boom! we have an **OutOfMemoryException**
@@ -62,7 +64,7 @@ And that is real slow. But if you don't cause a page fault, there is not much pr
 In Windows, I am aware only one place that shows the hard page fault per second, and not aware any command line access to this value:
 
 
-![windows-hard-page-fault](/assets/posts/2020-12-07-Common-misconceptions-about diagnosing-memory-cpu-problems/hard-memory.png)
+![windows-hard-page-fault](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/hard-memory.png)
 
 In Linux, you could use the following to see major page faults:
 ```bash
@@ -72,10 +74,11 @@ ps -o min_flt,maj_flt <process_id>
 
 ## Mistake #4: My app is using only 25% of CPU so it should be working fine
 
-![windows-hard-page-fault](/assets/posts/2020-12-07-Common-misconceptions-about diagnosing-memory-cpu-problems/cpu-bound.png)
+![windows-hard-page-fault](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/cpu-bound.png)
 
 This problem is mostly Windows specific as **htop** on Linux behaves more sanely. On windows task bar the percentage you see is divided among the logical cores. So a fixated number 
 like 8,12,15,25,50 could be 100% of an entire logical core  (100 divided by the # of logical cores) and this usually indicates that your process having a CPU bottleneck. 
 
 
+![windows-hard-page-fault](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/htop-cpu-bound.png)
 
