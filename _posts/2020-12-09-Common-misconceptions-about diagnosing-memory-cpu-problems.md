@@ -21,6 +21,8 @@ excerpt_separator: <!--more-->
 
 As a developer, diagnosing problems is an important skill, almost as important as our developer skills. But misdiagnosing things can lead to more problems. Let's address some common misconceptions about them:
 
+<br/>
+
 ## Mistake #1: I use task manager on Windows to find out memory usage for a process
 
 Typically on windows platform when we are asked how much memory is consumed by a process, what we do is fire-up task manager and look at:
@@ -44,6 +46,9 @@ is roughly accurate assuming you don't use things like memory mapped files.
 
 ---
 
+
+<br/>
+
 ## Mistake #2: My system has 16 GB ram whereas my app uses around only 800 MB, so it is unlikely that I will get Out Of Memory Exception
 
 Both Linux and Windows operating system tricks the the process such that for 64 bit-processes, the process believes it has terabytes of ram available. 
@@ -62,6 +67,9 @@ let's say 1MB and we attempt to allocate 2MB then boom! we have an **OutOfMemory
 
 ---
 
+
+<br/>
+
 ## Mistake #3: My system has 16 GB ram whereas my app uses around only 20 GB, my system will slowdown even crash
 
 Not necesarily, If your app isn't accessing some pages frequently those pages will remain dormant on the disk. The real slowness wouldn't be because of high memory usage.
@@ -79,6 +87,8 @@ ps -o min_flt,maj_flt <process_id>
 ```
 
 ---
+
+<br/>
 
 ## Mistake #4: My app is using only 25% of CPU so it should be working fine
 
