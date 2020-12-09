@@ -36,7 +36,7 @@ But it is quite possible, a significant portion of your process may not be on th
 
 ![Task-Manager-Commit](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/task-manager-commit.png)
 
-Note the difference. Basically, avoid anything that contains the term "Working Set". On Linux, you can rely on **VMEM** column with **htop**. 
+Note the difference. Basically, avoid anything that contains the term "Working Set". On Linux, you can rely on **VIRT** column with **htop**. 
 
 ![htop](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/htop.png)
 
