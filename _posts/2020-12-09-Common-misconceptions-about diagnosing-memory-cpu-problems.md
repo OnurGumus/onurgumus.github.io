@@ -24,6 +24,8 @@ As a developer, diagnosing problems is an important skill, almost as important a
 Typically on windows platform when we are asked how much memory is consumed by a process, what we do is fire-up task manager and look at:
 ![Task-Manager-Working-set](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/task-manager-working-set.png)
 
+ <!--more-->
+ 
 If you measure the memory consumption as above I have one word for you: Ouch! What you are looking at is actually **Working set** which means that's only the physical memory consumption.
 But it is quite possible, significant portion of your process may not be on the physical memory but on the disk. Windows memory manager will happily put the less frequently accessed 
 pages to the disk. Then what should we do? It's the commit size (or private bytes) is what we want. You could see the the private bytes for a process as below:
@@ -50,7 +52,7 @@ But there is one section called **Large Object Heap** which larger objects are p
 As a result, it is possible that we could have a chese like memory with lot of small holes. 
 
 
-![cheese-memory](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/chese-memory.png)
+![cheese-memory](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/cheese-memory.png)
 
 So even though we have 1.2 GB Ram but if the largest space available in our large object heap 
 let's say 1MB and we attempt to allocate 2MB then boom! we have an **OutOfMemoryException**
