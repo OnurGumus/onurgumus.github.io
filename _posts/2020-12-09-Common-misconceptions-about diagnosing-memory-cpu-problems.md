@@ -17,7 +17,7 @@ excerpt_separator: <!--more-->
 
 ---
 
-# Common misconceptions about diagnosing memory CPU-problems
+# Common misconceptions about diagnosing memory and CPU problems
 
 As a developer, diagnosing problems is an important skill, almost as important as our developer skills. But misdiagnosing things can lead to more problems. Let's address some common misconceptions about diagnostics:
 
