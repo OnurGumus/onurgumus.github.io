@@ -42,8 +42,9 @@ Note the difference. Basically avoid anything that contains the term "Working Se
 The true memory consumption of a process is a complicated matter as there is the shared part of it. But Committed memory (or private bytes from perfview) and VMEM from htop 
 is roughly accurate assuming you don't use things like memory mapped files.
 
+---
 
-### Mistake #2: My system has 16 GB ram whereas my app uses around only 800 MB, so it is unlikely that I will get Out Of Memory Exception
+## Mistake #2: My system has 16 GB ram whereas my app uses around only 800 MB, so it is unlikely that I will get Out Of Memory Exception
 
 Both Linux and Windows operating system tricks the the process such that for 64 bit-processes, the process believes it has terabytes of ram available. 
 But for 32-bit processes it only has 4GB ram!! And half of it is reserved for the kernel space that means only 2GB ram available to your process if it is 32-bit. 
@@ -59,7 +60,9 @@ As a result, it is possible that we could have a chese like memory with lot of s
 So even though we have 1.2 GB Ram but if the largest space available in our large object heap 
 let's say 1MB and we attempt to allocate 2MB then boom! we have an **OutOfMemoryException**
 
-### Mistake #3: My system has 16 GB ram whereas my app uses around only 20 GB, my system will slowdown even crash
+---
+
+## Mistake #3: My system has 16 GB ram whereas my app uses around only 20 GB, my system will slowdown even crash
 
 Not necesarily, If your app isn't accessing some pages frequently those pages will remain dormant on the disk. The real slowness wouldn't be because of high memory usage.
 But due to hard page faults. A hard page fault (on Linux it is called, major page fault) happens, when the memory manager cannot find the requested page on the physical ram,so it loads it from the disk. 
@@ -75,8 +78,9 @@ In Linux, you could use the following to see major page faults:
 ps -o min_flt,maj_flt <process_id>
 ```
 
+---
 
-### Mistake #4: My app is using only 25% of CPU so it should be working fine
+## Mistake #4: My app is using only 25% of CPU so it should be working fine
 
 ![windows-hard-page-fault](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/cpu-bound.png)
 
