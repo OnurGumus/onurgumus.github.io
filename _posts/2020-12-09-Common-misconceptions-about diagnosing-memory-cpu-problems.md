@@ -31,12 +31,12 @@ Typically on the windows platform when we are asked how much memory is consumed 
  <!--more-->
  
 If you measure the memory consumption as above I have one word for you: Ouch! What you are looking at is actually the **Working set** which means that's only the physical memory consumption.
-But it is quite possible, a significant portion of your process may not be on the physical memory but on the disk. Windows memory manager will happily put the less frequently accessed pages to the disk. Then what should we do? It's the commit size (or private bytes) that is what we want. You could see the commit size for a process as below:
+But it is quite possible, a significant portion of your process may not be on the physical memory but on the disk. Windows memory manager will happily put the less frequently accessed pages to the disk. Then what should we do? It's the commit size (or private bytes from perfmon) that is what we want. You could see the commit size for a process as below:
 
 
 ![Task-Manager-Commit](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/task-manager-commit.png)
 
-Note the difference. Basically, avoid anything that contains the term "Working Set". On Linux, you can rely on **VIRT** column with **htop**. 
+By default commit-size column won't be visible. If so, right click to the columns and add it. To sum up, avoid anything that contains the term "Working Set". On Linux, you can rely on **VIRT** column with **htop**. 
 
 ![htop](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/htop.png)
 
