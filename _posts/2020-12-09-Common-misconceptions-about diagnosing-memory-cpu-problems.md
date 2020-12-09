@@ -40,7 +40,7 @@ Note the difference. Basically, avoid anything that contains the term "Working S
 
 ![htop](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/htop.png)
 
-The true memory consumption of a process is a complicated matter as there is a shared part of it. But Committed memory (or private bytes from perfview) and VMEM from htop 
+The true memory consumption of a process is a complicated matter as there is a shared part of it. But Committed memory (or private bytes from perfview) and VIRT from htop 
 is roughly accurate assuming you don't use things like memory-mapped files.
 
 ---
