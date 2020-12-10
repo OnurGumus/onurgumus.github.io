@@ -94,7 +94,8 @@ ps -o min_flt,maj_flt <process_id>
 ![windows-hard-page-fault](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/cpu-bound.png)
 
 This problem is mostly Windows-specific as **htop** on Linux behaves more sanely. On Windows taskbar, the percentage you see is divided among the logical cores. So a fixated number 
-like 8,12,15,25,50 could be 100% of an entire logical core  (100 divided by the # of logical cores) and this usually indicates that your process having a CPU bottleneck. 
+like 8,12,15,25,50 could be 100% of an entire logical core  (100 divided by the # of logical cores) and this usually indicates that your process having a CPU bottleneck. See how 
+htop shows CPU consumption as 100% properly below: 
 
 
 ![windows-hard-page-fault](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/htop-cpu-bound.png)
