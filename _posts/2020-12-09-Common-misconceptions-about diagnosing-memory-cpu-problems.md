@@ -71,7 +71,7 @@ let's say 1MB and we attempt to allocate 2MB then boom! we have an **OutOfMemory
 
 ## Mistake #3: My system has 16 GB RAM whereas my app uses around only 20 GB, my system will slow down or even crash
 
-Not necessarily, If your app isn't accessing some pages frequently those pages will remain dormant on the disk. The real slowness wouldn't be because of high memory usage.
+Not necessarily! If your app isn't accessing some pages frequently those pages will remain dormant on the disk. The real slowness wouldn't be because of high memory usage.
 But due to hard page faults. A hard page fault (on Linux it is called, major page fault) happens, when the memory manager cannot find the requested page on the physical ram, so it loads it from the disk. 
 And that is really slow. But if you don't cause a page fault, there is not much problem excessive memory is spilled to the disk since you don't read this memory.
 
