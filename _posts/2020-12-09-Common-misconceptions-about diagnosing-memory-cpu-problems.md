@@ -55,7 +55,7 @@ But for 32-bit processes, it only has 4GB RAM!! And half of it is reserved for t
 
 Ok, even if we have 2 GB, but I still have 1.2 GB to go. Not quite! If your process is a .NET process, then the managed memory is splitted in several sections. 
 Whenever the garbage collector triggers, it will defragment the memory for you, so that the managed memory allocated is a single piece if we exclude the pinned items. 
-But there is one section called **Large Object Heap** in which larger objects are put (since defragmenting larger objects are put there. And by default, this section is not fragmented.
+But there is one section called **Large Object Heap** in which larger objects are put (since defragmenting larger objects are expensive, they are put there). And by default, this section is not defragmented.
 As a result, it is possible that we could have some sort of cheese like memory with a lot of small holes. 
 
 
