@@ -16,23 +16,23 @@ So you have recieved 100 pages of the requirements doc and a presentation has be
 to your code. But where do we start? Architecture you say? System diagrams? Project structure? How about starting from discovering and tranlating the domain? I assume you are familiar
 or at least or the term Domain Driven Design.
 
-#Ubiquotous? 
+## Ubiquotous Language
+
 
 Domain driven design is rolled around the concept called Ubiquotous language. Unbiqtoutous language is the common language we share, we we talk among other stake holders. 
 
-[Ubiq-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-1.png
+![Ubiq-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-1.png)
 Sharing a common language is extremly important to mitigate misunderstandings. To better understand it let's briefly jump to aviation and the worst air disaster ever happened.
 
-##Tenerife disaster. 
+## Tenerife disaster. 
 
-
-[tenerife-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/tenerife-1.png
+![tenerife-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/tenerife-1.png)
 
 The primary reason causing this unfortunate disaster was communication error. The communication with the control tower and pilot has involved non aviation related terms like "OK"
 on top of that the weather was bad, the radio communication was problematic and the Pilot was in hurry. 
 
 
-[tenerife-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/tenerife-2.png
+![tenerife-2](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/tenerife-cvr.png)
 
 Aviation industry has learnt from these mistakes and that's why they are strictly sticking to their own ubiqoutous language. 
 
@@ -44,14 +44,16 @@ We may have the requirements but requiremnts, but without proper digestion and t
 there are many gaps in the requirements only to be discovered at a later phase. Unless you are Kasparov like business analyst, it is quite difficult to see what is going to 
 come up after 20 moves later. So there we have the discovery process. 
 
-##Discovery 
+## Discovery 
+
 The discovery process allows us to create stories and it brings up our fundemental parts of our very unquitous language. Nouns and Verbs! 
 
-[tenerife-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/tenerife-3.png
+![ubiq-3](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-3.png)
 But how do we perform the discovery? One of the ways is event storming. In event storming, we have an actor such as a user or a customer, but it is optional. 
 We can, however use the following methodology to convey our event storming session. 
 
 At first we have some state
 then some action is taken
 and finally an event is fired and we land in another state.
+
 
