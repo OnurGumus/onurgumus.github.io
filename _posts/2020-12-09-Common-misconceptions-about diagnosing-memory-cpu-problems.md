@@ -61,7 +61,7 @@ As a result, it is possible that we could have some sort of cheese like memory w
 
 ![cheese-memory](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/cheese-memory.png)
 
-So even though we have 1.2 GB RAM available if the largest space available in our large object heap is
+So even though we have 1.2 GB RAM available if the largest contiguous space available in our large object heap is
 let's say 1MB and we attempt to allocate 2MB then boom! we have an **OutOfMemoryException**
 
 ---
