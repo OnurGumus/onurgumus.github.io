@@ -31,7 +31,7 @@ Typically on the windows platform when we are asked how much memory is consumed 
  <!--more-->
  
 If you measure the memory consumption as above I have one word for you: Ouch! What you are looking at is actually the **Working set** which means that's only the physical memory consumption.
-But it is quite possible, a significant portion of your process may not be on the physical memory but on the disk. Windows memory manager will happily put the less frequently accessed pages to the disk. Then what should we do? It's the commit size (or private bytes from perfmon) that is what we want. You could see the commit size for a process as below:
+But it is quite possible, a significant portion of your process may not be on the physical memory but on the disk. Windows memory manager will happily put the less frequently accessed pages to the disk. Then what should we do? It's the commit size (or private bytes from perfmon) that is what we want. You could see the commit size for a process as below from details pane of the task manager:
 
 
 ![Task-Manager-Commit](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/task-manager-commit.png)
@@ -40,7 +40,7 @@ By default commit-size column won't be visible. If so, right click to the column
 
 ![htop](/assets/posts/2020-12-09-Common-misconceptions-about diagnosing-memory-cpu-problems/htop.png)
 
-The true memory consumption of a process is a complicated matter as there is a shared part of it. But Committed memory (or private bytes from perfview) and VIRT from htop 
+The true memory consumption of a process is a complicated matter as there is a shared part of it. But Committed memory (or private bytes from perfmon) and VIRT from htop 
 is roughly accurate assuming you don't use things like memory-mapped files.
 
 ---
@@ -51,7 +51,7 @@ is roughly accurate assuming you don't use things like memory-mapped files.
 ## Mistake #2: My system has 16 GB RAM whereas my app uses around only 800 MB, so it is unlikely that I will get Out Of Memory Exception
 
 Both Linux and Windows operating system tricks the process such that for 64 bit-processes, the process believes it has terabytes of RAM available. 
-But for 32-bit processes, it only has 4GB RAM!! And half of it is reserved for the kernel space that means only 2GB RAM available to your process if it is 32-bit. 
+But for 32-bit processes, they only have 4GB Ram available! And half of it is reserved for the kernel space that means only 2GB RAM available to your process if it is 32-bit. 
 
 Ok, even if we have 2 GB, but I still have 1.2 GB to go. Not quite! If your process is a .NET process, then the managed memory is splitted in several sections. 
 Whenever the garbage collector triggers, it will defragment the memory for you, so that the managed memory allocated is a single piece if we exclude the pinned items. 
