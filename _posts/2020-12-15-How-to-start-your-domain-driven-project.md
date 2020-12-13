@@ -7,7 +7,7 @@ title: "How to start your domain driven project?"
 date: 2020-12-15-00:00:00 -0000
 
 comments: false
-
+published: false
 excerpt_separator: <!--more-->
 
 ---
@@ -22,6 +22,7 @@ or at least or the term Domain Driven Design.
 Domain driven design is rolled around the concept called Ubiquotous language. Unbiqtoutous language is the common language we share, we we talk among other stake holders. 
 
 ![Ubiq-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-1.png)
+<!--more-->
 Sharing a common language is extremly important to mitigate misunderstandings. To better understand it let's briefly jump to aviation and the worst air disaster ever happened.
 
 ## Tenerife disaster. 
