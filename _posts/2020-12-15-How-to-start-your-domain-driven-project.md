@@ -140,7 +140,6 @@ Then the withdraw is successful
 And my final balance should be $700
 
 Scenario: Widthdraw more than balance
-
 Given I have 1000$ in my bank account
 When I withdraw 1300$ 
 Then the withdraw failed
