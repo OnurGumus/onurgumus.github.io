@@ -88,10 +88,6 @@ there would be many missing points in the requirements only to be discovered at 
 The discovery process is where we discover our domain, and create our initial stories. We should also use the discovery process to bring up and compose our very ubiquitous language.
 
 
-![ubiq-3](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-3.png)
-
-
-
 But how do we perform the discovery? One of the ways is event storming. In event storming, we can start via an actor such as a user or a customer, but it is optional. Traditionally people throw out the events and commands they can think of on the fly and use stickers to be posted to a whiteboard, hence the term event storming.
 
 However I prefer a more systematic approach when conveying the event storming session. I coincide it with the [Behavior-driven-development](https://en.wikipedia.org/wiki/Behavior-driven_development) way by using [gherkin](https://cucumber.io/docs/gherkin/) syntax. What is gherkin syntax again? As an example,
