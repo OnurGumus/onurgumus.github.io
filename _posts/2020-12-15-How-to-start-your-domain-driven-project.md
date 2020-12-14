@@ -70,19 +70,26 @@ And and optional assertion about if an event is fired
 
 For example:
 
-``Feature: Money withdraw.
+```gherkin
+
+Feature: Money withdraw
 As customer I would like to with draw many from my bank account
 
 Scenario: Widthdraw less than balance
 Given I have 1000$ in my bank account
 When I withdraw 300$ 
-Then the with draw operation should be successful
+Then the withdraw operation should be successful
 And my final balance should be $700
-
 
 Scenario: Widthdraw more than balance
 Given I have 1000$ in my bank account
 When I withdraw 1300$ 
-Then the with draw operation should be failed
+Then the withdraw operation should be failed
 And my final balance should be $1000
+
+```
+
+Notice how we discovered the commands (verbs) **Withdraw**, we have discovered the events **Withdraw Successful** and **Withdraw Failed** and we have discovered the nouns
+**Account** and **Balance** where balance is also being a state, a candidate for a property of the **Account**. There we go we are building our ubiquitos language.
+We can continue our event storming session. A good question is "What happens if the **Withdraw has been failed**?. Perhaps no one has asked this question before, forgotten in the requirements, so your Business Analyst stops and he or she replies "An email should be sent to the customer about his failed Withdrawals. Aha we have discoverd another  action called **Send an email** . And the process goes on. I highly recommend you to try this with your project's stakeholders. You will see it's a relatively quick and focused effort and it will make the audience, developers more engaged and familiar with the concepts.
 
