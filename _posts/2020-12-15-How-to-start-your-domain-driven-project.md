@@ -13,19 +13,21 @@ title: "How to start your domain driven project?"
 date: 2020-12-15-00:00:00 -0000
 
 
-comments: false
+comments: true
 
-published: false
+published: true
 
 excerpt_separator: <!--more-->
 
-
+image: posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-2.png
 
 ---
 
 
 
-So you have received your 100 pages of the requirements doc and a presentation has been made about your new project. Now as a developer your job is to translate the business requirements to your code. But where do we start? Architecture you say? System diagrams? Project structure? How about starting from discovering and translating the domain? I assume you are familiar or at least or the term Domain Driven Design. Domain driven design is about deriving your design from the domain. We try to bould such an aligment between the source code and the other stakeholders, we use the same language, that is Ubiquitous Language.
+So you have received your 100 pages of the requirements doc and a presentation has been made about your new project. Now as a developer your job is to translate the business requirements to your code. But where do we start? Architecture you say? System diagrams? Project structure? How about starting from discovering and translating the domain? I assume you are familiar or at least or the term Domain Driven Design. 
+
+Domain driven design is not about the layers, is not about your architecture, not about your objects or entities (although entity is fundamental concept in DDD). Domain driven design is about deriving your design from the business domain. We try to build such an _aligment_ between the source code and the other stakeholders, we invent our domain language, that is Ubiquitous Language.
 
 
 
@@ -41,7 +43,7 @@ Domain driven design is rolled around the concept called ubiquitous language. Ub
 
 <!--more-->
 
-Sharing a common language is extremely important to mitigate misunderstandings. To better understand it let's briefly jump to aviation and  see the worst and most unfortunate air disaster ever happened.
+Sharing a common language is extremely vital in order to mitigate misunderstandings. To better understand why it is important let's briefly jump to aviation and  see the worst and most unfortunate air disaster ever happened.
 
 
 
@@ -62,9 +64,9 @@ One of the main reasons causing this unfortunate disaster was communication erro
 ![tenerife-2](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/tenerife-cvr.png)
 
 
-Aviation industry has learnt from these mistakes and that's why they are adhere to their own ubiquitous language. E.g. Your aircraft, my aircraft. 
+When the pilot heard the term OK, he decided the runaway is empty and collided with another plane during the take off. Aviation industry has learnt from these mistakes and that's why they are adhere to their own ubiquitous language, e.g. "Your aircraft, my aircraft".
 
-In the case of software development, a misunderstanding of requirements may not be figured initially, however in the long term, even many months later some major problems may surface causing irreversible damage. Perhaps, we developers should also learn from  the aviation industry and embrace our ubiquitous language.
+In the case of software development, a misunderstanding of requirements may not be obvious initially, however in the long term, even many months later some major problems may surface and cause irreversible damage. Perhaps, we developers should also learn from  the aviation industry and embrace our ubiquitous language.
 
 
 
@@ -83,16 +85,16 @@ there would be many missing points in the requirements only to be discovered at 
 
 ## Discovery 
 
-The discovery process is where we do our domain discoveries, creation of the stories. We should also use the discovery process to bring up and compose our very ubiquitous language.
+The discovery process is where we discover our domain, and create our initial stories. We should also use the discovery process to bring up and compose our very ubiquitous language.
 
 
 ![ubiq-3](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-3.png)
 
 
 
-But how do we perform the discovery? One of the ways is event storming. In event storming, we can start via an actor such as a user or a customer, but it is optional. Traditionally people throw out the events and commands they can think and we use stickers to be posted to a whiteboard, hence the term event storming.
+But how do we perform the discovery? One of the ways is event storming. In event storming, we can start via an actor such as a user or a customer, but it is optional. Traditionally people throw out the events and commands they can think of on the fly and use stickers to be posted to a whiteboard, hence the term event storming.
 
-However I prefer a more a more systematic approach when conveying the event storming session. I coincide it with the [Behavior-driven-development](https://en.wikipedia.org/wiki/Behavior-driven_development) way by using [gherkin](https://cucumber.io/docs/gherkin/) syntax. What is gherkin syntax again? As an example,
+However I prefer a more systematic approach when conveying the event storming session. I coincide it with the [Behavior-driven-development](https://en.wikipedia.org/wiki/Behavior-driven_development) way by using [gherkin](https://cucumber.io/docs/gherkin/) syntax. What is gherkin syntax again? As an example,
 
 
 
@@ -160,7 +162,7 @@ We can continue our event storming session. A good question is "What happens if 
 
 
 
-Now assuming we have build our Gherkin based features. How do we use them? Actually by generating our scenarios actually we have accomplished a lot. 
+Now assuming we have build our Gherkin based features. How do we use them? Actually by generating our scenarios actually we have accomplished a lot:
 
 
 
@@ -176,15 +178,20 @@ Now assuming we have build our Gherkin based features. How do we use them? Actua
 
 - Serves as documentation by example
 
-You will also see trying to document a feature with plain english can be quite challenging without a proper systematic approach. Gherkin syntax gives you one of theese approaches and allow you think about corner cases that would otherwise difficult to discover or describe.
+You will also see trying to document a feature with plain english can be quite challenging without a proper systematic approach. Gherkin syntax gives you one of these systematic approaches and allow you think about corner cases that would otherwise difficult to discover or describe.
 
-Now how to create BDD tests from above is matter of your choice for the language and framework. If you use C# you could use [SpecFlow](https://specflow.org/) or [TickSpec](https://github.com/fsprojects/TickSpec)(my favorite) but BDD frameworks are available for almost any language and platform. 
+Now how to create BDD tests from above is matter of your choice for the language and framework. If you use .NET you could use [SpecFlow](https://specflow.org/) or [TickSpec](https://github.com/fsprojects/TickSpec)(my favorite) but many BDD frameworks are available for almost any language and platform. 
 
-Basically by using the same BDD syntax, you can use it against to create multiple tests:
+Basically by using the same BDD feature set, you can use it to create multiple tests:
 - Tests for your backend API
 - Tests for your front end code
 - Tests the browser automation or full integration.
 
 All these thests can be bound to set of central gherkin feature documents. If you can make deriving your features via behaviors, you will have great confidence in your code and 
-documentation simultenously. I highly recommend it!
+documentation simultenously. 
+
+So this is how we bound our domain model, discovery process, tests and story all at once. I personally really like this approach and recommend it for any kind of project.
+Please feel free to share any comments or objectsions if you have. 
+
+
 
