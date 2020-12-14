@@ -42,6 +42,9 @@ In the case of development, a misunderstanding of requirements in a long term pr
 developers should also learn from aviation industry and embrace our ubiqoutous language.
 
 The key point of ubiqoutous language is that not only it is shared among different stake holders but also it is part of the source code. 
+
+![Ubiq-2](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-2.png)
+
 We may have the requirements but requiremnts, but without proper digestion and translation of requirments they are just pages with text. Furthermore, you will often see, 
 there are many gaps in the requirements only to be discovered at a later phase. Unless you are Kasparov like business analyst, it is quite difficult to see what is going to 
 come up after 20 moves later. So there we have the discovery process. 
@@ -53,7 +56,7 @@ The discovery process allows us to create stories and it brings up our fundement
 ![ubiq-3](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-3.png)
 
 But how do we perform the discovery? One of the ways is event storming. In event storming, we have an actor such as a user or a customer, but it is optional. 
-Although typıcally event storming is performed with throwing events out, I prefer conveying our event storming session with the BDD way that is using gherking syntax.
+Although typically event storming is performed with throwing events out, I prefer conveying our event storming session with the [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) way that is using [gherkin](https://cucumber.io/docs/gherkin/) syntax.
 
 In gherkin syntax we do the following:
 
@@ -96,14 +99,14 @@ We can continue our event storming session. A good question is "What happens if 
 
 Now assuming we have build our Gherkin based features. How do we use them? By generating our scenarios actually we have accomplished a lot. 
 
-- We have created our acceptence tests
-- We have created our ubiqoutous language
+- We have created our stories with acceptence tests
+- We have created our ubiqoutous language for the domain
 - We have discovered the corner cases otherwise not documented
 - We could create Behavior-driven tests for our development.
-- Those BDD tests could be created by a non programmer
+- New BDD scenarios for the existinf features could be created by a non programmer by using the same syntax.
 - Serves as documentation by example
 
 
-Now how to create BDD tests from above is matter of your choice for the language and framework. If you use C# you could use SpecFlow or TickSpec(my favorite) but BDD frameworks
+Now how to create BDD tests from above is matter of your choice for the language and framework. If you use C# you could use [SpecFlow](https://specflow.org/) or [TickSpec](https://github.com/fsprojects/TickSpec)(my favorite) but BDD frameworks
 are available for almost any language and platform.
 
