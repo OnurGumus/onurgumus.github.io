@@ -13,7 +13,6 @@ title: "How to start your domain driven project?"
 date: 2020-12-15-00:00:00 -0000
 
 
-
 comments: false
 
 published: false
@@ -73,13 +72,9 @@ on top of that the weather was bad, the radio communication was problematic and 
 ![tenerife-2](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/tenerife-cvr.png)
 
 
-
 Aviation industry has learnt from these mistakes and that's why they are strictly sticking to their own ubiquitous language. 
 
-
-
 In the case of development, a misunderstanding of requirements in a long term project may surface many months later causing irreversible problems especially. Perhaps we
-
 developers should also learn from aviation industry and embrace our ubiquitous language.
 
 
@@ -93,19 +88,14 @@ The key point of ubiquitous language is that not only it is shared among differe
 
 
 We may have the requirements but requirements, but without proper digestion and translation of requirements they are just pages with text. Furthermore, you will often see, 
-
 there are many gaps in the requirements only to be discovered at a later phase. Unless you are Kasparov like business analyst, it is quite difficult to see what is going to 
-
 come up after 20 moves later. So there we have the discovery process. 
 
 
 
 ## Discovery 
 
-
-
 The discovery process allows us to create stories and it brings up our fundamental parts of our very ubiquitous language. Nouns and Verbs! 
-
 
 
 ![ubiq-3](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-3.png)
@@ -123,23 +113,14 @@ In gherkin syntax we do the following:
 
 
 ```gherkin
-
 Feature: Specify feature name
-
 And some description
 
-
-
 Scenario: Scenario name
-
 Given some initial state
-
 When some action/command happens
-
 Then Some assertion about final state
-
 And and optional assertion about if an event is fired
-
 ```
 
 
@@ -163,39 +144,21 @@ For example:
 
 
 ```gherkin
-
-
-
 Feature: Money withdraw
-
 As customer I would like to withdraw many from my bank account
 
-
-
 Scenario: Widthdraw less than balance
-
 Given I have 1000$ in my bank account
-
 When I withdraw 300$ 
-
 Then the withdraw operation should be successful
-
 And my final balance should be $700
-
-
 
 Scenario: Widthdraw more than balance
 
 Given I have 1000$ in my bank account
-
 When I withdraw 1300$ 
-
 Then the withdraw operation should be failed
-
 And my final balance should be $1000
-
-
-
 ```
 
 
@@ -223,9 +186,6 @@ Now assuming we have build our Gherkin based features. How do we use them? By ge
 - New BDD scenarios for the existing features could be created by a non programmer by using the same syntax.
 
 - Serves as documentation by example
-
-
-
 
 
 Now how to create BDD tests from above is matter of your choice for the language and framework. If you use C# you could use [SpecFlow](https://specflow.org/) or [TickSpec](https://github.com/fsprojects/TickSpec)(my favorite) but BDD frameworks
