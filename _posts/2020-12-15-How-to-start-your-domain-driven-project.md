@@ -23,7 +23,7 @@ image: posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-2.png
 
 ---
 
-
+# How to start your domain driven project
 
 So you have received your 100 pages of the requirements doc and a presentation has been made about your new project. Now as a developer your job is to translate the business requirements to your code. But where do we start? Architecture you say? System diagrams? Project structure? How about starting from discovering and translating the domain? I assume you are familiar or at least or the term Domain Driven Design. 
 
@@ -140,14 +140,14 @@ As customer I would like to withdraw many from my bank account
 Scenario: Widthdraw less than balance
 Given I have 1000$ in my bank account
 When I withdraw 300$ 
-Then the withdraw operation should be successful
+Then the withdraw is successful
 And my final balance should be $700
 
 Scenario: Widthdraw more than balance
 
 Given I have 1000$ in my bank account
 When I withdraw 1300$ 
-Then the withdraw operation should be failed
+Then the withdraw failed
 And my final balance should be $1000
 ```
 
