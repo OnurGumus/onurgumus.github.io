@@ -22,6 +22,7 @@ or at least or the term Domain Driven Design.
 Domain driven design is rolled around the concept called Ubiquotous language. Unbiqtoutous language is the common language we share, we we talk among other stake holders. 
 
 ![Ubiq-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-1.png)
+
 <!--more-->
 Sharing a common language is extremly important to mitigate misunderstandings. To better understand it let's briefly jump to aviation and the worst air disaster ever happened.
 
@@ -92,4 +93,17 @@ And my final balance should be $1000
 Notice how we discovered the commands (verbs) **Withdraw**, we have discovered the events **Withdraw Successful** and **Withdraw Failed** and we have discovered the nouns
 **Account** and **Balance** where balance is also being a state, a candidate for a property of the **Account**. There we go we are building our ubiquitos language.
 We can continue our event storming session. A good question is "What happens if the **Withdraw has been failed**?. Perhaps no one has asked this question before, forgotten in the requirements, so your Business Analyst stops and he or she replies "An email should be sent to the customer about his failed Withdrawals. Aha we have discoverd another  action called **Send an email** . And the process goes on. I highly recommend you to try this with your project's stakeholders. You will see it's a relatively quick and focused effort and it will make the audience, developers more engaged and familiar with the concepts.
+
+Now assuming we have build our Gherkin based features. How do we use them? By generating our scenarios actually we have accomplished a lot. 
+
+- We have created our acceptence tests
+- We have created our ubiqoutous language
+- We have discovered the corner cases otherwise not documented
+- We could create Behavior-driven tests for our development.
+- Those BDD tests could be created by a non programmer
+- Serves as documentation by example
+
+
+Now how to create BDD tests from above is matter of your choice for the language and framework. If you use C# you could use SpecFlow or TickSpec(my favorite) but BDD frameworks
+are available for almost any language and platform.
 
