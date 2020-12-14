@@ -25,22 +25,14 @@ excerpt_separator: <!--more-->
 
 
 
-So you have received 100 pages of the requirements doc and a presentation has been made about your new project. Now as a developer your job is to translate the business requirements
-
-to your code. But where do we start? Architecture you say? System diagrams? Project structure? How about starting from discovering and translating the domain? I assume you are familiar
-
-or at least or the term Domain Driven Design.
+So you have received your 100 pages of the requirements doc and a presentation has been made about your new project. Now as a developer your job is to translate the business requirements to your code. But where do we start? Architecture you say? System diagrams? Project structure? How about starting from discovering and translating the domain? I assume you are familiar or at least or the term Domain Driven Design. Domain driven design is about deriving your design from the domain. We try to bould such an aligment between the source code and the other stakeholders, we use the same language, that is Ubiquitous Language.
 
 
 
 ## Ubiquitous Language
 
 
-
-
-
-Domain driven design is rolled around the concept called ubiquitous language. Ubiquitous language is the common language we share, we we talk among other stake holders. 
-
+Domain driven design is rolled around the concept called ubiquitous language. Ubiquitous language is the common language we share, we we talk among other stakeholders. 
 
 
 ![Ubiq-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-1.png)
@@ -49,7 +41,7 @@ Domain driven design is rolled around the concept called ubiquitous language. Ub
 
 <!--more-->
 
-Sharing a common language is extremely important to mitigate misunderstandings. To better understand it let's briefly jump to aviation and the worst air disaster ever happened.
+Sharing a common language is extremely important to mitigate misunderstandings. To better understand it let's briefly jump to aviation and  see the worst and most unfortunate air disaster ever happened.
 
 
 
@@ -61,9 +53,7 @@ Sharing a common language is extremely important to mitigate misunderstandings. 
 
 
 
-The primary reason causing this unfortunate disaster was communication error. The communication with the control tower and pilot has involved non aviation related terms like "OK"
-
-on top of that the weather was bad, the radio communication was problematic and the Pilot was in hurry. 
+One of the main reasons causing this unfortunate disaster was communication error. The communication between the control tower and the pilot has involved some non-aviation related terms like "OK" which is quite ambigous. On top of that the weather was bad, the radio communication was problematic and the Pilot was in hurry. 
 
 
 
@@ -72,14 +62,13 @@ on top of that the weather was bad, the radio communication was problematic and 
 ![tenerife-2](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/tenerife-cvr.png)
 
 
-Aviation industry has learnt from these mistakes and that's why they are strictly sticking to their own ubiquitous language. 
+Aviation industry has learnt from these mistakes and that's why they are adhere to their own ubiquitous language. E.g. Your aircraft, my aircraft. 
 
-In the case of development, a misunderstanding of requirements in a long term project may surface many months later causing irreversible problems especially. Perhaps we
-developers should also learn from aviation industry and embrace our ubiquitous language.
-
+In the case of software development, a misunderstanding of requirements may not be figured initially, however in the long term, even many months later some major problems may surface causing irreversible damage. Perhaps, we developers should also learn from  the aviation industry and embrace our ubiquitous language.
 
 
-The key point of ubiquitous language is that not only it is shared among different stake holders but also it is part of the source code. 
+
+The key point of  the ubiquitous language is that not only it is shared among different stakeholders but also it is part of the source code. 
 
 
 
@@ -87,24 +76,23 @@ The key point of ubiquitous language is that not only it is shared among differe
 
 
 
-We may have the requirements but requirements, but without proper digestion and translation of requirements they are just pages with text. Furthermore, you will often see, 
-there are many gaps in the requirements only to be discovered at a later phase. Unless you are Kasparov like business analyst, it is quite difficult to see what is going to 
-come up after 20 moves later. So there we have the discovery process. 
+We may have the requirements but without proper digestion and translation of requirements they are just pages with text. Furthermore, you will often see, 
+there would be many missing points in the requirements only to be discovered at a later phase. Unless you are Kasparov like business analyst, it is quite difficult to see what is going to come up after 20 moves later. To better illustrate the problem and soluton let's talk about the discovery process.
 
 
 
 ## Discovery 
 
-The discovery process allows us to create stories and it brings up our fundamental parts of our very ubiquitous language. Nouns and Verbs! 
+The discovery process is where we do our domain discoveries, creation of the stories. We should also use the discovery process to bring up and compose our very ubiquitous language.
 
 
 ![ubiq-3](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-3.png)
 
 
 
-But how do we perform the discovery? One of the ways is event storming. In event storming, we have an actor such as a user or a customer, but it is optional. 
+But how do we perform the discovery? One of the ways is event storming. In event storming, we can start via an actor such as a user or a customer, but it is optional. Traditionally people throw out the events and commands they can think and we use stickers to be posted to a whiteboard, hence the term event storming.
 
-Although typically event storming is performed with throwing events out, I prefer conveying our event storming session with the [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) way that is using [gherkin](https://cucumber.io/docs/gherkin/) syntax.
+However I prefer a more a more systematic approach when conveying the event storming session. I coincide it with the [Behavior-driven-development](https://en.wikipedia.org/wiki/Behavior-driven_development) way by using [gherkin](https://cucumber.io/docs/gherkin/) syntax. What is gherkin syntax again? As an example,
 
 
 
@@ -125,13 +113,13 @@ And and optional assertion about if an event is fired
 
 
 
-Basically we start from state then some action is taken and system moves to another state and optionally generates and event which can be handled by another component.
+Basically we start from  a state then some action is taken  and system moves to another state and optionally it generates and event which can be handled by another component.
 
 
 
 
 
-![gherkin-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/gherkin-1.png)
+![gherkin-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/state-event-command.png)
 
 
 
@@ -139,7 +127,7 @@ Basically we start from state then some action is taken and system moves to anot
 
 
 
-For example:
+A more concrete example for a banking domain would be:
 
 
 
@@ -161,17 +149,18 @@ Then the withdraw operation should be failed
 And my final balance should be $1000
 ```
 
+![gherkin-1](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/gherkin-1.png)
 
 
 Notice how we discovered the commands (verbs) **Withdraw**, we have discovered the events **Withdraw Successful** and **Withdraw Failed** and we have discovered the nouns
 
-**Account** and **Balance** where balance is also being a state, a candidate for a property of the **Account**. There we go we are building our ubiquitous language.
+**Account** and **Balance** where balance is also being a state and a candidate for a property of the **Account**. There we go we are building our ubiquitous language.
 
-We can continue our event storming session. A good question is "What happens if the **Withdraw has been failed**?. Perhaps no one has asked this question before, forgotten in the requirements, so your Business Analyst stops and he or she replies "An email should be sent to the customer about his failed Withdrawals. Aha we have discovered another  action called **Send an email** . And the process goes on. I highly recommend you to try this with your project's stakeholders. You will see it's a relatively quick and focused effort and it will make the audience, developers more engaged and familiar with the concepts.
+We can continue our event storming session. A good question is "What happens if the **Withdraw has been failed**?. Perhaps no one has asked this question before, maybe forgotten in the requirements doc, so your Business Analyst stops and he or she replies "An email should be sent to the customer about his or her failed Withdrawals. Aha we have discovered another action called **Send an email** . And the process goes on. I highly recommend you to try this with your project's stakeholders. You will see it's a relatively quick and focused effort and it will make the audience, developers more engaged and familiar with the concepts.
 
 
 
-Now assuming we have build our Gherkin based features. How do we use them? By generating our scenarios actually we have accomplished a lot. 
+Now assuming we have build our Gherkin based features. How do we use them? Actually by generating our scenarios actually we have accomplished a lot. 
 
 
 
@@ -187,8 +176,15 @@ Now assuming we have build our Gherkin based features. How do we use them? By ge
 
 - Serves as documentation by example
 
+You will also see trying to document a feature with plain english can be quite challenging without a proper systematic approach. Gherkin syntax gives you one of theese approaches and allow you think about corner cases that would otherwise difficult to discover or describe.
 
-Now how to create BDD tests from above is matter of your choice for the language and framework. If you use C# you could use [SpecFlow](https://specflow.org/) or [TickSpec](https://github.com/fsprojects/TickSpec)(my favorite) but BDD frameworks
+Now how to create BDD tests from above is matter of your choice for the language and framework. If you use C# you could use [SpecFlow](https://specflow.org/) or [TickSpec](https://github.com/fsprojects/TickSpec)(my favorite) but BDD frameworks are available for almost any language and platform. 
 
-are available for almost any language and platform.
+Basically by using the same BDD syntax, you can use it against to create multiple tests:
+- Tests for your backend API
+- Tests for your front end code
+- Tests the browser automation or full integration.
+
+All these thests can be bound to set of central gherkin feature documents. If you can make deriving your features via behaviors, you will have great confidence in your code and 
+documentation simultenously. I highly recommend it!
 
