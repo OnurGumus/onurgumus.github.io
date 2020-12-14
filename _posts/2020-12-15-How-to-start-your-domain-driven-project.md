@@ -50,11 +50,39 @@ come up after 20 moves later. So there we have the discovery process.
 The discovery process allows us to create stories and it brings up our fundemental parts of our very unquitous language. Nouns and Verbs! 
 
 ![ubiq-3](/assets/posts/2020-12-15-How-to-start-your-domain-driven-project/ubiq-3.png)
+
 But how do we perform the discovery? One of the ways is event storming. In event storming, we have an actor such as a user or a customer, but it is optional. 
-We can, however use the following methodology to convey our event storming session. 
+Although typıcally event storming is performed with throwing events out, I prefer conveying our event storming session with the BDD way that is using gherking syntax.
 
-At first we have some state
-then some action is taken
-and finally an event is fired and we land in another state.
+In gherkin syntax we do the following:
 
+```gherkin
+Feature: Specify feature name
+And some description
+
+Scenario: Scenario name
+Given some initial state
+When some action/command happens
+Then Some assertion about final state
+And and optional assertion about if an event is fired
+```
+
+
+For example:
+
+``Feature: Money withdraw.
+As customer I would like to with draw many from my bank account
+
+Scenario: Widthdraw less than balance
+Given I have 1000$ in my bank account
+When I withdraw 300$ 
+Then the with draw operation should be successful
+And my final balance should be $700
+
+
+Scenario: Widthdraw more than balance
+Given I have 1000$ in my bank account
+When I withdraw 1300$ 
+Then the with draw operation should be failed
+And my final balance should be $1000
 
