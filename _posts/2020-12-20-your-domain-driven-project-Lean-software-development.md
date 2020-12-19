@@ -16,7 +16,7 @@ excerpt_separator: <!--more-->
 
 ---
 
-# Your domain driven project : Lean software development
+# Your domain driven project: Lean software development
 
 In the previous post we have seen how to kick-start the project by discovering our domain. Once we have established our main stories and the relevant acceptance criterias, 
 the next step would be splitting our features/stories to their respective bounded contexts. The concept of bounded context is heavily discussed in any domain driven book, 
