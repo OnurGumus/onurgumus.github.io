@@ -16,9 +16,9 @@ excerpt_separator: <!--more-->
 
 ---
 
-# Your domain driven project: Lean software development
+# Your domain driven project : Lean software development
 
-In the previous post we have seen how to kick-start the project by discovering our domain. Once we have established our main stories and the relevant acceptance criterias, 
+In the previous [post](https://onurgumus.github.io/2020/12/15/How-to-start-your-domain-driven-project.html) we have seen how to kick-start the project by discovering our domain. Once we have established our main stories and the relevant acceptance criterias, 
 the next step would be splitting our features/stories to their respective bounded contexts. The concept of bounded context is heavily discussed in any domain driven book, 
 usually typical examples given as a customer concept in one domain meaning one thing, such as an actor buying something, whereas in another context it may refer to an owner of an or target of a delivery.
 I myself, have a bit more technical and perhaps more vague interpretation of the bounded contexts:
@@ -63,7 +63,7 @@ a short amount of time. Here's my answer:
 ## API First and Mocking
 
 So you can see that red line on the above figure. That's where our API lands. And designing and agreeing on the API should be the very first thing you should do in the actual coding process. Do not dwell on the architecture. A good architecture would indeed allow you [delay the decisions as much as possible](https://en.wikipedia.org/wiki/Lean_software_development#Decide_as_late_as_possible) to focus on the API first even before writing your tests. Since when writing your tests
-even if you prefer TDD, you would want your tests to compile but fail at runtime. How are you going to write your API? Luckily if you follow the previous post, you already have your discovery done. You know your nouns and verbs. You can immediately start having an API function called **Withdraw** taking an **Account** and an **Amount** as the input and return **Success** or **Failure**.
+even if you prefer TDD, you would want your tests to compile but fail at runtime. How are you going to write your API? Luckily if you follow the previous [post](https://onurgumus.github.io/2020/12/15/How-to-start-your-domain-driven-project.html), you already have your discovery done. You know your nouns and verbs. You can immediately start having an API function called **Withdraw** taking an **Account** and an **Amount** as the input and return **Success** or **Failure**.
 
 Once the contract is established you can start writing your tests and front end and backend people can start working their respective areas.
 
