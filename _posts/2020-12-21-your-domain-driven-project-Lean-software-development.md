@@ -11,7 +11,7 @@ classical definiton of boundled contexts, but in the main bounded context the sa
 in another bounded context we manage users address and personal details. Such details are usually not interesting to accounting and transaction domain. 
 The main goal of proper software development via domain driven design is to tackle with the complexity. The more hard bounded divisons we have the easier the tackling process.
 
-So for starters we can have such a schematic
+So for starters we can have such a figure
 
 [!BoundedContext-1](/asssets/posts/bounded-context-1.png)
 
@@ -38,7 +38,17 @@ Your primary objective should be focus and deliver what is important aligned wit
 
 
 One thing you have to focus is once you have picked a vertical slice to go you have to build it from end to end so that you achive [Build integrity in](https://en.wikipedia.org/wiki/Lean_software_development#Build_integrity_in). Failing to work that way, you will end up non integrating peacies floating around and I can guarantee you things **will** go wrong on the day of integration. So don't take any risks keep things integrated from sprint 1. Well, you can ask how am I going to that in such
-a short amount of time? Here's my answer
+a short amount of time? Here's my answer:
 
 ## API First and Mocking
+
+So you can see that red line on the above figure. That's where our API lands. And designing and agreeing on the API should be the very first thing you should do in the actual coding process. Do not dwell on the architecture. A good architetcure would indeed allow you [delay the decisions as much as possible](https://en.wikipedia.org/wiki/Lean_software_development#Decide_as_late_as_possible) focus on the API first even before writing your tests. Since when writing your tests
+even if you prefer TDD, you would want your tests to compile but fail at runtime. How are you going to write your API? Luckily if you have follow the previous post, you already have your discovery done. You know your nouns and verbs. You can immediately start having an API function called **Withdraw** taking an **Account** and an **Amount** as the input and return **Success** or **Failure**.
+
+Once the contract is established you can start writing your tests and front end and backend people can start working their respective areas.
+
+The second important aspect is **mocking**. You are expected to finish the entire withdrawal process in sprint 1 but that might be too big to chew in such a short amount of time. So instead just mock the results. For example hard code such a logic if the amount is greater than $1000 always fail and otherwise always succeed without doing anything.
+whereas front-end people can just start consuming the API and build a very primitive but functional UI. Yes that's probably now what the end product should be, and you might need the developer's assistance when presenting such UI. Management should not be refrain involving the developers from demoing to the customers. Since such demos will
+create a sense of achievement within the team and it will further [Empower](https://en.wikipedia.org/wiki/Lean_software_development#Empower_the_team) them. After all we 
+are writing software and this is how software grows. 
 
