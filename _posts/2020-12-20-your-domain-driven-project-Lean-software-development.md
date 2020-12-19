@@ -23,7 +23,7 @@ the next step would be splitting our features/stories to their respective bounde
 usually typical examples given as a customer concept in one domain meaning one thing, such as an actor buying something, whereas in another context it may refer to an owner of an or target of a delivery.
 I myself, have a bit more technical and perhaps more vague interpretation of the bounded contexts:
 
-[!BoundedContext-1](/asssets/posts/2020-12-20-your-domain-driven-project-Lean-software-development/lean-1.png)
+[!BoundedContext-1](/assets/posts/2020-12-20-your-domain-driven-project-Lean-software-development/lean-1.png)
  <!--more-->
 
 For example if we have that banking process earlier, probably we want users to be authenticated. Or there could be another sub system managing 
