@@ -1,3 +1,21 @@
+---
+
+layout: default
+
+title: "Your domain driven project:Lean software development"
+
+date: 2022-12-21-00:00:00 -0000
+
+comments: true
+
+published: false
+
+image: posts/2020-12-20-your-domain-driven-project-Lean-software-development/lean-1.png
+
+excerpt_separator: <!--more-->
+
+---
+
 # Your domain driven project : Lean software development
 
 In the previous post we have seen how to kick-start the project by discovering our domain. Once we have established our main stories and the relevant acceptance criterias, 
@@ -13,7 +31,7 @@ The main goal of proper software development via domain driven design is to tack
 
 So for starters we have the below figure:
 
-[!BoundedContext-1](/asssets/posts/bounded-context-1.png)
+[!BoundedContext-1](/asssets/posts/2020-12-20-your-domain-driven-project-Lean-software-development/lean-1.png)
 
 This simple division actually helps us a lot. Let's see why? Firstly if we have a team of developers to work on the project, we have to decide who works on what. 
 You might have heard [Brook's law](https://en.wikipedia.org/wiki/Brooks%27s_law) stating that: 
