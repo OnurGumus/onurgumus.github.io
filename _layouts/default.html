@@ -56,7 +56,7 @@
       <br/>
       <div class="inner"  style="display:flex; justify-content:center">
          <a href="{{ '/' | absolute_url }}">
-            <h1>{{ site.title | default: site.github.repository_name }}</h1>
+            <h1 style="font-size:36px">{{ site.title | default: site.github.repository_name }}</h1>
          </a>
          <h2>{{ site.description | default: site.github.project_tagline }}</h2>
       </div>
@@ -77,9 +77,12 @@
       </div>
    </header>
    <style>
-      .social-links > .twitter,    .social-links > .linkedin  {
+      .social-links > .twitter {
       margin-top: -1em; 
       margin-left: 1em;
+      }
+       .social-links > .linkedin {
+            margin-left: 1em;
       }
       .social-links{
       display: flex;
