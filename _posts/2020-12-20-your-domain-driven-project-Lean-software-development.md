@@ -57,8 +57,8 @@ Furthermore, those vertical slices can be increased within a single slice to ach
 your primary objective should be to focus and deliver what is important aligned with the [lean software development](https://en.wikipedia.org/wiki/Lean_software_development) process and perhaps make a demo on the first iteration by [delivering it as fast as possible](https://en.wikipedia.org/wiki/Lean_software_development#Deliver_as_fast_as_possible) and gather feedback and [amplify learning](https://en.wikipedia.org/wiki/Lean_software_development#Amplify_learning).
 
 
-One thing you have to focus is once you have picked a vertical slice to go you have to build it from end to end so that you achieve [Build integrity in](https://en.wikipedia.org/wiki/Lean_software_development#Build_integrity_in). Failing to work that way, you will end up non integrating pieces floating around, and I can guarantee you, things **will** go wrong on the day of integration. So don't take any risks, but keep things integrated from sprint 1. Well, you can ask how am I going to that in such
-a short amount of time. Here's my answer:
+One thing you have to focus is once you have picked a vertical slice to go you have to build it from end to end so that you achieve [Build integrity in](https://en.wikipedia.org/wiki/Lean_software_development#Build_integrity_in). Failing to work that way, you will end up non-integrated pieces floating around, and I can assure you, things **will** go wrong when the day of integration comes. So instead, don't take any risks, but keep things integrated from sprint 1. Well, 
+you can ask how am I going to do that in such a short amount of time. Here's my answer:
 
 ## API First and Mocking
 
