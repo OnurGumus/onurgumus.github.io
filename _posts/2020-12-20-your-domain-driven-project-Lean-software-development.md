@@ -21,7 +21,10 @@ excerpt_separator: <!--more-->
 In the previous post we have seen how to kick-start the project by discovering our domain. Once we have established our main stories and the relevant acceptance criterias, 
 the next step would be splitting our features/stories to their respective bounded contexts. The concept of bounded context is heavily discussed in any domain driven book, 
 usually typical examples given as a customer concept in one domain meaning one thing, such as an actor buying something, whereas in another context it may refer to an owner of an or target of a delivery.
-I myself, have a bit more technical and perhaps more vague interpretation of the bounded contexts. 
+I myself, have a bit more technical and perhaps more vague interpretation of the bounded contexts:
+
+[!BoundedContext-1](/asssets/posts/2020-12-20-your-domain-driven-project-Lean-software-development/lean-1.png)
+ <!--more-->
 
 For example if we have that banking process earlier, probably we want users to be authenticated. Or there could be another sub system managing 
 the communication such as sending emails or SMS to the user or managing their personal details. I know this kind of separation is not aligned with the 
@@ -29,9 +32,8 @@ classical definition of bounded contexts. In my case, within the main bounded co
 and in another bounded context we manage customers' addresses and personal details. And we observe such details like address and personal details are usually not interesting to accounting and transaction bounded context. 
 The main goal of proper software development via domain driven design is to tackle the complexity. The more hard bounded divisions we have the easier the tackling process since the problem is splitted into smaller chunks.
 
-So for starters we have the below figure:
 
-[!BoundedContext-1](/asssets/posts/2020-12-20-your-domain-driven-project-Lean-software-development/lean-1.png)
+
 
 This simple division actually helps us a lot. Let's see why? Firstly if we have a team of developers to work on the project, we have to decide who works on what. 
 You might have heard [Brook's law](https://en.wikipedia.org/wiki/Brooks%27s_law) stating that: 
