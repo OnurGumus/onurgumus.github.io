@@ -45,11 +45,12 @@ Brooks points out this limited divisibility with another example: while it takes
 
 So we have to be able to split the things in such a way our developers should be able to do their job without stepping on each other toes. 
 
-Another major reason is to determine what is important and give the focus on that important slice. After 3 months of development.
-You don't want to tell your manager you have a perfect implementation for the authentication slice, but you haven't started the main thing. That would be disastrous. 
-Sometimes you have too few resources or team members may not be familiar with a particular task, then you can opt-in to outsource or buy a ready-made solution, 
-say for the authentication and your fellow developers could focus on what is important. Whereas you sometimes you have sometimes too many resources, then you could assign 
-some developers with fine-tuning the purchased solution or assist to the outsource team. Thus, we try to [eliminate the waste](https://en.wikipedia.org/wiki/Lean_software_development#Eliminate_waste).
+Another major reason is to determine what is important and give the focus on that important slice. After 3 months of development,
+you don't want to tell your manager that you have a perfect implementation for the authentication slice, but you haven't started the main thing. That would be disastrous. 
+
+Sometimes you have too few members available or the team members may not be familiar with a particular task, then you can opt-in to outsource or buy a ready-made solution 
+say for the authentication and your fellow developers could focus on what is important. Whereas sometimes you have too many members available, then you could assign 
+some developers with fine-tuning the purchased solution or assisting to the outsource team. Thus, we try to [eliminate the waste](https://en.wikipedia.org/wiki/Lean_software_development#Eliminate_waste).
 
 
 
