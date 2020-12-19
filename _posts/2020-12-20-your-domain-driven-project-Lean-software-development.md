@@ -62,7 +62,7 @@ you can ask how am I going to do that in such a short amount of time. Here's my 
 
 ## API First and Mocking
 
-So you can see that red line on the above figure. That's where our API lands. And designing and agreeing on the API should be the very first thing you should do in the actual coding process. Do not dwell on the architecture. A good architecture would indeed allow you [delay the decisions as much as possible](https://en.wikipedia.org/wiki/Lean_software_development#Decide_as_late_as_possible) to focus on the API first even before writing your tests. Since when writing your tests
+So you can see that red line on the above figure. This is where out API lands. And designing and agreeing on the API should be the very first thing you do within the actual coding process. Do not dwell on the architecture. A good architecture would indeed allow you [delay the decisions as much as possible](https://en.wikipedia.org/wiki/Lean_software_development#Decide_as_late_as_possible) to focus on the API first even before writing your tests. Since when writing your tests
 even if you prefer TDD, you would want your tests to compile but fail at runtime. How are you going to write your API? Luckily if you follow the previous [post](https://onurgumus.github.io/2020/12/15/How-to-start-your-domain-driven-project.html), you already have your discovery done. You know your nouns and verbs. You can immediately start having an API function called **Withdraw** taking an **Account** and an **Amount** as the input and return **Success** or **Failure**.
 
 Once the contract is established you can start writing your tests and front end and backend people can start working their respective areas.
