@@ -49,6 +49,12 @@
     <link rel="shortcut icon" type="image/png" href="{{ site.url }}/assets/me.png" />
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}" media="screen" type="text/css">
     <link rel="stylesheet" href="{{ '/assets/css/print.css' | relative_url }}" media="print" type="text/css">
+    <style>
+      .social-links{
+        display:flex;
+        justify-contet:center;
+      }
+    </style>
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -66,7 +72,7 @@
         </a>
         <h2>{{ site.description | default: site.github.project_tagline }}</h2>
       </div>
-      <div>
+      <div class="social-links">
            <a href="{{ site.github.owner_url }}" class="button"><small>Follow me on</small> GitHub</a>
       </div>
     </header>
