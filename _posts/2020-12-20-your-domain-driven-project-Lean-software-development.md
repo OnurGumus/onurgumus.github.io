@@ -35,7 +35,7 @@ The main goal of proper software development via domain driven design is to tack
 
 
 
-This simple division actually helps us a lot. Let's see why? Firstly if we have a team of developers to work on the project, we have to decide who works on what. 
+This simple division actually helps us a lot. Let's see why: Firstly if we have a team of developers to work on the project, we have to decide who works on what. 
 You might have heard [Brook's law](https://en.wikipedia.org/wiki/Brooks%27s_law) stating that: 
 
 << Adding more people to a highly divisible task, such as cleaning rooms in a hotel, decreases the overall task duration 
@@ -49,7 +49,7 @@ Another major reason is to determine what is important and give the focus on tha
 You don't want to tell your manager you have a perfect implementation for the authentication slice, but you haven't started the main thing. That would be disastrous. 
 Sometimes you have too few resources or team members may not be familiar with a particular task, then you can opt-in to outsource or buy a ready-made solution, 
 say for the authentication and your fellow developers could focus on what is important. Whereas you sometimes you have sometimes too many resources, then you could assign 
-some developers with fine-tuning the purchased solution or assist to the outsource team. Thus, we try to [eliminate the waste](https://en.wikipedia.org/wiki/Lean_software_development#Eliminate_waste)
+some developers with fine-tuning the purchased solution or assist to the outsource team. Thus, we try to [eliminate the waste](https://en.wikipedia.org/wiki/Lean_software_development#Eliminate_waste).
 
 
 
