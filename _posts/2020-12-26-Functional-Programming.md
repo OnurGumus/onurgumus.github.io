@@ -98,7 +98,7 @@ How do we solve this problem? Well, the problem is about **state tracking** and 
 
 ## The functional solution
 
-So we want to get rid of the state. Perhaps a way to do so is to represent the state by using the types so instead of a single Car type. We could utilize two different types. **StoppedCar** and a **RunningCar**. Then we have a **run** function that is taking a **StoppedCar** and **RunningCar**
+So we want to get rid of the state. Perhaps a way to do so is to represent the state by using the types. So instead of a single Car type, we could utilize two different types: **StoppedCar** and a **RunningCar**. Then we have a **run** function that is taking a **StoppedCar** and returning a **RunningCar**:
 
 ![Run-function](/assets/posts/2020-12-26-Functional-Programming/run.png)
 
