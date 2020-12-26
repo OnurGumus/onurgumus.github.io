@@ -10,7 +10,7 @@ comments: true
 
 published: false
 
-image: posts/2020-12-20-your-domain-driven-project-Lean-software-development/lean-1.png
+image: posts/2020-12-26-Functional-Programming/run.png
 
 excerpt_separator: <!--more-->
 
@@ -61,7 +61,7 @@ Wow, if functional programming doesn't give me those aspects I care about my cod
 We have discussed functional programming does not necessarily lead to better code. So why bother? The answer is, functional programming keeps the developer sane and you will sleep better!
 Let's see how with an example. Suppose that we have a Car class with a public property Color and two public methods Run() and Stop(). The Run method does whatever internally necessary to run the car.
 
-![Car](/posts/.../class-diagram.png)
+![Car](/assets/posts/2020-12-26-Functional-Programming/class-diagram.png)
 
 Now we do:
 ```C# 
@@ -100,7 +100,7 @@ How do we solve this problem? Well, the problem is about **state tracking** and 
 
 So we want to get rid of the state. Perhaps a way to do so is to represent the state by using the types so instead of a single Car type. We could utilize two different types. **StoppedCar** and a **RunningCar**. Then we have a **run** function that is taking a **StoppedCar** and **RunningCar**
 
-![Run-function](/posts/.../run-function.png)
+![Run-function](/assets/posts/2020-12-26-Functional-Programming/run.png)
 
 Once we define such a run function, solve all three problems. First, we always know if the car is running:
 
@@ -131,6 +131,7 @@ In the imperative world we have statements that tell the compiler what to do:
 
 Whereas functional programming is more like movie frames. Each frame is immutable and unchangeable but if we roll 24 frames per second. It creates the illusion of a movie.
 
+![frames](/assets/posts/2020-12-26-Functional-Programming/frames.png)
 
 Functional programming does the same. We never change the data but every time we need a change things we create a new instance of that type. And obviously, that's a lot of CPU cycles and memory allocation compared to the imperative approach and 30 years ago that really mattered. 30 years ago, your colleagues would say, "Whoa! Are you allocating 200 bytes just to change the status of a car?" But these days, it is **engineers are expensive and servers are not**. Now, your users are unlikely to notice a few hundred nanoseconds delay. But you could utilize the hardware power for the sake of programmer productivity. Indeed, immutability, functional paradigm even scales better when you have a  distributed multi-threaded environment. But these historical problems with functional programming allowed the imperative paradigm to flourish whereas people were skeptical with the functional programming.
 
