@@ -2,7 +2,7 @@
 
 layout: default
 
-title: "Why functional programming : Purity"
+title: "Functional programming: Enemy of the state"
 
 date: 2022-12-27-00:00:00 -0000
 
@@ -86,7 +86,38 @@ SomeOtherFunction(Car car){
 
 We could see how stateful programming burdens the developer. We have 3 problems here:
 
-1-) As an author of SomeOtherfunction how will I know if the Run method is called? I need to look up the caller's code thus **extra burden**. 
+1- As an author of SomeOtherfunction how will I know if the Run method is called? I need to look up the caller's code thus it's an **extra burden** to the developer to find it out. 
 One might argue, we could add an IsRunnig property, however nothing forces me at compile time to check that. I could easily forget such a check. And not always
 the property changed by the method be that much obvious and it would **burden** me to read the API docs for the car. 
+
+2- What happens if I call Run twice. Will it throw an exception? Will it ignore? The only way to find out is either read the api or read the source. 
+Hence we have another **burden** here. 
+
+3- After SomeOtherFunction returns how do I know if the car is stopped or not.  Again we have to read the docs or the source and yetanother **burden** here.
+
+So you can see such a simple code brings a lot of responsibility to the developer that he has to track track the state at various stages of the coding process.
+How do we solve this problem? Well the problem is about **state tracking** and if we didn't have the state in the first place, we wouldn't have that problem.
+
+## The functional solution
+
+So we want to get rid of the state. Perhaps a way to do so is to represent the state by using the types so instead of a single Car type. We could utilize two different 
+types. **StoppedCar** and a **RunningCar**. Then we have a **run** function that is taking a **StoppedCar** and **RunningCar**
+
+![Run-function](/posts/.../run-function.png)
+
+Once we define such a run function, solve all three problems. First we always know if the car is running:
+
+```charp
+SomeOtherFunction(RunningCar car){
+ //we know for sure the car is running
+ //you cannot call run again since the code won't compile
+}
+```
+
+And obviously we cannot call the run function again since the code won't compile. And depending on the return type the caller will know what type has been returned.
+Now as developers we have less things to track, less things to worry about. Life is so easy or is it?
+
+
+
+## Ok I am sold how do I get started?
 
