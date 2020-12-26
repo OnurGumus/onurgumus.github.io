@@ -4,7 +4,7 @@ layout: default
 
 title: "Functional programming: Enemy of the state"
 
-date: 2022-12-27-00:00:00 -0000
+date: 2022-12-26-00:00:00 -0000
 
 comments: true
 
