@@ -115,9 +115,32 @@ SomeOtherFunction(RunningCar car){
 ```
 
 And obviously we cannot call the run function again since the code won't compile. And depending on the return type the caller will know what type has been returned.
-Now as developers we have less things to track, less things to worry about. Life is so easy or is it?
+Now as developers we have less things to track, less things to worry about. Now life is so easy or is it? 
 
 
 
-## Ok I am sold how do I get started?
+## If functional programming is so good why it is not popular?
+
+Well, the first thing to acknowlege is functional programming is not about syntax. It's a paradigm. Recently C# 9 has attained the record syntax, record is a functional concept
+and if you are not familiar with the functional paradigm, it is possible you might be confused about why we need records. You will only see unconvincing answers like 
+records are good because they are immutable (the real answer is value semantics and referential transparency, whereas immutability is only a vehicle to achive these). 
+What I am trying to say is to get started with functional programming, you have to forget about most things you know about the imperative programming. 
+So it is literally baby steps again and it would take quite a while to master it. And that is one of the major reasons people shy away from functional programming.
+
+In the imperative world we have statements which tells the compiler what to do:
+
+- do this;
+- do that;
+
+Whereas functional programming is more like a movie frames. Each frame is immutable and unchangeable but if we roll 24 frames per second. It creates the illusion of a movie.
+
+
+Functional programming does the same. We never change the data but everytime we need a change things we create a new instance of that type. And obviously that's a lot of 
+cpu cycles and memory allocation compared to imperative approach and 30 years ago that really mattered. 30 years ago, your colleages would say, "Whoa! Are you allocating 200 bytes just to change the status of car?" But these days, it is **engineers are expensive and servers are not**. Now, your users are unlikely notice few the few hundred nanoseconds delay. But you could utilize the hardware power for the sake of programmer productivity. Indeed, immutability, functional paradigm even scales better when you have a  distributed multi threaded evironment. But this historical problems with functional programming allowed imperative paradigm to florish whereas people were sceptical with the functional programming.
+
+Combined with the relearning process described, functional programmers are minority. Having that said, today's challenges require complicated solutins, reactive programming
+is going more and more popular. Probably one of the most famous and demanded javascript library is react and it's a brilliant example demonstrating how functional and reactive 
+programming shines. Single page applications are way more stateful than the backend apps, since usually backend only serves the data relaying in and out from the database without holding the state. And many developers appreciated how react (and redux like solutions) helped them to scale their complicated applications. 
+
+So there are challenges for the functional programming but sit tight the future might be different.
 
