@@ -52,8 +52,8 @@ Functional programming is not code nor it is a language but a paradigm. You coul
 as a first class citizen (or even dictate it) wheras some languages tend to challenge you or too verbose to go with functional programming. So above items about good code
 are not relevant to functional programming paradigm. I would like to emphesize these once more as in the following:
 
-- Functional programming *does not* necessarly lead to more maintainable code nor does it aim that.
-- Functional programming *is not* necessarly more readable
+- Functional programming **does not** necessarly lead to more maintainable code nor does it aim that.
+- Functional programming **is not** necessarly more readable.
 - Functional programming can easily turn to spaghetti if one is not careful.
 
 
@@ -62,5 +62,31 @@ Wow, if functional programming doesn't give me those aspects I care about my cod
 ## Why should I care about functional programming?
 
 We have discussed functional programming does not necessarily lead to better code. So why bother? The answer is, functional programming keeps the developer sane!
+Let's see this with an example. Suppose that we have a Car class with a public property Color and two public methods Run() and Stop() which does what ever internally necessary to 
+run the car
 
+![Car](/posts/.../class-diagram.png)
+
+Now we do:
+```C# 
+var car = new Car();
+car.Run();
+... //do other things.
+SomeOtherFunction(car);
+//Did SomeOtherFunction stopped ther car? I don't know I have to track it.
+... //other things
+
+SomeOtherFunction(Car car){
+  //hmm have I run the car before? I have to track it.
+  car.Run();
+  //now I have how run the car perhaps more than one time. What's gonna happen?
+}
+```
+
+
+We could see how stateful programming burdens the developer. We have 3 problems here:
+
+1-) As an author of SomeOtherfunction how will I know if the Run method is called? I need to look up the caller's code thus **extra burden**. 
+One might argue, we could add an IsRunnig property, however nothing forces me at compile time to check that. I could easily forget such a check. And not always
+the property changed by the method be that much obvious and it would **burden** me to read the API docs for the car. 
 
