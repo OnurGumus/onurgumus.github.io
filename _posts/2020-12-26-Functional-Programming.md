@@ -119,7 +119,7 @@ Now as developers, we have fewer things to track, fewer things to worry about. N
 ## If functional programming is so good why it is not popular?
 
 Well, the first thing to acknowledge is functional programming is not about syntax. It's a paradigm. For example, recently C# 9 has attained the record syntax, a record is a functional concept
-and if you are not familiar with the functional paradigm, you might be confused about why we need records in the first place. You will only see unconvincing answers like records are good because they are immutable (the real answer is they provide value semantics and referential transparency, this don't care about the memory location, whereas immutability is only a vehicle to achieve these). 
+and if you are not familiar with the functional paradigm, you might be confused about why we need records in the first place. You will only see unconvincing answers like records are good because they are immutable (the real answer is they provide value semantics and referential transparency, thus we don't care about the memory location, whereas immutability is only a vehicle to achieve these). 
 
 What I am trying to say is to get started with functional programming, you have to forget about most things you already know about imperative programming. 
 So it is literally baby steps again and it would take quite a while to master it. And that is one of the major reasons people shy away from functional programming.
