@@ -29,4 +29,4 @@ something new. My second mistake was the confusion of the term "functional". The
 languages but rather they refer to mathematical functions just like Sine and Cosine functions. And it is **purity** that makes these mathematical functions different 
 than functions in the programming programming languages. That is given the same input the function will always yield the same output without any side effects. 
 
-For example 
+For example sine(90) will always yield 1 as a result, no matter when you call. It also has no side affects, that is it
