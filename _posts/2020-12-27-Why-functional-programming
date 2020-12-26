@@ -1,0 +1,32 @@
+---
+
+layout: default
+
+title: "Why functional programming : Purity"
+
+date: 2022-12-27-00:00:00 -0000
+
+comments: true
+
+published: false
+
+image: posts/2020-12-20-your-domain-driven-project-Lean-software-development/lean-1.png
+
+excerpt_separator: <!--more-->
+
+---
+
+# Why functional programming?
+
+This is a question that has been answered many times. A quick google search on "Why functional programming" or "why functional programming matters" will yield quite 
+insightful results. Having that said I still beleive there is more to add this topic. And what would be my answer to this qustion? One word: **purity** (or Statelessness). 
+Before delving into purity let's dissect the **functional** in functional programming.
+
+When I heard the term functional programming, I was very confused. I said, "I have been using C, we already have functions there. JavaScript also has functions, may OOP languages
+have functions disguised as methods of objects. Why this new term?" Well, my first mistake was it wasn't a new term. The conceptual origin of functional programming
+**lambda calculus** is developed as early as 1930 by Alonzo Church and the first functional programming language LISP was available by late 50's. So functional programming wasn't
+something new. My second mistake was the confusion of the term "functional". The word function here does not represent the procedures which we call functions in the programming 
+languages but rather they refer to mathematical functions just like Sine and Cosine functions. And it is **purity** that makes these mathematical functions different 
+than functions in the programming programming languages. That is given the same input the function will always yield the same output without any side effects. 
+
+For example 
