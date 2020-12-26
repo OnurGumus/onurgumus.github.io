@@ -92,7 +92,7 @@ Hence we have another **burden** here.
 3- After SomeOtherFunction returns how do I know if the car is stopped or not.  Again we have to read the docs or the source for the SomeOtherFunction and yet another **burden** here.
 
 So you can observe such a simple code brings a lot of responsibility to the developer that he has to track and remember the state at various stages of the coding process. 
-It could be easy to remember for one object but if you have lot's of object circulating deep into the code, it may drive you nuts.
+It could be easy to remember for one object but if you have lot's of objects circulating deep into the code, it may drive you nuts.
 
 How do we solve this problem? Well, the problem is about **state tracking** and if we didn't have the state in the first place, we wouldn't have that problem.
 
