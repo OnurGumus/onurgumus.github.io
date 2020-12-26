@@ -102,7 +102,7 @@ So we want to get rid of the state. Perhaps a way to do so is to represent the s
 
 ![Run-function](/assets/posts/2020-12-26-Functional-Programming/run.png)
 
-Once we define such a run function, solve all three problems. First, we always know if the car is running:
+Once we define such a run function, we solve all three problems. First, we always know that if the car is running:
 
 ```csharp
 SomeOtherFunction(RunningCar car){
@@ -111,8 +111,8 @@ SomeOtherFunction(RunningCar car){
 }
 ```
 
-And obviously, we cannot call the run function again since the code won't compile. And depending on the return type the caller will know what type has been returned.
-Now as developers we have fewer things to track, fewer things to worry about. Now life is so easy! Or is it? 
+And obviously, we cannot call the run function again since the code won't compile. And depending on the return type the caller will know what state has been returned.
+Now as developers, we have fewer things to track, fewer things to worry about. Now life is so easy! Or is it? 
 
 
 
