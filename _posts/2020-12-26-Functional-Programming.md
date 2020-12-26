@@ -16,9 +16,9 @@ excerpt_separator: <!--more-->
 
 ---
 
-# Why functional programming?
+# Functional programming: Enemy of the state
 
-This is a question that has been answered many times. A quick google search on "Why functional programming" or "why functional programming matters" will yield quite insightful results. Having that said, I still believe there is more to add to this topic. And what would be my answer to this question? One word: **purity** (or Statelessness). 
+A quick google search on "Why functional programming" or "why functional programming matters" will yield quite insightful results. Having that said, I still believe there is more to add to this topic. And what would be my answer to this question? One word: **purity** (or Statelessness). 
 Before delving into purity let's dissect the **function** in the functional programming paradigm.
 
  <!--more-->
