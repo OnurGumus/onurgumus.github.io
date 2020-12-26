@@ -8,7 +8,7 @@ date: 2022-12-26-00:00:00 -0000
 
 comments: true
 
-published: false
+published: true
 
 image: posts/2020-12-26-Functional-Programming/run.png
 
