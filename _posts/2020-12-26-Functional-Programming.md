@@ -50,11 +50,11 @@ Functional programming is not some code nor it is a language but a paradigm. You
 are not really relevant to the functional programming paradigm. I would like to emphasize once more as in the following:
 
 - Functional programming **does not** necessarily lead to more maintainable code nor does it aim that.
-- Functional programming **is not** necessarily more readable.
-- Functional programming can easily turn to spaghetti if one is not careful.
+- Functional programming languages **are not** necessarily more readable.
+- The practice of functional programming can also turn the code into spaghetti if one is not careful.
 
 
-Wow, if functional programming doesn't give me those aspects I care about my code why do I care? That's a good question.
+Wow, if functional programming doesn't give me those aspects I care about my code, then why do I care? That's a good question.
 
 ## Why should I care about functional programming?
 
