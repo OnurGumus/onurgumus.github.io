@@ -29,4 +29,38 @@ something new. My second mistake was the confusion of the term "functional". The
 languages but rather they refer to mathematical functions just like Sine and Cosine functions. And it is **purity** that makes these mathematical functions different 
 than functions in the programming programming languages. That is given the same input the function will always yield the same output without any side effects. 
 
-For example sine(90) will always yield 1 as a result, no matter when you call. It also has no side affects, that is it
+For example sin(90) will always yield 1 as a result, no matter when or how many times you call. It also has no side affects, that is, it is not altering anything you care.
+So that's a good example on for a pure "function" hence the term "function"al programming (Ok, perhaps a more formal description would involve lambda calculus or category theory
+but this approach I have given is simpler to take and it is correct).
+
+So we have seen how functions in functional programming are different than procedureal programming which won't constrain your functions to be pure. One may argue 
+functional programming is good for mathematics and science or finance but how about real world line of business applications? Indeed that's precisely 
+where functional programming shines. But before that let's review some misconceptions about functional programming.
+
+## Misconceptions about functional programming
+
+When we ask developers, what are the characteritics of good code or a good programming language, it is likely you would hear good code (or language) is related to
+
+- Good code is more maintainable.
+- Good code leads to better readability.
+- Good code tends to be shorter and concise.
+- Good code is testable and dependencies are isolatable.
+- Good code is extendable.
+- Good code is less buggy.
+
+Functional programming is not code nor it is a language but a paradigm. You could probably do functional programming with any language. However some languages embrace it 
+as a first class citizen (or even dictate it) wheras some languages tend to challenge you or too verbose to go with functional programming. So above items about good code
+are not relevant to functional programming paradigm. I would like to emphesize these once more as in the following:
+
+- Functional programming *does not* necessarly lead to more maintainable code nor does it aim that.
+- Functional programming *is not* necessarly more readable
+- Functional programming can easily turn to spaghetti if one is not careful.
+
+
+Wow, if functional programming doesn't give me those aspects I care about my code why do I care? That's a good question.
+
+## Why should I care about functional programming?
+
+We have discussed functional programming does not necessarily lead to better code. So why bother? The answer is, functional programming keeps the developer sane!
+
+
