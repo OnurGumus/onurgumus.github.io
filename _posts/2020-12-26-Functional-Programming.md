@@ -24,14 +24,14 @@ Before delving into purity let's dissect the **function** in the functional prog
  <!--more-->
 
 When I heard the term functional programming, I was very confused. I said, "I have been using C, we already have functions there. JavaScript also has functions, many OOP languages
-have functions disguised as methods of objects. So Why is this new term?" Well, my first mistake was, functional programming wasn't really a new term. The conceptual origin of functional programming
+have functions disguised as methods of objects. So Why is this new term?" Well, my first mistake was functional programming wasn't really a new term. The conceptual origin of functional programming
 **lambda calculus** is developed as early as 1930 by Alonzo Church and the first functional programming language LISP was available by the late '50s. So functional programming wasn't
-something new. My second mistake was the confusion of the term "functional". The word function here does not represent the procedures which we call as functions in the programming languages but rather they refer to the mathematical functions just like Sine and Cosine functions. And it is **purity** that makes these mathematical functions different than functions in the programming languages. That is given the same input the function will always yield the same output without any side effects. 
+something new. My second mistake was the confusion of the term "functional". The word function here does not represent the procedures which we call as functions in the programming languages but rather they refer to the mathematical functions just like Sine and Cosine functions. And it is **purity** that makes these mathematical functions different than functions in these imperative programming languages. That is, given the same input the function will always yield the same output without any side effects. 
 
 For example, sin(90) will always yield 1 as a result, no matter when or how many times you call. It also has no side effects, that is, it is not altering anything you care about.
-So that's a good example for a pure "function" hence the term "function"al programming (Ok, perhaps a more formal description would involve lambda calculus or category theory stuff but this approach I have given is simpler to take and it is still correct).
+So that's an example for a pure "function" hence the term "function"al programming (Ok, perhaps a more formal description would involve lambda calculus or category theory stuff but this approach I have given is simpler to take and it is still correct).
 
-So we have seen how functions in functional programming are different than procedural programming. Regular procedural programming won't constrain your functions to be pure.
+We have just seen how functions in functional programming are different than procedural programming counter-parts. Imperative programming languages won't constrain your functions to be pure.
 
 One may argue functional programming is good for mathematics and science or finance but how about the real-world line of business applications? Indeed that's precisely where functional programming shines. But before coming to that let's review some misconceptions about functional programming.
 
