@@ -85,7 +85,7 @@ We have 3 problems here:
 
 1- As the author of SomeOtherfunction how will I know if the Run method was called before? I need to look up the caller's code thus it's an **extra burden** to the developer to find it out. 
 One might argue, we could add an IsRunning property, however, nothing forces me at compile time to check that. I could easily forget doing such a check. And not always
-such properties and methods are related. So I am **burden**ed with reviewing the caller's code. 
+such properties and methods are related. So I am **burden**ed with reviewing the caller's code. Worse, in case **SomeOtherFunction** is a public surface for my API, I have to be extra careful. I have to resort to defensive programming, document my API, clearly describe the expected input state and pray for the caller to read the docs.
 
 2- What happens if I call Run twice. Will it throw an exception? Will it ignore? The only way to find out is either read the relevant API for the Car class or read the source. 
 Hence we have another **burden** here. 
