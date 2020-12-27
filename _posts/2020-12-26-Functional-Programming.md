@@ -28,13 +28,13 @@ have functions disguised as methods of the objects. So why is this new term?"
 
 Well, my first mistake was functional programming wasn't really a new term. The conceptual origin of functional programming
 **lambda calculus** is developed as early as 1930 by Alonzo Church and the first functional programming language LISP was available by the late '50s. So functional programming wasn't
-something new at all. My second mistake was the confusion of the term "functional". The word function here does not represent the procedures which we call as functions in the programming languages but rather it refers to the mathematical functions just like Sine and Cosine. And it is **purity** that makes these mathematical functions different than the functions in those imperative programming languages. That is, for a pure function, given the same input that function will always yield the same output without any side effects. 
+something new at all. My second mistake was the confusion of the term "functional". The word function here does not represent the procedures which we call functions in the programming languages but rather it refers to the mathematical functions just like Sine and Cosine. And it is **purity** that makes these mathematical functions different than the functions in those imperative programming languages. That is, for a pure function, given the same input that function will always yield the same output without any side effects. 
 
 For example, sin(90) will always yield 1 as a result, no matter when or how many times you call. Such function calls also have no side effects, that is, pure function calls will not alter anything you care about.
 
 On the contrary, imperative programming languages will not constrain your functions to be pure. 
 
-There is a common argument associated with the functional programming paradigm, that it is mostly applicable for mathematics and science or finance, but how about the real-world line of business applications? Infact, line of business applications are precisely where functional programming shines. But before claiming functional programming is the holy grail let's review some misconceptions about functional programming.
+There is a common argument associated with the functional programming paradigm, that it is mostly applicable for mathematics and science or finance, but how about the real-world line of business applications? In fact, the line of business applications is precisely where functional programming shines. But before claiming functional programming is the holy grail let's review some misconceptions about functional programming.
 
 ## Misconceptions about functional programming
 
@@ -85,7 +85,7 @@ We have 3 problems here:
 
 1- As the author of SomeOtherfunction how will I know if the Run method was called before? I need to look up the caller's code thus it's an **extra burden** to the developer to find it out. 
 One might argue, we could add an IsRunning property, however, nothing forces me at compile time to check that. I could easily forget doing such a check. And not always
-such properties and methods are related. So I am **burden**ed with reviewing the caller's code. Worse, in case **SomeOtherFunction** is a public surface for my API, I have to be extra careful. I have to resort to defensive programming, document my API, clearly describe the expected input state and pray for the caller to read the docs.
+such properties and methods are related. So I am **burden**ed with reviewing the caller's code. Worse, in case **SomeOtherFunction** is a public surface for my API, I have to be extra careful. I have to resort to defensive programming, document my API, clearly describe the expected input state, and pray for the caller to read the docs.
 
 2- What happens if I call Run twice. Will it throw an exception? Will it ignore? The only way to find out is either read the relevant API for the Car class or read the source. 
 Hence we have another **burden** here. 
@@ -134,7 +134,7 @@ Whereas functional programming is more like movie frames. Each frame is immutabl
 
 ![frames](/assets/posts/2020-12-26-Functional-Programming/frames.png)
 
-Functional programming does the same. We never change the data but every time we need a change things we create a new instance of that type. And obviously, that's a lot of CPU cycles and memory allocation compared to the imperative approach and 30 years ago that really mattered. 30 years ago, your colleagues would say, "Whoa! Are you allocating 200 bytes just to change the status of a car?" But these days, it is **engineers are expensive and servers are not**. Now, your users are unlikely to notice a few hundred nanoseconds delay. But you could utilize the hardware power for the sake of programmer productivity. Indeed, immutability, functional paradigm even scales better when you have a  distributed multi-threaded environment. But these historical problems with functional programming allowed the imperative paradigm to flourish whereas people were skeptical with the functional programming.
+Functional programming does the same. We never change the data but every time we need a change things we create a new instance of that type. And obviously, that's a lot of CPU cycles and memory allocation compared to the imperative approach and 30 years ago that really mattered. 30 years ago, your colleagues would say, "Whoa! Are you allocating 200 bytes just to change the status of a car?" But these days, it is **engineers are expensive and servers are not**. Now, your users are unlikely to notice a few hundred nanoseconds delay. But you could utilize the hardware power for the sake of programmer productivity. Thanks to immutability, functional paradigm even scales better when you have a  distributed and/or multi-threaded environment. But these historical problems regarding the resource consumption associated with functional programming allowed the imperative paradigm to flourish whereas people remained skeptical with the functional programming.
 
 Having a smaller community leads to fewer examples, fewer resources, less tooling. You can find a lot of articles, books talking about, Functional programming, but try to find a functional sample application for something a simple to-do list that persists the data to the database. You will be mostly out of luck. You might try to fallback trying to use your old tools like ORMs. But then you will be frustrated and ask yourself why to bother with the functional way at all. Indeed, CQRS with event sourcing is perhaps one of the correct ways to persist the data in functional programming, instead of ORMS. Aaaand you have another thing to learn!
 
