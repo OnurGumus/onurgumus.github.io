@@ -34,11 +34,11 @@ For example, sin(90) will always yield 1 as a result, no matter when or how many
 
 On the contrary, imperative programming languages will not constrain your functions to be pure. 
 
-There is a common argument with respect to the functional programming paradigm, that it is mostly applicable for mathematics and science or finance, but how about the real-world line of business applications? Indeed that's precisely where functional programming shines. But before claiming functional programming is the holy grail let's review some misconceptions about functional programming.
+There is a common argument associated with the functional programming paradigm, that it is mostly applicable for mathematics and science or finance, but how about the real-world line of business applications? Infact, line of business applications are precisely where functional programming shines. But before claiming functional programming is the holy grail let's review some misconceptions about functional programming.
 
 ## Misconceptions about functional programming
 
-When we ask developers, what are the characteristics of good code or a good programming language, it is likely you would hear the following about good code:
+When we ask developers, what are the characteristics of good code or a good programming language, it is likely you would hear the following:
 
 - Good code is more maintainable.
 - Good code leads to better readability.
