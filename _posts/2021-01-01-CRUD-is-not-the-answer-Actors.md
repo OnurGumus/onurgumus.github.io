@@ -37,9 +37,32 @@ scratch. Optimistic locking also solves our problem but with two big caveats.
 
 1- If we have a very busy system retrying the transactions over and over again would create a performance problem.
 
-2- If
+2- If we have any side-effects during the transaction, such as calling an external service, sending an email etc, rerunning the the same transaction would put us into a dillema as in 
+we are to recreate those side-effects.
+
+Actually in proper DDD, **Account1** and **Account2** would be domain aggregates where each of which should have their own transactions.
+[img]
 
 
+But if we use 2 transactions we break the atomicity. That is it would be possible the transaction
+responsible for updating **Account1** is successful but the one associated with **Account2** might fail. In order to solve this problem we could come up with a transaction coordinator which can 
+track the state of each transaction individually. However even if we use such a transaction 
+coordinators, at some point time we could observe, the transaction associated with **Account1** 
+has completed however the one associated with Account2 is not yet done. The actual consistency
+will only happen eventually, hence the term **eventual consistency** is used for such cases.
+For many developers the database being in an inconsistent state is somewhat worrysome. 
+However if you check with other business stakeholders, they may not be worried as much as the
+developers in deed chances are high that they will welcome the idea.
+
+How would the actuall sequence diagram would look like? Perhaps a simplified version would
+be as below:
+
+[img]
+
+If you follow the numbers you can track the process. The red arrows are denoting the commands
+whereas the blue ones are the events. An aggregate (in this case account) will always accept a 
+command and return/publish an event. Whereas a process or our transaction corrdinator
+will listen to events and dispatch commands.
 
 
 
