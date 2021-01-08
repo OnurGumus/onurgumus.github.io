@@ -4,7 +4,7 @@ layout: default
 
 title: "Your domain driven project:Lean software development"
 
-date: 2022-12-21-00:00:00 -0000
+date: 2020-12-21-00:00:00 -0000
 
 comments: true
 
