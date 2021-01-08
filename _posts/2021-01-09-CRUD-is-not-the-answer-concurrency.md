@@ -17,36 +17,43 @@ excerpt_separator: <!--more-->
 ---
 
 
-#CRUD Is Not The Answer: Concurrency
+# CRUD Is Not The Answer: Concurrency
 
-Although CRUD applications are simple, they have one major important caveat, especially if they are web applications. They involve concurrency! Suppose that we have a banking
-application that allows us to transfer some amount of money from one account to the other. At the top, we have a presentation layer but it could be some sort of web service interface which receives a transfer request. And that request is delivered to the business layer. A typical implementation of a business layer would be:
+Although typical CRUD applications are simple, they have one major important caveat, especially if they are web applications. They involve concurrency! Suppose that we have a banking
+application that allows us to transfer some amount of money from one account to another. 
 
-1- Go to the database and check if **Acount1** has enough balance. 
-2- If it is so, decrement that amount from **Account1**, 
-3 - Add that amount to **Acount2** 
 [img]
+
 
 <!--more-->
 
-Of course, speaking of this, we have to identify our transaction boundary. Assuming we have an ACID-compliant database that gives us some atomicity, typically we
-would like these two operations, deducing amount from **Account1** and adding it to the **Account2**, to happen in a single transaction. Because otherwise if an error happens in between, you would end up with an inconsistent state.
+At the top, we have a presentation layer but it could be some sort of web service interface which receives a transfer request. And let's say request is delivered to the business layer. A typical implementation of a business layer would be:
 
-Building a transaction boundary like that doesn't solve the concurrency problem. Indeed, it creates the problem itself. 
-As I have just mentioned about ACID compatibility, usually databases offer some sort of isolation among their transactions. 
-Let's assume two requests come at the same time such that they are trying to transfer money from **Account1** to **Account2**. Both transactions will simultaneously check if **Account1** has enough balance. Suppose that **Account1** has $1000 and both transactions will first make a select query and both wills see that $1000 is available. Then both of them will reduce $1000 from **Account1** and they would add $1000 to **Account2**.
-[img]
-Since those transactions are not aware of each other, you will see **Account1** with a $0 balance
-whereas Account2 would be only added $1000. But both transactions will succeed. In other words,
-the net effect of the second transaction will disappear. The reason for that is both transactions
-will attempt to set the **Account1** balance to $0. 
-
-Typically this problem is solved by introducing either an optimistic or pessimistic concurrency check.
+1- Go to the database and check if **Acount1** has enough balance. 
+2- If it is so, decrement that amount from **Account1**, 
+3- Add that amount to **Acount2** 
 [img]
 
-In a pessimistic concurrency check, you basically acquire some lock on the relevant database rows such that no other transaction can select that row. In the above case, the first transaction would acquire a
-lock and the second one would wait for that lock to be resolved which happens only
-after the first transaction commits. In general, this solves our problem, however, from a performance point of view it may not be acceptable, and in addition to that, since we have locked some rows, eventually it is likely we will have a deadlock at some point in time.
+
+Of course, speaking of this, we have to identify our transaction boundary. Assuming we have an ACID-compliant database that gives atomicity, we
+would like these two operations, deducing some amount from **Account1** and adding it to the **Account2**, to happen within a single transaction. Since without transaction atomicity if an error happens in between, you would end up with an inconsistent state.
+
+Building a transaction boundary like that doesn't actually solve the concurrency problem. Indeed, it creates the problem itself. 
+As I have just mentioned about ACID compatibility, usually databases offer some sort of isolation, which stands for the I of ACID, among their transactions. 
+Let's assume there are two requests coming at the same time such that they are trying to transfer some money from **Account1** to **Account2**. Both transactions will simultaneously check if **Account1** has enough balance. Suppose that **Account1** has $1000, both transactions will first make a select query and both will see that $1000 is available whereas in pratice only one of these transactions can occur. Subsequently, both of them will reduce $1000 from **Account1** and they would add $1000 to **Account2** accordingly.
+
+[img]
+
+Since those transactions are not aware of each other and they are isolated, you will end up with **Account1** having a $0 balance
+whereas Account2 would be only added $1000 and confusingly, both transactions will succeed. In other words,
+the net effect of the second transaction will disappear, since both transactions will attempt to set **Account1** balance to $0. 
+
+Generally, such concurrency problems are solved by introducing either an optimistic or pessimistic concurrency check.
+[img]
+
+In the case of pessimistic concurrency check, you basically acquire some lock on the relevant database rows such that no other transaction can select those rows. In the above scenario, the first transaction would acquire a
+lock on the **Account1** row and the second transaction would just wait for that lock to be resolved which happens only
+after the first transaction commits. Yes, such a pesimistic locking mechanism solves our problem, however, from a performance point of view it may not be acceptable, and in addition to that, since we have locked some rows, eventually it is likely we will end up with a database deadlock at some point in time.
 
 The other alternative is to use optimistic locking. For optimistic locking, we usually use a 
 version or a timestamp column and each update statement which contains a "where" statement against
