@@ -62,7 +62,13 @@ be as below:
 If you follow the numbers you can track the process. The red arrows are denoting the commands
 whereas the blue ones are the events. An aggregate (in this case account) will always accept a 
 command and return/publish an event. Whereas a process or our transaction corrdinator
-will listen to events and dispatch commands.
+will listen to events and dispatch commands. In case the system crashes at any point of time, when the system restarts the coordinator will recover it's last state, and reissue the necessary commands to resume where it was. 
 
+Of course from an implementation point of view this is much more complicated compared to using a single transaction. There are many CQRS event sourcing libraries available. However in my opinon,
+Actors are perfect much for representing aggregates and process managers. In a future post I will talk about a possible implementation of it.
+
+Finally you may end up with a false conclustion that you have only few users an concurrency 
+won't be a problem. Indeed concurrency problems usually is not a major concern among webd devs, however, the fact is, a concurrency problem could occur just by a single user making
+a double click to a button or could be generated for malicous purposes programatically to break the consistency of database state. 
 
 
