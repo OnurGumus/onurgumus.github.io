@@ -4,7 +4,7 @@ layout: default
 
 title: "How to diagnose a .net process running inside Kubernetes/docker"
 
-date: 2020-12-05-00:00:00 -0000
+date: 2022-12-05-00:00:00 -0000
 
 comments: true
 
