@@ -8,9 +8,9 @@ date: 2021-01-09-00:00:00 -0000
 
 comments: true
 
-published: false
+published: true
 
-image: posts/2021-01-09-CRUD-is-not-the-answer-concurrency/transactions.png
+image: posts/2021-01-09-CRUD-is-not-the-answer-concurrency/Account-0-100.png
 
 excerpt_separator: <!--more-->
 
@@ -22,18 +22,15 @@ excerpt_separator: <!--more-->
 We tend to think typical CRUD applications are relatively simple, however, they have one major important caveat, especially if they are web applications. They involve concurrency! Suppose that we have a banking
 application that allows us to transfer some amount of money from one account to another. The API takes two accounts and the amount of money to be transferred.
 
-[img]
-
-
-<!--more-->
-
 Assuming we use a 3 layered conventional approach, at the top, we have a presentation layer but it could also be some sort of web service interface which receives a transfer request. Once the flow lands to our business layer, we do:
 
 1- Go to the database and check if **Acount1** has enough balance, to prevent overdrafts. 
 2- If it is so, decrement that amount from **Account1**, 
 3- Add that amount to **Acount2** 
-[img]
 
+![accounts](/assets/posts/2021-01-09-CRUD-is-not-the-answer-concurrency/Check-balance.png)
+
+<!--more-->
 
 At this point, we have to identify our transaction boundary. Assuming we have an ACID-compliant database that provides atomicity, we
 would like these two operations, deducing some amount from **Account1** and adding it to the **Account2**, to happen within a single transaction. Since without the transaction atomicity, if an error happens in between, the database would end up with an inconsistent state.
@@ -43,7 +40,7 @@ As I have just mentioned about ACID compatibility, usually databases offer some 
 
 In order to visualize a concurrency scenario, let's assume there are two requests coming at the same time such that they are both trying to transfer $1000 from **Account1** to **Account2**. During the execution, both transactions will simultaneously check if **Account1** has enough balance. Suppose that **Account1** has $1000, both transactions will first execute a select query against the data store, and as a result, both will get the result that $1000 is available in **Account1** whereas in the actual case only one of these transactions can be successful assuming we don't allow overdrafts. Subsequently, both of these transactions will reduce $1000 from **Account1** and would add $1000 to **Account2** accordingly.
 
-[img]
+![accounts](/assets/posts/2021-01-09-CRUD-is-not-the-answer-concurrency/Check-balance.png)
 
 Since those transactions are not aware of each other due to ACID isolation, you will end up with **Account1** having a $0 balance
 whereas Account2 would be only added $1000 instead of $2000 and more confusingly, both transactions will succeed. In other words,
@@ -67,7 +64,7 @@ by another transaction then affected rows would yield 0 and denote a concurrency
 we are to re-create those side-effects.
 
 Actually, in proper DDD, **Account1** and **Account2** would be domain aggregates where each of which should have its own transaction.
-[img]
+![transaction](/assets/posts/2021-01-09-CRUD-is-not-the-answer-concurrency/Transaction-coordinator.png)
 
 
 But if we use 2 different transactions then we break the atomicity. That is, it would be possible the transaction
@@ -82,7 +79,7 @@ developers, indeed chances are high that they might welcome the idea.
 How would the actual sequence diagram look like? Perhaps a simplified version would
 be as below:
 
-[img]
+![sequence](/assets/posts/2021-01-09-CRUD-is-not-the-answer-concurrency/Sequence.png)
 
 If you follow the numbers you can track the process. The red arrows are denoting the commands
 whereas the blue ones are the events. A command representing a request, which may be declined, whereas an event represents something that already happened. An aggregate (in this case account) will always accept a 
