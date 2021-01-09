@@ -89,8 +89,7 @@ will listen to events and dispatch commands to other aggregates/services. In cas
 
 Of course from an implementation point of view, this is much more complicated compared to using a single transaction CRUD. There are many CQRS/event sourcing libraries available that could be used. However, in my opinion,
 Actors are the perfect match for representing aggregates and process managers. In a future post, I will talk about a possible actor implementation of this.
-But if you can't wait, you can check out this course of mine:
-[Functional application designing](https://www.udemy.com/course/functional-application-designing/)
+
 
 Finally, you may underestimate the danger, perhaps you expect few concurrent users and you'd think concurrency won't be a problem. Indeed concurrency problems usually are not a major concern among backend devs, however, the fact is,  concurrency problems could occur even just by a single user making
 a double click to a button, in case you forgot to disable the button after the first click or could be intentionally generated for malicious purposes programmatically to break the consistency of database state. For example, let's say you have built an account lock down mechanism such that account is locked if the user has entered incorrect pin code 5 consequent times, a malicous user may try to burst 10000 request all together and bypass the protection assuming a 4 digit PIN is used. 
