@@ -25,8 +25,10 @@ application that allows us to transfer some amount of money from one account to 
 Assuming we use a 3 layered conventional approach, at the top, we have a presentation layer but it could also be some sort of web service interface which receives a transfer request. Once the flow lands to our business layer, we do:
 
 1- Go to the database and check if **Acount1** has enough balance, to prevent overdrafts. 
-2- If it is so, decrement that amount from **Account1**, 
-3- Add that amount to **Acount2** 
+
+2- If it is so, decrement the transferred amount from **Account1**
+
+3- Add the same amount to **Acount2** 
 
 ![accounts](/assets/posts/2021-01-09-CRUD-is-not-the-answer-concurrency/Check-balance.png)
 
@@ -40,14 +42,13 @@ As I have just mentioned about ACID compatibility, usually databases offer some 
 
 In order to visualize a concurrency scenario, let's assume there are two requests coming at the same time such that they are both trying to transfer $1000 from **Account1** to **Account2**. During the execution, both transactions will simultaneously check if **Account1** has enough balance. Suppose that **Account1** has $1000, both transactions will first execute a select query against the data store, and as a result, both will get the result that $1000 is available in **Account1** whereas in the actual case only one of these transactions can be successful assuming we don't allow overdrafts. Subsequently, both of these transactions will reduce $1000 from **Account1** and would add $1000 to **Account2** accordingly.
 
-![accounts](/assets/posts/2021-01-09-CRUD-is-not-the-answer-concurrency/Check-balance.png)
+![accounts](/assets/posts/2021-01-09-CRUD-is-not-the-answer-concurrency/Account-0-100.png)
 
 Since those transactions are not aware of each other due to ACID isolation, you will end up with **Account1** having a $0 balance
 whereas Account2 would be only added $1000 instead of $2000 and more confusingly, both transactions will succeed. In other words,
 the net effect of the second transaction will disappear, since both transactions will attempt to set **Account1** balance to $0. Our expectation, however, was only one of these transfer requests should be successful and the other should fail due to overdraft.
 
 Generally, such concurrency problems are solved by introducing either an optimistic or a pessimistic concurrency check.
-[img]
 
 In the case of a pessimistic concurrency check, you basically acquire some lock on the relevant database rows such that no other transaction can read those rows but rather they would be blocked instead. In the above scenario when the pessimistic lock is applied, the first transaction would acquire a
 lock on the **Account1** row and the second transaction would just wait for that lock to be resolved which happens only
@@ -89,7 +90,7 @@ will listen to events and dispatch commands to other aggregates/services. In cas
 Of course from an implementation point of view, this is much more complicated compared to using a single transaction CRUD. There are many CQRS/event sourcing libraries available that could be used. However, in my opinion,
 Actors are the perfect match for representing aggregates and process managers. In a future post, I will talk about a possible actor implementation of this.
 But if you can't wait, you can check out this course of mine:
-[img]
+[Functional application designing](https://www.udemy.com/course/functional-application-designing/)
 
 Finally, you may underestimate the danger that you have only a few users, concurrency won't be a problem. Indeed concurrency problems usually are not a major concern among web devs, however, the fact is,  concurrency problems could occur even just by a single user making
 a double click to a button, in case you forgot to disable the button after the first click or could be intentionally generated for malicious purposes programmatically to break the consistency of database state. 
