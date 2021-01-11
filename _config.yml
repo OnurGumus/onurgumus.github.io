@@ -1,6 +1,7 @@
 theme: jekyll-theme-midnight
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 title: Onur Gumus’s blog
 description: Welcome to my blog
 author: Onur Gumus
