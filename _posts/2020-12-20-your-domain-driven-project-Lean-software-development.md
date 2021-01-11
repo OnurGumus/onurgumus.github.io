@@ -13,6 +13,9 @@ published: true
 image: posts/2020-12-20-your-domain-driven-project-Lean-software-development/lean-1.png
 
 excerpt_separator: <!--more-->
+redirect_from:
+  - /2022/12/21/your-domain-driven-project-Lean-software-development.html
+
 
 ---
 
