@@ -15,7 +15,7 @@ image: kube-perf-docker.png
 excerpt_separator: <!--more-->
 
 redirect_from:
-  - /2022/12/21/How-to-diagnose-dotnet-in-containers.html
+  - /2022/12/05/How-to-diagnose-dotnet-in-containers.html
 ---
 
 
