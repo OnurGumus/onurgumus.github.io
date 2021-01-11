@@ -131,7 +131,7 @@ A more concrete example for a banking domain would be:
 
 ```gherkin
 Feature: Money withdraw
-As customer I would like to withdraw many from my bank account
+As customer I would like to withdraw money from my bank account
 
 Scenario: Widthdraw less than balance
 Given I have 1000$ in my bank account
