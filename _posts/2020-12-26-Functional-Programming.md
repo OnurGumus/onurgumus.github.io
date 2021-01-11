@@ -13,7 +13,9 @@ published: true
 image: posts/2020-12-26-Functional-Programming/run.png
 
 excerpt_separator: <!--more-->
-alias: /2022/12/26/Functional-Programming.html
+redirect_from:
+  - /2022/12/26/Functional-Programming.html
+
 ---
 
 # Functional programming: Enemy of the state
