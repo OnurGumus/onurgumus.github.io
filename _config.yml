@@ -3,6 +3,6 @@ plugins:
   - jekyll-feed
   - jekyll-redirect-from
 title: Onur Gumus’s blog
-description: Welcome to my blog
+description: 
 author: Onur Gumus
 safe: false
