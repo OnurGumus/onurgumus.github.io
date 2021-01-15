@@ -65,11 +65,11 @@ Aggregates and Services receive commands and publish events And Saga/PM listener
 
 The following sequence happens in the actors when a command is received
 
-1-) Validate Command
-2-) Create an Event
-3-) Persist the event
-4-) Apply the event
-5-) Publish the event
+1. Validate Command
+2. Create an Event
+3. Persist the event
+4. Apply the event
+5. Publish the event
 
 Another important thing is probably called virtual actors in Orleans but in Akka, it's called entities in cluster sharding
 which allow you to send a message with an entity id even if that actor doesn't exist at all, and the actor will be automatically created 
