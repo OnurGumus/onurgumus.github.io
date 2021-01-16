@@ -16,11 +16,11 @@ excerpt_separator: <!--more-->
 
 ---
 
+# DDD with Akka Actors
+
 Let's say you are writing a to-do list application, where users of a company would create tasks where each task has a title and a description. One of the requirements for your application is that the task titles should be unique among all the tasks created regardless of who created them. Also, let's assume the application is being used by a very large company and there is a lot of concurrent traffic going on. 
 
 How would you design your app to fulfill such a constraint? Before reading on I would like you to think about it for a moment. 
-
-<!--more-->
  
 If you store the data within an ACID-compliant database, you could add a unique constraint to the title column. But aren't you feeling uncomfortable that we have to rely on an infrastructural entity like a database to fulfill our business need?
 
@@ -33,6 +33,8 @@ And we developers deceive ourselves by using ORMs, hydrating the objects, and th
 That's where the actors come into play. By definition, an object in OOP is something that encapsulates state and behavior. Objects expose their behaviors via their methods. Similarly, actors also encapsulate state and behavior. But rather than using methods, you send messages to them to invoke their behaviors.
 
 ![actor-messaging](/assets/posts/2021-01-16-DDD-with-Akka-actors/actor-messaging.png)
+
+<!--more-->
 
 
 And unlike regular objects, they are not really bound to some memory location (excluding the illusion created by garbage collectors moving objects around). Indeed, virtual actors in Orleans or entities in Akka cluster sharding make the actors be transparent through the entire cluster such that they are not even bound to a physical machine anymore. When you use such an actor, you really don't care where the "object" is physically located. Actors also offer built-in thread-safety for your entities. So in other words, actors are better objects to model the aggregates than the traditional objects in OOP. If you could grasp this much, I think you are already enlightened and the rest is just technical details.
