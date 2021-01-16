@@ -8,7 +8,7 @@ date: 2021-01-16-00:00:00 -0000
 
 comments: true
 
-published: false
+published: true
 
 image: posts/2021-01-16-CRUD-is-not-the-answer-concurrency/Account-0-100.png
 
@@ -86,6 +86,9 @@ Sounds un-realistic? Well the world's busiest airport in the world at Dubai disa
 </div>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
+{% include youtubePlayer.html id="4EU7vvSvV-0" %}
 
 I know because I designed it :) 
 
