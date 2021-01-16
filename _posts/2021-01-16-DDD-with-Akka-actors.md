@@ -10,7 +10,7 @@ comments: true
 
 published: true
 
-image: posts/2021-01-16-CRUD-is-not-the-answer-concurrency/Account-0-100.png
+image: posts/2021-01-16-DDD-with-Akka-actors/cqrs.png
 
 excerpt_separator: <!--more-->
 
@@ -31,7 +31,15 @@ In order to move the source of truth to our code perhaps, you would suggest usin
 And we developers deceive ourselves by using ORMs, hydrating the objects, and throwing them out when the request is done. When you have multiple requests targeting the same entities you end up with multiple instances of the same entity and rely on overriding their equality to trick the runtime. The only unique data is within the database rows.  I don't know you, but I feel like it's just not the real thing. Those objects we hydrate are not truly "alive". What I would like to have instead "objects" that are alive.
 
 That's where the actors come into play. By definition, an object in OOP is something that encapsulates state and behavior. Objects expose their behaviors via their methods. Similarly, actors also encapsulate state and behavior. But rather than using methods, you send messages to them to invoke their behaviors.
+
+![actor-messaging](/assets/posts/2021-01-16-DDD-with-Akka-actors/actor-messaging.png)
+
+
 And unlike regular objects, they are not really bound to some memory location (excluding the illusion created by garbage collectors moving objects around). Indeed, virtual actors in Orleans or entities in Akka cluster sharding make the actors be transparent through the entire cluster such that they are not even bound to a physical machine anymore. When you use such an actor, you really don't care where the "object" is physically located. Actors also offer built-in thread-safety for your entities. So in other words, actors are better objects to model the aggregates than the traditional objects in OOP. If you could grasp this much, I think you are already enlightened and the rest is just technical details.
+
+
+![actor-lifecycle](/assets/posts/2021-01-16-DDD-with-Akka-actors/actor-lifecycle.png)
+
 
 You can still use the traditional Objects, but they are meant to live inside our aggregate actors as an implementation detail.
 
@@ -40,22 +48,37 @@ Since we have opt-in for actors, we are to use messages to communicate with them
 A Command representing a request, a demand, which should be validated. And an event is representing what happened.
 So Command + Actor's Old state => Event + Actor's new State formula applies.
 
+![event-state](/assets/posts/2021-01-16-DDD-with-Akka-actors/event-state.png)
+
 ## Now why do we use CQRS?
 
 One of the primary reasons to use CQRS is to evolve the query side and command side independently. When you develop your application with a CRUD mentality you don't know what reports will be needed in advance. In some way, you have to be a fortune teller.
 You probably have felt that dilemma... Sometimes we use to think like "Hmm which columns should I add to my table to satisfy future reports?". And while you are trying to play this guessing game, one day your boss asks, if you could give him or her the number of users who had created a task then deleted it within 5 minutes. If you have not added the relevant columns to your store associated with the deletion of a task along with their time stamps, you may not be able to present this report. In other cases, you have the data but you might have to go with crazy scenarios like 4+ table joins.
+
+![basic-cqrs](/assets/posts/2021-01-16-DDD-with-Akka-actors/basic-cqrs.png)
 
 Worse than that, in CRUD, when you start adding/changing columns, then those changes need to propagate back all the way to your domain, and such changes mean more code changes in the core logic, new deployments, and potentially new bugs and new headaches.
 
 As stated, the primary motivation of CQRS is to segregate your command and query sides such that the implementation of these incoming new report requests will not break anything on the core command part.
 
 With CQRS, you could just add these new columns to the read side without changing a single line of code on the core/command.
+
+
+![cqrs](/assets/posts/2021-01-16-DDD-with-Akka-actors/cqrs.png)
+
+
 Now you have another challenge though, in order to address all these potential future report queries, you need to record everything that has happened in the system.
 You could no longer afford to lose a single bit of info/happening in your system.
 And that's precisely where the event sourcing comes into play.
 Because in the CRUD case, if you delete the associated task record when a customer deletes a task, then that info is gone. And don't get me started on soft deletes, as it is a terrible option either.
 
 Your only bet is to rely on Event Sourcing in order not to lose any data and more than that Event Sourcing is perfectly aligned with the actor way.
+
+
+
+![projection](/assets/posts/2021-01-16-DDD-with-Akka-actors/projection.png)
+
+Once we have the events persisted, all we have to do is to create a projection service running in the background. This projection service would scan the events, denormalize them to records, and then store these records to whatever database we want.
 
 As a typical implementation, you would have an actor for each task, but also an actor for each title where the key of the title actor could be the hash of the title string. And each task creation managed by a Saga/Process Manager. First, a task creation command is issued to a task entity/actor, then that task actor publishes an event like "TaskCreationRequested" which causes a Saga/PM to start and that Saga sends a command to TaskTitle actor demanding a reservation for the title name and if that reservation is successful, Saga would notify the Task actor to continue by sending another command.
 
