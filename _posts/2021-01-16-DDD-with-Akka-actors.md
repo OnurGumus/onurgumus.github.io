@@ -48,7 +48,7 @@ Since we have opt-in for actors, we are to use messages to communicate with them
 A Command representing a request, a demand, which should be validated. And an event is representing what happened.
 So Command + Actor's Old state => Event + Actor's new State formula applies.
 
-![event-state](/assets/posts/2021-01-16-DDD-with-Akka-actors/event-state.png)
+![event-state](/assets/posts/2021-01-16-DDD-with-Akka-actors/event_state.png)
 
 ## Now why do we use CQRS?
 
