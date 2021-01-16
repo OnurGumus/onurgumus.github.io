@@ -106,7 +106,7 @@ And as for the process manager, there is another setting called **Remember Me** 
 Finally, you might want to go with a simpler approach as the way described might be overwhelming and perhaps overly complex for your scenario. That's certainly fine. In that case, if you would remember our vertical slices concept I have mentioned in the [lean development post](https://onurgumus.github.io/2020/12/21/your-domain-driven-project-Lean-software-development.html), you have the freedom to choose different approaches for different layers. The important point is to have your bounded contexts segregated so that in case you have chosen your architectural style wrongly you would be able to drop and reimplement that part without 
 ruining the entire development process.
 
-Afterall, does modeling your domain and services via actors still sound unrealistic? Well, the busiest airport in the world at Dubai disagrees. Entire front services of the border control systems of Dubai international airport run in Akka actors:
+Afterall, does modeling your domain and services via actors still sound unrealistic? Well, the busiest airport in the world at Dubai disagrees. Entire front services of the border control systems of Dubai Int'l Airport run in Akka actors:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4yZX1DzLbqg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
