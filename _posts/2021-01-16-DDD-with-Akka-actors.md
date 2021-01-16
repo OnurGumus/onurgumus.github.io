@@ -80,7 +80,7 @@ Your only bet is to rely on Event Sourcing in order not to lose any data and mor
 
 ![projection](/assets/posts/2021-01-16-DDD-with-Akka-actors/projection.png)
 
-Once we have the events persisted, all we have to do is to create a projection service running in the background. This projection service would scan the events, denormalize them to records, and then store these records to whatever database we want.
+Once we have the events persisted, all we have to do is to create a projection service running in the background. This projection service would scan the events, normalize them into records, and then store these records to whatever database we want.
 
 As a typical implementation, you would have an actor for each task, but also an actor for each title where the key of the title actor could be the hash of the title string. And each task creation managed by a Saga/Process Manager. First, a task creation command is issued to a task entity/actor, then that task actor publishes an event like "TaskCreationRequested" which causes a Saga/PM to start and that Saga sends a command to TaskTitle actor demanding a reservation for the title name and if that reservation is successful, Saga would notify the Task actor to continue by sending another command.
 
@@ -97,13 +97,13 @@ The following sequence happens in the entity/actors when a command is received:
 Another important point is we have a concept called **virtual actors** in Orleans and **cluster sharding** in Akka
 and this concept allows us to send a message through an entity id even if that entity/actor doesn't exist in the first place. And when that happens, the entity/actor will be automatically created for you, without any race condition. As a result, you don't really care about where that actor is located or created before.
 
-But if we represent all our aggregates as Actors, eventually the process memory might end up with thousands of actors and obviously, we can't keep these in the memory indefinitely. So what do we do?
+But if we represent all our aggregates as actors, eventually you might end up with thousands of actors and obviously, we can't keep these in the memory indefinitely. So what do we do?
 
 As for Akka, it offers a setting called passivation. The actor system in Akka tracks the sharded entities and if they don't receive a message say in 2 minutes for eg. the system gracefully terminates them. However, if those terminated actors receive a message later, then they are initialized again and the state will be replayed and the state will be restored. More than that, the above process is also resilient to potential race conditions.
 
 And as for the process manager, there is another setting called **Remember Me** in Akka, which would restart those sagas/PMs automatically on a system restart even if the entire cluster crashes thus you don't have to "remember" which sagas were running before the restart as they would automatically resume.
 
-Finally, you might want to go with a simpler approach as the way described might be overwhelming and perhaps overly complex for your scenario. That's certainly fine. In that case, if you would remember our vertical slices concept I have mentioned in the [lean development post](https://onurgumus.github.io/2020/12/21/your-domain-driven-project-Lean-software-development.html), you have the freedom to choose different approaches for different layers. The important point is to have your bounded contexts segregated so that in case you have chosen your architectural style wrongly you would be able to drop and reimplement that part without 
+Finally, you might want to go with a simpler approach as the way described above might be overwhelming and perhaps overly complex for your scenario. That's certainly fine. In that case, if you would remember our vertical slices concept I have mentioned in the [lean development post](https://onurgumus.github.io/2020/12/21/your-domain-driven-project-Lean-software-development.html), you have the freedom to choose different approaches for different layers. The important point is to have your bounded contexts segregated so that in case you have chosen your architectural style wrongly you would be able to drop and reimplement that part without 
 ruining the entire development process.
 
 Afterall, does modeling your domain and services via actors still sound unrealistic? Well, the busiest airport in the world at Dubai disagrees. Entire front services of the border control systems of Dubai Int'l Airport run in Akka actors:
