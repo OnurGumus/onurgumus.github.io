@@ -81,6 +81,8 @@ ruining the entire development process.
 
 Sounds un-realistic? Well the world's busiest airport in the world at Dubai disagrees. Entire front services of the border control systems runs in Akka actors:
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4yZX1DzLbqg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 I know because I designed it :) 
 
 
