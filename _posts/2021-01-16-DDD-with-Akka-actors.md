@@ -71,16 +71,14 @@ The following sequence happens in the actors when a command is received
 4. Apply the event
 5. Publish the event
 
-Another important thing is probably called virtual actors in Orleans but in Akka, it's called entities in cluster sharding
-which allow you to send a message with an entity id even if that actor doesn't exist at all, and the actor will be automatically created 
+Another important point is we have a concept called virtual actors in Orleans and called cluster sharding in Akka
+and this concept allows you to send a message through an entity id even if that entity/actor doesn't exist in the first place. And when that happens, the entity/actor will be automatically created for youl. As a result, you don't really care about where that actor is located or created before.
 
-As a result, you don't care about where that actor is located.
+But if we represent all our aggregates as Actors, eventually the process memory might end with thousands of actors and obviously we can't keep these in the memory indefinitely. So what do we do?
 
-Another challenge is if we represent all our aggregates as an Actor, eventually our memory will be full of thousands of actors. We can't keep them in memory
-So what do we do?
-As for Akka, it offers a setting called passivation. The actor system in Akka tracks sharded entities and if they don't receive a message in say 2 minutes for eg. the system gracefully terminates them. However, if those terminated actors receive a message the state will be a replay and the state will be restored.
+As for Akka, it offers a setting called passivation. The actor system in Akka tracks the sharded entities and if they don't receive a message say in 2 minutes for eg. the system gracefully terminates them. However, if those terminated actors receive a message later the state will be a replay and the state will be restored. More than that, the above process is also resillient to potential race conditions.
 
-And as for the process manager, there is another setting called Remember Me in Akka, which would restart those sagas/PMs automatically on system restart even entire cluster crashes so you don't have to "remember" which sagas were running before the crash.
+And as for the process manager, there is another setting called **Remember Me** in Akka, which would restart those sagas/PMs automatically on a system restart even if the entire cluster crashes thus you don't have to "remember" which sagas were running before the restart as they would automatically resume.
 
-Finally, you might fight to implement a simple application as above overwhelming perhaps overly complex. That's certainly fine. In that case, if remember our vertical slices concept I have mentioned in the [lean development post](https://onurgumus.github.io/2020/12/21/your-domain-driven-project-Lean-software-development.html) and you have the freedom to choose different approaches for different layers. The most important thing is not about going with CQRS but have your bounded contexts segregated so that if you choose wrongly you could reimplement that part without 
+Finally, you might want to go with a simpler approach as the way described might be overwhelming and perhaps overly complex for your scenario. That's certainly fine. In that case, if you would remember our vertical slices concept I have mentioned in the [lean development post](https://onurgumus.github.io/2020/12/21/your-domain-driven-project-Lean-software-development.html), you have the freedom to choose different approaches for different layers. The important point is to have your bounded contexts segregated so that in case you have choosen your architectural style wrongly you would be able to drop and reimplement that part without 
 ruining the entire development process.
