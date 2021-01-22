@@ -67,4 +67,65 @@ console.log(cityU.toLocaleLowerCase('TR'));
 ```
 Notice the interesting dot on lower case en-us tranformation. I have no idea what it is.
 
+## JavaScript Internationalization objects
 
+JavaScript also offers several built in objects for internationalization.
+
+* Intl
+* Intl.Collator
+* Intl.DateTimeFormat
+* Intl.ListFormat
+* Intl.NumberFormat
+* Intl.PluralRules
+* Intl.RelativeTimeFormat
+* Intl.Locale
+
+
+Although I appreciate the effort, I personally find these API relatively limited although the api extends towards interesting problems like pluralization.
+However if you study the api, it's mostly geared towards formatting and displaying but relatively weak when it comes to parsing. First let's visit our original
+problem. Is there another API we could compare "İSTANBUL" with "istanbul" case insensitively and find them equal?
+
+```JavaScript
+const a = 'İSTANBUL'; 
+const b = 'istanbul'; 
+
+console.log(a.localeCompare(b, 'en', { sensitivity: 'base' }));
+// expected output: 0
+
+console.log(a.localeCompare(b, 'tr', { sensitivity: 'accent' }));
+// expected output: 0
+
+console.log(a.localeCompare(b, 'en', { sensitivity: 'accent' }));
+// expected output: 1
+
+```
+
+It seems to work expectedly.  What about the dotless I case ?
+Let's compare 'IĞDIR' and 'ığdır' which are considered equal in Turkish case-insensitively.
+
+```
+const a = 'IĞDIR'; 
+const b = 'ığdır'; 
+
+console.log(a.localeCompare(b, 'en', { sensitivity: 'base' }));
+// expected output: -1
+console.log(a.localeCompare(b, 'tr', { sensitivity: 'base' }));
+// expected output: 0
+
+console.log(a.localeCompare(b, 'tr', { sensitivity: 'accent' }));
+// expected output: 0
+console.log(a.localeCompare(b, 'en', { sensitivity: 'accent' }));
+// expected output: -1
+```
+Notice here you must set the culcure to 'tr' otherwise it won't work.
+
+## Date
+Most languages have different format for dates so if we have **05/01/2021** does it mean January 5 or May 5?. Some people would argue we should use 
+**2021-05-01** but then your users will complain. How about 01 MAY 2021, this is good but then you have to localize MAY. So pick your poison. Worse, 
+languages like Turkish use "." instead of "/" as a date seperator.
+
+Further more there is no builtin way to parse such strings to convert JavaScript date objects. You have to rely on external libs like moment.js and
+there goes another 75 kb to your bundle.
+
+##Numbers
+In particular 
