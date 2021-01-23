@@ -49,7 +49,7 @@ Luckily only 3 years later Oracle has fixed the issue by using **ToUpperInvarian
 
 ![Turkey-Test](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/oracle.png)
 
-##JavaScript world
+## JavaScript world
 
 Having reiterated the problem on .NET, let's explore the situation with the browsers. The browsers take the current culture from the operating system on macOS
 and Linux. And on windows depending on the browser they may obey "preferred language" settings.  The following one-liner should help you to get the current culture of the browser:
