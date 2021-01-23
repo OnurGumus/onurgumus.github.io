@@ -186,10 +186,15 @@ And here's the Nigerian alphabet
 
 
 Upper case	A	B	Ɓ	C	D	Ɗ	E	Ǝ	Ẹ	F	G
+
 Lower case	a	b	ɓ	c	d	ɗ	e	ǝ	ẹ	f	g
+
 Upper case	H	I	Ị	J	K	Ƙ	L	M	N	O	Ọ
+
 Lower case	h	i	ị	j	k	ƙ	l	m	n	o	ọ
+
 Upper case	P	R	S	Ṣ	T	U	Ụ	V	W	Y	Z
+
 Lower case	p	r	s	ṣ	t	u	ụ	v	w	y	z
 
 Not only nigerian alphabe has 3 E letter but they have an I with dot like Turkish but the dot is at the bottom.
