@@ -143,7 +143,7 @@ Most languages have different formats for dates so if we have **05/01/2021** doe
 Furthermore, there is no built-in way to parse such strings to convert JavaScript date objects. You have to rely on external libs like moment.js and
 there goes another 75 kb to your bundle.
 
-Finally, I should add that, ** 1 PM** is shown as **13.00* in Turkish culture. That's one more thing you should consider.
+Finally, I should add that, **1 PM** is shown as **13.00** in Turkish culture. That's one more thing you should consider.
 
 ## Numbers
 
