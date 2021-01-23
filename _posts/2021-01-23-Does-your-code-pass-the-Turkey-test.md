@@ -169,7 +169,7 @@ In Turkish, the percentage symbol comes after e.g **50%**
 
 ## Other alphabets
 
-Let's see some peculiarities with other Alphabets. One might think "Z" is probably the last letter in Latin alphabets. Well enter nordic languages
+Let's see some peculiarities with other Alphabets. One might think "Z" is probably the last letter in Latin alphabets. Enter the nordic languages
 
 Danish and Norwegian Alphabets:
 A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z	Æ	Ø	Å
@@ -188,7 +188,7 @@ Some alphabets like Dutch has digraphs like "IJ" which is sometimes considered a
 
 * In word puzzles, ij often fills one square.
 
-And here's the Nigerian alphabet
+And here's the Nigerian alphabet:
 
 
 Upper case	A	B	Ɓ	C	D	Ɗ	E	Ǝ	Ẹ	F	G
