@@ -8,9 +8,9 @@ date: 2021-01-23-00:00:00 -0000
 
 comments: true
 
-published: false
+published: true
 
-image: posts/2021-01-23-Does-your-code-pass-the-Turkey-test/cqrs.png
+image: posts/2021-01-23-Does-your-code-pass-the-Turkey-test/tukey-test.png
 
 excerpt_separator: <!--more-->
 
@@ -22,14 +22,18 @@ The credit for the title goes to Jeff Moserware and his excellent [post](http://
 Jeff proposes if your code works fine in Turkish culture, then chances are good it is resilient to possible localization problems in other cultures using the Latin alphabet. Perhaps this is a bit overstatement as there are too many different languages and alphabets. However, unless we have a specific focus in a particular language or have dedicated people working on each language, in practice it's next to impossible to have bug-free localization in our applications. In that aspect, I believe the Turkey test is a low effort way to do basic
 smoke test on localization for your development process.
 
-In his post, Jeff discusses the localization problems mostly from a .NET point of view. In this post however, I will try to follow Jeff's footprints but from a JavaScript point of view.
+[Turkey-Test](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/tukey-test.png)
+
+In his post, Jeff discusses the localization problems mostly from a .NET point of view. In this post, however, I will try to follow Jeff's footprints but from a JavaScript point of view.
 
 ## Dotted and dotless I
 
-Well the obvious question is why "Turkey"? One of the main reasons to use the Turkish alphabet for testing is that that the Turkish alphabet has two "I" letters. One with a dot and one without.
+Well, the obvious question is why "Turkey"? One of the main reasons to use the Turkish alphabet for testing is that that the Turkish alphabet has two "I" letters. One with a dot and one without.
 Namely the upper case  "I" and "İ and lower case "ı" and "i". And yet there is even a dedicated Wikipedia [article] about it (https://en.wikipedia.org/wiki/Dotted_and_dotless_I).
 
-The challenge with these "I"s usually occurs when you try to do a case insensitive equality comparison. As a Turkish I have been burned very badly becuse of "I" issues.
+[i-i](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/i-i.png)
+
+The challenge with these "I"s usually occurs when you try to do a case insensitive equality comparison. As a Turkish, I have been burned very badly because of "I" issues.
 
 ## Problems with Oracle (fixed a long time ago)
 
@@ -39,21 +43,22 @@ But once we deployed the application to the bank's prod machines, it immediately
 After 13 hours of investigation (at that time my debugging skills wasn't so sharp so I mostly relied on the logs), I realized my query was in the form of
 "select description from ..." and Oracle database will always capitalize the column names in its results returning a column with "DESCRIPTION". 
 The developers of ODP.NET were aware of this inconsistency so as a workaround they were calling ToUpper to match the column names from your query. However,
-if your code runs within Turkish culture then **ToUpper** call will tranform the column name to "DESCRİPTİON" and boom! your code would bail out with a cryptic exception.
+if your code runs within Turkish culture then **ToUpper** call will transform the column name to "DESCRİPTİON" and boom! your code would bail out with a cryptic exception.
 Luckily only 3 years later Oracle has fixed the issue by using **ToUpperInvariant** instead of **ToUpper**
 
+[Turkey-Test](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/oracle.png)
 
 ##JavaScript world
 
 Having reiterated the problem on .NET, let's explore the situation with the browsers. The browsers take the current culture from the operating system on macOS
-and Linux. And on windows depending on the browser they may obey "preferred language" settings.  The following one liner should help you to get the current culture of the browser:
+and Linux. And on windows depending on the browser they may obey "preferred language" settings.  The following one-liner should help you to get the current culture of the browser:
 
 ```JavaScript
 const getLanguage = () => navigator.userLanguage || (navigator.languages && navigator.languages.length && navigator.languages[0]) || navigator.language || navigator.browserLanguage || navigator.systemLanguage || 'en';
 ```
 
 Perhaps one of the easiest ways to make case-insensitive but 
-safe comparisons is to use ToLocalUpperCase and ToLocalLowerCase:
+safe comparisons are to use ToLocalUpperCase and ToLocalLowerCase:
 
 
 ```JavaScript
@@ -129,7 +134,7 @@ console.log(a.localeCompare(b, 'en', { sensitivity: 'accent' }));
 Notice here you must set the culture to 'tr' otherwise it won't work.
 
 ## Date and Time
-Most languages have a different formats for dates so if we have **05/01/2021** does it mean January 5 or May 5?. Some people would argue we should use 
+Most languages have different formats for dates so if we have **05/01/2021** does it mean January 5 or May 5?. Some people would argue we should use 
 **2021-05-01** but then your users will complain. How about 01 MAY 2021, this is good but then you have to localize MAY. So pick your poison. To make things more complicated, languages like Turkish use "." instead of "/" as a date separator.
 
 Furthermore, there is no built-in way to parse such strings to convert JavaScript date objects. You have to rely on external libs like moment.js and
@@ -197,9 +202,10 @@ Upper case	P	R	S	Ṣ	T	U	Ụ	V	W	Y	Z
 
 Lower case	p	r	s	ṣ	t	u	ụ	v	w	y	z
 
-Not only nigerian alphabe has 3 E letter but they have an I with dot like Turkish but the dot is at the bottom.
+Not only Nigerian alphabet has 3 E letter but they have an I with dot like Turkish but the dot is at the bottom.
 
-[nigerian]
+[nigerian-keyboard](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/nigeria.png)
+
 
 ## Conclusion
 
