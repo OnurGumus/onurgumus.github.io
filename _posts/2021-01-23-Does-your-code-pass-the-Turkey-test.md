@@ -55,7 +55,8 @@ Having reiterated the problem on .NET, let's explore the situation with the brow
 and Linux. And on windows depending on the browser they may obey "preferred language" settings.  The following one-liner should help you to get the current culture of the browser:
 
 ```js
-const getLanguage = () => navigator.userLanguage || (navigator.languages && navigator.languages.length && navigator.languages[0]) 
+const getLanguage = () => navigator.userLanguage 
+  || (navigator.languages && navigator.languages.length && navigator.languages[0]) 
   || navigator.language || navigator.browserLanguage || navigator.systemLanguage || 'en';
 ```
 
