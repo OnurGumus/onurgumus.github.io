@@ -22,7 +22,8 @@ The credit for the title goes to Jeff Moserware and his excellent [post](http://
 Jeff proposes if your code works fine in Turkish culture, then chances are good it is resilient to possible localization problems in other cultures using the Latin alphabet. Perhaps this is a bit overstatement as there are too many different languages and alphabets. However, unless we have a specific focus in a particular language or have dedicated people working on each language, in practice it's next to impossible to have bug-free localization in our applications. In that aspect, I believe the Turkey test is a low effort way to do basic
 smoke test on localization for your development process.
 
-[Turkey-Test](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/tukey-test.png)
+![Turkey-Test](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/tukey-test.png)
+<!--more-->
 
 In his post, Jeff discusses the localization problems mostly from a .NET point of view. In this post, however, I will try to follow Jeff's footprints but from a JavaScript point of view.
 
@@ -31,7 +32,7 @@ In his post, Jeff discusses the localization problems mostly from a .NET point o
 Well, the obvious question is why "Turkey"? One of the main reasons to use the Turkish alphabet for testing is that that the Turkish alphabet has two "I" letters. One with a dot and one without.
 Namely the upper case  "I" and "İ and lower case "ı" and "i". And yet there is even a dedicated Wikipedia [article] about it (https://en.wikipedia.org/wiki/Dotted_and_dotless_I).
 
-[i-i](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/i-i.png)
+![i-i](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/i-i.png)
 
 The challenge with these "I"s usually occurs when you try to do a case insensitive equality comparison. As a Turkish, I have been burned very badly because of "I" issues.
 
@@ -46,7 +47,7 @@ The developers of ODP.NET were aware of this inconsistency so as a workaround th
 if your code runs within Turkish culture then **ToUpper** call will transform the column name to "DESCRİPTİON" and boom! your code would bail out with a cryptic exception.
 Luckily only 3 years later Oracle has fixed the issue by using **ToUpperInvariant** instead of **ToUpper**
 
-[Turkey-Test](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/oracle.png)
+![Turkey-Test](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/oracle.png)
 
 ##JavaScript world
 
@@ -204,7 +205,7 @@ Lower case	p	r	s	ṣ	t	u	ụ	v	w	y	z
 
 Not only Nigerian alphabet has 3 E letter but they have an I with dot like Turkish but the dot is at the bottom.
 
-[nigerian-keyboard](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/nigeria.png)
+![nigerian-keyboard](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/nigeria.png)
 
 
 ## Conclusion
