@@ -141,9 +141,9 @@ Most languages have different formats for dates so if we have **05/01/2021** doe
 Furthermore, there is no built-in way to parse such strings to convert JavaScript date objects. You have to rely on external libs like moment.js and
 there goes another 75 kb to your bundle.
 
-Finally, I should add that, ** 1 PM* is shown as *13.00* in Turkish culture. That's one more thing you should consider.
+Finally, I should add that, ** 1 PM** is shown as **13.00* in Turkish culture. That's one more thing you should consider.
 
-##Numbers
+## Numbers
 
 Well, it's a well-known fact that different languages use different symbols for thousands and decimals separators. But being uncareful with number localization has dire consequences. In Turkish thousands is split by dot "." and for the decimal separator "," is used. For example
 *1.234,56* is one thousand two hundred thirty-four point fifty-six. In .NET if you try parsing in Turkish culture
