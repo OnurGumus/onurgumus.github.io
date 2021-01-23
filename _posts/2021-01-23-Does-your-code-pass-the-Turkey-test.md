@@ -54,7 +54,7 @@ Luckily only 3 years later Oracle has fixed the issue by using **ToUpperInvarian
 Having reiterated the problem on .NET, let's explore the situation with the browsers. The browsers take the current culture from the operating system on macOS
 and Linux. And on windows depending on the browser they may obey "preferred language" settings.  The following one-liner should help you to get the current culture of the browser:
 
-```JavaScript
+```JS
 const getLanguage = () => navigator.userLanguage || (navigator.languages && navigator.languages.length && navigator.languages[0]) || navigator.language || navigator.browserLanguage || navigator.systemLanguage || 'en';
 ```
 
@@ -62,7 +62,7 @@ Perhaps one of the easiest ways to make case-insensitive but
 safe comparisons are to use ToLocalUpperCase and ToLocalLowerCase:
 
 
-```JavaScript
+```JS
 const city = 'istanbul';
 
 console.log(city.toLocaleUpperCase('en-US'));
