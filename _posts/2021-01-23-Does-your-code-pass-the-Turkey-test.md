@@ -215,6 +215,11 @@ Not only Nigerian alphabet has 3 E letters but they have an I with dot like Turk
 
 ![nigerian-keyboard](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/nigeria.png)
 
+If you wonder things can go more interesting than this, ladies and gentelman, I present you Hungarian keyboard:
+
+![hungarian-keyboard](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/hungary.png)
+
+My non-elven eyes see there are 4 U's and 4 O's with different accents in Hungarian keyboard most of them being at right hand side :)
 
 ## Conclusion
 
