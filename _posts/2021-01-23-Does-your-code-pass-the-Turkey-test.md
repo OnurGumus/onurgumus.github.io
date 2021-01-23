@@ -100,7 +100,7 @@ Although I appreciate the effort, I personally find these APIs relatively limite
 however, if you review the API, it's mostly geared towards formatting and displaying but relatively weak when it comes to parsing. First, let's visit our original
 problem. Is there another API we could compare "İSTANBUL" with "istanbul" case-insensitively and find them equal?
 
-```JavaScript
+```js
 const a = 'İSTANBUL'; 
 const b = 'istanbul'; 
 
@@ -118,7 +118,7 @@ console.log(a.localeCompare(b, 'en', { sensitivity: 'accent' }));
 It seems to work expectedly.  What about the dotless I case?
 Let's compare 'IĞDIR' and 'ığdır' which are considered equal in Turkish case-insensitively.
 
-```
+```js
 const a = 'IĞDIR'; 
 const b = 'ığdır'; 
 
