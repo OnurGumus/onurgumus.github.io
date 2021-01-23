@@ -180,6 +180,12 @@ As you can see there are three letters coming after Z.
 
 In the Icelandic alphabet, Z is obsoleted!!!
 
+Ok but at lest we cans ay Z is the last letter if we consider plain english letters. Unfortunately no. Here's Estonian alphabet:
+
+A, B, D, E, F, G, H, I, J, K, L, M, N, O, P, R, S, Š, Z, Ž, T, U, V, Õ, Ä, Ö, Ü.
+
+
+
 Some alphabets like Dutch has digraphs like "IJ" which is sometimes considered a single letter. Some fun facts taken from the [wikipedia article](https://en.wikipedia.org/wiki/IJ_(digraph)):
 
 * In Dutch primary schools, ij used to be taught as being the 25th letter of the alphabet, and some primary school writing materials list 'ij' as the 25th letter of the alphabet.
