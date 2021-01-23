@@ -166,7 +166,7 @@ Well, the simple fact is in Turkish and many other languages the currency symbol
 
 ## Percentage symbol 
 
-In Turkish, the percentage symbol comes after e.g **50%**
+In Turkish, the percentage symbol comes before e.g **%50**
 
 
 ## Other alphabets
