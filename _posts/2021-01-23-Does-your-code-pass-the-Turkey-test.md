@@ -19,7 +19,7 @@ excerpt_separator: <!--more-->
 # Does Your Code Pass The Turkey Test? (JS Edition)
 
 The credit for the title goes to Jeff Moserware and his excellent [post](http://www.moserware.com/2008/02/does-your-code-pass-turkey-test.html) which he authored in 2008. He basically discussed the dangers of improper localization and took a clever approach, stating <<“The Turkey Test.” It’s very simple: will your code work properly on a person’s machine in or around the country of Turkey?">>. Actually Turkish alphabet is based on Latin letters but there are few interesting things related with the Turkish alphabet that, 
-Jeff proposes that if your code works fine in Turkish culture, then chances are good it is resillient to possible localisation problems. Perhaps this is a bit over statement as there are too many different languages and alphabets. However unless we have a specific focus in a particular language or have dedicated people working on each language, in practice it's next to impossible to have bug free localization. In that aspect, I beleive the Turkey test is a low effort way to do basic
+Jeff proposes that if your code works fine in Turkish culture, then chances are good it is resillient to possible localisation problems in other cultures using Latin alphabets. Perhaps this is a bit over statement as there are too many different languages and alphabets. However unless we have a specific focus in a particular language or have dedicated people working on each language, in practice it's next to impossible to have bug free localization. In that aspect, I beleive the Turkey test is a low effort way to do basic
 smoke test on localization.
 
 In his post Jeff discusses the localization problems mostly from .NET point of view. In this post, I will try to Jeff's footprints but from a JavaScript of view.
@@ -119,7 +119,7 @@ console.log(a.localeCompare(b, 'en', { sensitivity: 'accent' }));
 ```
 Notice here you must set the culcure to 'tr' otherwise it won't work.
 
-## Date
+## Date and Time
 Most languages have different format for dates so if we have **05/01/2021** does it mean January 5 or May 5?. Some people would argue we should use 
 **2021-05-01** but then your users will complain. How about 01 MAY 2021, this is good but then you have to localize MAY. So pick your poison. Worse, 
 languages like Turkish use "." instead of "/" as a date seperator.
@@ -127,5 +127,57 @@ languages like Turkish use "." instead of "/" as a date seperator.
 Further more there is no builtin way to parse such strings to convert JavaScript date objects. You have to rely on external libs like moment.js and
 there goes another 75 kb to your bundle.
 
+Finally I should add that, **1PM* is shown as *13.00* in Turkish culture. One more thing to be careful
+
 ##Numbers
-In particular 
+
+Well it's a well known fact that different languages use different symbols for thousands and decimals seperator. But being uncareful with number 
+localization has dire consequences. In Turkish thousands is split by dot "." and for the decimal seperator "," is used. For example
+*1.234,56* is one thousand two hundred thirty four point fifty six. In .NET if you try pasing in Turkish culture
+
+```csharp 
+double.Parse("12.34") 
+```
+
+What do you think the output will be? Well it is **1234** as .NET parser completely ignores the thousands seperator even if that wasn't your intention.
+What about the situation in JavaScript? You are completely on your own. parseFloat is just using en-US culture and that's fixed.
+
+That's not all. How many digits are there? 10 you say? [Raymond Chen disagrees](https://devblogs.microsoft.com/oldnewthing/20040309-00/?p=40333) 
+Well at least from .NET stand point arabic digits are also considered as digits. In JavaScript, you are on your own again.
+
+
+## Currency
+Well the simple fact is in Turkish and many other languages the currency symbol is written after not before as in **100$**.
+
+## Percentage symbol 
+
+In Turkish the percentage symbol comes after e.g **50%**
+
+
+## Other alphabets
+
+Let's see some pecuilarities with other Alphabets. One might think "Z" is probably the last letter in Latin alphabets. Well enter nordic langauges
+
+Danish and Norwegian Alphabets:
+A	B	C	D	E	F	G	H	I	J	K	L	M	N	O	P	Q	R	S	T	U	V	W	X	Y	Z	Æ	Ø	Å
+
+As you can see there are three letters coming after Z.
+
+In Icelandic alphabet Z is obsoleted!!!
+
+Some alphabet like Dutch has digraphs like "IJ" is sometimes considered a single letter. Some fun facts taken from the [wikipedia article](https://en.wikipedia.org/wiki/IJ_(digraph)):
+
+* In Dutch primary schools, ij used to be taught as being the 25th letter of the alphabet, and some primary school writing materials list 'ij' as the 25th letter of the alphabet.
+
+* When a word starting with IJ is capitalised, the entire digraph is capitalised: IJsselmeer, IJmuiden.[5]
+
+* On mechanical Dutch typewriters, there is a key that produces 'ij' (in a single letterspace, located directly to the right of the L). However, this is not the case on modern computer keyboards.
+
+* In word puzzles, ij often fills one square.
+
+
+## Conclusion
+
+Despite it's widespread use I have a feeling that JavaScript is not on par with backend langauges like .NET when it comes to localization capabilities. 
+What is the solution? You probably have to rely on third party libraries. An alternative route might be to use Blazor which brings .NET Runtime into browser.
+That way you can get benefit of all Globalization goodies of .NET but your app can still reside in the browser. Feel free to share your thoughts in the comments section.
