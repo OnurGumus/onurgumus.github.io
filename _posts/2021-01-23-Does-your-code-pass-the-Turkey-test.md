@@ -10,7 +10,7 @@ comments: true
 
 published: true
 
-image: posts/2021-01-23-Does-your-code-pass-the-Turkey-test/tukey-test.png
+image: posts/2021-01-23-Does-your-code-pass-the-Turkey-test/turkey-test.png
 
 excerpt_separator: <!--more-->
 
@@ -22,7 +22,7 @@ The credit for the title goes to Jeff Moserware and his excellent [post](http://
 Jeff proposes if your code works fine in Turkish culture, then chances are good it is resilient to possible localization problems in other cultures using the Latin alphabet. Perhaps this is a bit overstatement as there are too many different languages and alphabets. However, unless we have a specific focus in a particular language or have dedicated people working on each language, in practice it's next to impossible to have bug-free localization in our applications. In that aspect, I believe the Turkey test is a low effort way to do basic
 smoke test on localization for your development process.
 
-![Turkey-Test](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/tukey-test.png)
+![Turkey-Test](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/turkey-test.png)
 <!--more-->
 
 In his post, Jeff discusses the localization problems mostly from a .NET point of view. In this post, however, I will try to follow Jeff's footprints but from a JavaScript point of view.
