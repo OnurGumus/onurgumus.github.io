@@ -205,7 +205,7 @@ Upper case	P	R	S	Ṣ	T	U	Ụ	V	W	Y	Z
 
 Lower case	p	r	s	ṣ	t	u	ụ	v	w	y	z
 
-Not only Nigerian alphabet has 3 E letter but they have an I with dot like Turkish but the dot is at the bottom.
+Not only Nigerian alphabet has 3 E letters but they have an I with dot like Turkish but the dot is at the bottom.
 
 ![nigerian-keyboard](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/nigeria.png)
 
