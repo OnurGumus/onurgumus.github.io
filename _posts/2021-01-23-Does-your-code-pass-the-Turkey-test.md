@@ -180,7 +180,7 @@ As you can see there are three letters coming after Z.
 
 In the Icelandic alphabet, Z is obsoleted!!!
 
-Ok but at lest we cans ay Z is the last letter if we consider plain english letters. Unfortunately no. Here's Estonian alphabet:
+Ok, but at least we cans say Z is the last letter if we consider plain English letters. Unfortunately no. Here's the Estonian alphabet:
 
 A, B, D, E, F, G, H, I, J, K, L, M, N, O, P, R, S, Š, Z, Ž, T, U, V, Õ, Ä, Ö, Ü.
 
@@ -215,11 +215,11 @@ Not only Nigerian alphabet has 3 E letters but they have an I with dot like Turk
 
 ![nigerian-keyboard](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/nigeria.png)
 
-If you wonder things can go more interesting than this, ladies and gentelman, I present you Hungarian keyboard:
+If you wonder things can go more interesting than this, ladies and gentleman, I present you Hungarian keyboard:
 
 ![hungarian-keyboard](/assets/posts/2021-01-23-Does-your-code-pass-the-Turkey-test/hungary.png)
 
-My non-elven eyes see there are 4 U's and 4 O's with different accents in Hungarian keyboard most of them being at right hand side :)
+My non-elven eyes see there are 4 U's and 4 O's with different accents in the Hungarian keyboard most of them being at right hand side :)
 
 ## Conclusion
 
