@@ -18,7 +18,7 @@ excerpt_separator: <!--more-->
 
 # Does Your Code Pass The Turkey Test? (JS Edition)
 
-The credit for the title goes to Jeff Moserware and his excellent [post](http://www.moserware.com/2008/02/does-your-code-pass-turkey-test.html) which he authored in 2008. He basically discussed the dangers of improper localization and took a clever approach, stating <<“The Turkey Test.” It’s very simple: will your code work properly on a person’s machine in or around the country of Turkey?">>. The Turkish alphabet is based on Latin letters but there are few interesting properties of the Turkish alphabet such that
+The credit for the title goes to Jeff Moser and his excellent [post](http://www.moserware.com/2008/02/does-your-code-pass-turkey-test.html) which he authored in 2008. He basically discussed the dangers of improper localization and took a clever approach, stating <<“The Turkey Test.” It’s very simple: will your code work properly on a person’s machine in or around the country of Turkey?">>. The Turkish alphabet is based on Latin letters but there are few interesting properties of the Turkish alphabet such that
 Jeff proposes if your code works fine in Turkish culture, then chances are good it is resilient to possible localization problems in other cultures using the Latin alphabet. Perhaps this is a bit overstatement as there are too many different languages and alphabets. However, unless we have a specific focus in a particular language or have dedicated people working on each language, in practice it's next to impossible to have bug-free localization in our applications. In that aspect, I believe the Turkey test is a low effort way to do basic
 smoke test on localization for your development process.
 
