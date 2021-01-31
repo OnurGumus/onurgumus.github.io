@@ -27,6 +27,10 @@
    <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
    {% endif %}
    {% if page.image %}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ page.title }}" />
+    <meta name="twitter:description" content="{{ page.description }}" />
+    <meta name="twitter:url" content="{{ page.url | absolute_url }}" />
    <meta name="twitter:image" content="{{ site.url }}/assets/{{ page.image }}">
    <meta content="{{ site.url }}/assets/{{ page.image }}" property="og:image">
    {% else %}
