@@ -10,7 +10,7 @@ comments: true
 
 published: true
 
-image: posts/2021-02-07-OOO/latency.png
+image: posts/2021-02-07-Demystifying-the-volatile-keyword./latency.png
 
 excerpt_separator: <!--more-->
 
@@ -32,7 +32,7 @@ using System.Threading.Tasks;
 
 namespace MemoryBarriers
 {
-     class Program
+    class Program
     {
         static volatile int x, y, a, b;
         static void Main()
