@@ -311,7 +311,7 @@ such that it cannot detect that we consume the same variables from different thr
 for documentation purposes. It communicates to the developer that this variable is meant to be used from different threads.
 
 
-## Memory barriers to the help
+## Memory barriers to the rescue
 
 Let's go back to our original case. We have seen those half "fences" from **volatile** are not helpful. So what can we do? Enter **Memory Barriers**
 A memory barrier is a special **lock** instruction to CPU that forbids instructions from re-ordering across the barrier. Hence the program would
