@@ -10,7 +10,7 @@ comments: true
 
 published: true
 
-image: posts/2021-02-07-Demystifying-the-volatile-keyword./latency.png
+image: posts/2021-02-07-Demystifying-the-volatile-keyword/latency.png
 
 excerpt_separator: <!--more-->
 
