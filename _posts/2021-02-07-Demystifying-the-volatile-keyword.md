@@ -196,7 +196,7 @@ However, we already know that our code is not as working as we wanted. Because t
 
 ## Why volatile does not help
 
-Perhaps one of the most confusing concepts is the **volatile** keyword which is also available in C++ and Java. It is known roughly to prevent race conditions like above. There is also a separate discussion for the volatile keyword being redundant on Intel x86 and Intel x64 due to [strong memory model](https://en.wikipedia.org/wiki/Memory_ordering) these CPUs offer. But that's not true and volatile does make a difference to some applications on .NET even if the program runs under those CPU's and we will briefly see why.
+Perhaps one of the most confusing concepts is the **volatile** keyword which is also available in C++ and Java. It is known roughly to prevent race conditions like above. There is also a separate discussion for the volatile keyword being redundant on Intel x86 and Intel x64 due to [strong memory model](https://en.wikipedia.org/wiki/Memory_ordering) these CPUs offer. But that's not true and volatile does make a difference to some applications on .NET even if the program runs under those CPUs and we will briefly see why.
 
 If we go back to our example above we observe despite the fact that we have marked our fields as volatile, it didn't help. 
 Why is that so?
@@ -273,10 +273,10 @@ Then it will work expectedly. Let's see the disassembly for non-volatile and vol
     L0006: movzx edx, byte ptr [rdx+8]
     L000a: test edx, edx
     L000c: jne short L001a
-    L000e: test eax, eax # <-- Pay attention to here
+    L000e: test eax, eax 
     L0010: sete al
     L0013: movzx eax, al
-    L0016: test edx, edx
+    L0016: test edx, edx # <-- Pay attention to here
     L0018: je short L000e
     L001a: ret
  ```
@@ -302,9 +302,9 @@ See the lines stating "Pay attention to here". Those lines are actually where we
         while (!c.completed)
 ```
 
-When volatile is not used, JIT caches the completed value to **eax** and then just uses the eax register to test if completed is changed. 
+When volatile is not used, JIT caches the completed value to **edx** and then just uses the eax register to test if completed is changed. 
 But when we use volatile we force JIT not to cache and then every time we need to read the value it access directly to memory
-as in **cmp byte ptr [rdx+8], 0
+as in **cmp byte ptr [rdx+8], 0**
 
 JIT does this since we have seen memory access is 100+ times slower and just like CPU, JIT with good intentions but also naively caches our variable
 such that it cannot detect that we consume the same variables from different threads. And volatile cures the problem here, forcing JIT not to cache. I also like the volatile keyword
