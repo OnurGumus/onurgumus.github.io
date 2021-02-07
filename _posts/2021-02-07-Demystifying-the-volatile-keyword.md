@@ -332,6 +332,6 @@ However as a developer, in a real-life project, could you be sure a third method
 
 ## Final words
 
-We made a brief journey to the mystical world of memory barriers and the volatile keyword. I admit these concepts do not have much place in day-to-day development but still could be handy if you are dealing with high-performance multi-threading scenarios. Finally, this entire post is based on one of the topics in my video course:
-[50 Things You've Been Doing Wrong in C# and .NET Core](https://www.udemy.com/course/50-things-youve-been-doing-wrong-in-c-and-net-core/)
+We made a brief journey to the mystical world of memory barriers and the volatile keyword. I admit these concepts do not have much place in day-to-day development but still could be handy if you are dealing with high-performance multi-threading scenarios. Finally, this entire post is based on one of the 50 topics in my video course:
 
+[![50 Things You've Been Doing Wrong in C# and .NET Core](https://static.packt-cdn.com/products/9781789804683/cover/smaller)](https://www.udemy.com/course/50-things-youve-been-doing-wrong-in-c-and-net-core/)
