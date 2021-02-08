@@ -81,7 +81,7 @@ b = x
 
 In this scenario we assumed Test1 finished before Test2, then the final values will be
 
-x = 1, a = 0 , y = 1 , b = 1
+x = 1, a = 0 , y = 1, b = 1
 
 ### Test2 then Test1:
 ```
@@ -164,7 +164,7 @@ MemoryBarriers.Program.Test2()
 ```
 
 Please note that I have chosen to use "upload" and "download" words in the comments
-instead of the conventional move terminology. For the unfamiliar ones, in order to read a value from a variable and assign it to another memory location we must read it
+instead of the conventional read/write terminology. For the unfamiliar ones, in order to read a value from a variable and assign it to another memory location we must read it
 to the CPU registers, in this case, **edx** being used for that purpose only then we can assign it to the target variable. The CPU operations are very very fast, such that reading or writing to the memory  appears to be really slow compared to what we do in CPU. And this is precisely why I have used the words "upload" and "download". These days, reading from and writing to the memory behaves almost as if we are uploading to or downloading from a remote web service. It is really that slow comparatively.
 
 Here are some latency numbers for 2020 (ns being nano-seconds)
