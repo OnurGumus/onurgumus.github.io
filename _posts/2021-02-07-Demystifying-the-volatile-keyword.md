@@ -282,6 +282,8 @@ Then it will work expectedly. Let's see the disassembly for non-volatile and vol
  
  and 
  ```assembly
+ #volatile
+ 
     L0000: xor eax, eax
     L0002: mov rdx, [rcx+8]
     L0006: cmp byte ptr [rdx+8], 0
