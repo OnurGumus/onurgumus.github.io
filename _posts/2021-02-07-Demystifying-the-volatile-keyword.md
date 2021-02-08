@@ -185,7 +185,7 @@ Read 1 MB sequentially from SSD: 49000 ns
 ```
 [source](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
 
-So accessing the main memory is 100 times slower than accessing something within the CPU cache. 
+So accessing the main memory is 100 times slower than accessing something within the CPU cache, which behaves similarly to web proxy servers. 
 
 As a developer  you are developing an app and let's say if you have some independent upload
 download operations to some web service. How would you design such calls? You would parallelize them to save time! And that's precisely what the CPU does. Our beloved CPU
