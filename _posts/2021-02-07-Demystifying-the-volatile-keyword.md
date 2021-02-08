@@ -303,7 +303,7 @@ See the lines stating "Pay attention to here". Those lines are actually where we
         while (!c.completed)
 ```
 
-When volatile is not used, JIT caches the completed value to **edx** and then just uses the eax register to test if completed is changed. 
+When volatile is not used, JIT caches the completed value to **edx** and then just uses the edx register to test if completed is changed. 
 But when we use volatile we force JIT not to cache and then every time we need to read the value it access directly to memory
 as in **cmp byte ptr [rdx+8], 0**
 
