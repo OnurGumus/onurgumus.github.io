@@ -221,7 +221,6 @@ to turn into this
 ```assembly
     mov edx, [rax+8].          # download from memory location of 'x' to edx
     mov dword ptr [rax+0xc], 1 # upload 1 to memory location of 'y'
-    
 ```
 
 Hence x is read before y is updated since the CPU thinks these instructions are independent (which is an incorrect assumption due to other threads).
@@ -259,7 +258,7 @@ bool completed;
 ```
 
 to 
-```csharo
+```csharp
 volatile bool completed;
 ```
 
