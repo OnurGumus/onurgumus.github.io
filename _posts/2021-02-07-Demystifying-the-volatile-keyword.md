@@ -145,8 +145,8 @@ both simultaneously being zero once both tasks are completed, yet miraculously o
 The answer lies within [Out Of Order Execution](https://en.wikipedia.org/wiki/Out-of-order_execution). Let's have a look at the disassembly codes for Test1 and Test2. And if you are not familiar with x86
 assembly, don't worry, it is actually very simple and I have added comments to the relevant parts.
 
-```
-MemoryBarriers.Program.Test1()
+```assembly
+#MemoryBarriers.Program.Test1()
     #function prolog ommitted
     L0015: mov dword ptr [rax+8], 1  # upload 1 to memory location of 'x'
     L001c: mov edx, [rax+0xc]        # download from memory location of 'y' to edx
@@ -154,7 +154,7 @@ MemoryBarriers.Program.Test1()
     L0022: add rsp, 0x28.           
     L0026: ret
 
-MemoryBarriers.Program.Test2()
+#MemoryBarriers.Program.Test2()
     #function prolog
     L0015: mov dword ptr [rax+0xc], 1 # upload 1 to memory location of 'y'
     L001c: mov edx, [rax+8].          # download from memory location of 'x' to edx
@@ -212,13 +212,13 @@ volatile instructs the CPU that:
 
 But volatile does not forbid a download operation to a volatile variable to be completed before the preceding upload instruction is finished. The CPU is free to execute both
 in parallel and continue with whichever finishes first. And that's precisely what's happening here as volatile keyword does not prevent:
-```
+```assembly
     mov dword ptr [rax+0xc], 1 # upload 1 to memory location of 'y'
     mov edx, [rax+8].          # download from memory location of 'x' to edx
 ```
 to turn into this
 
-```
+```assembly
     mov edx, [rax+8].          # download from memory location of 'x' to edx
     mov dword ptr [rax+0xc], 1 # upload 1 to memory location of 'y'
     
@@ -233,7 +233,7 @@ Having that said volatile keyword isn't totally useless in other cases. Firstly,
 using System;
 using System.Threading;
 public class C {
-    bool  completed;
+    bool completed;
     static void Main()
     {
       C c = new C();
@@ -254,18 +254,18 @@ public class C {
 If you run the above code with a release build, it will block indefinitely even with Intel CPUs. This time CPU is not guilty but the culprit is the JIT optimization. If
 you convert:
 
-```
+```csharp
 bool completed;
 ```
 
 to 
-```
+```csharo
 volatile bool completed;
 ```
 
 Then it will work expectedly. Let's see the disassembly for non-volatile and volatile cases:
 
-```
+```assembly
 #non volatile
 
     L0000: xor eax, eax
@@ -282,7 +282,7 @@ Then it will work expectedly. Let's see the disassembly for non-volatile and vol
  ```
  
  and 
- ```
+ ```assembly
     L0000: xor eax, eax
     L0002: mov rdx, [rcx+8]
     L0006: cmp byte ptr [rdx+8], 0
