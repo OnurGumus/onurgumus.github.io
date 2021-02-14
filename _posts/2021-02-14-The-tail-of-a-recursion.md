@@ -17,3 +17,21 @@ excerpt_separator: <!--more-->
 ---
 
 # The tail of a recursion
+
+When I was younger I used to be scare of recursion. I was finding them complicated yet I was sadly observing many nice piece of algorithms
+
+
+
+## Base case and sub problem
+
+
+## The problems with recursion
+
+
+## The tail of a recursion
+
+
+## Continuation Passing Style
+
+
+
