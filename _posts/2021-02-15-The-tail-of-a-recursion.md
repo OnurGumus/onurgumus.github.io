@@ -133,8 +133,12 @@ have to do is to move the stack pointer to an earlier location and we assume any
 the local variables. 
 
 Whereas if we want some sort of data to remain even after we return from a function call stack won't help us since, the stack pointer will rewind and anything
-that is on the stack after the function returns will be considered as garbage. So for such cases, we use the heap area. Typically we as the runtime to create a 
-new object and the runtime
+that is on the stack after the function returns will be considered as garbage. So for such cases, we use the heap area which is fairly large usually up to Terrabytes in a x64 system with virtual memory support. Typically we as the runtime to create a 
+new object and the runtime puts it to some known location and return us a reference. Then either a Garbage Collector tracks those items in the heap or it becomes our duty to track them.
+
+When we make a function call, we have to to tell some details to the callee, such as the parameters passed and the return address which denotes where the callee
+should return when it is done. So we have to have a common protocol between the caller and callee. As a convention typically these parameters and return address are put into CPU registers and stack. For example, in x64, return address is pushed the stack and the first 4 parameters are sent to rcx,rdx,r8 and r9 registers
+(assuming they are not floating point) and if we have more than 4 parameters those extra parameters are also pushed to stack. And depending on the agreement between the caller and callee , either caller and callee cleans the stack when the call is done.
 
 
 ## The problems with recursion
@@ -142,14 +146,18 @@ new object and the runtime
 So by following 2 simple rules, by specifying a base case and assuming a solution function for the sub problem exists we can solve most recursive problems.
 Having that said there couple of problems with recursion. 
 
-1- Every recursive call is a function call:
-In many CPU architecture each function call needs some sort ceremony. In general we have to do following
-* since the flow has to return to the caller, we have to store the current return address into stack. As you probably know, typically the application memory is 
-divided into a stack area for each thread and one or more heap area. 
+1- Every recursive call is a function call: So as we have covered above, there is a lot of ceremony going on at each function call. That means
+function calls are significantly slower than regular loops, which affects recursive functions in a negative way. 
+
+2- The danger of overflowing stack: Unlike heap by default we are only given few MB stack space. So if your recursive call is too deep, then you might overflow your stack which typically crashes your application. Many operating systems and platforms allow you to define the stack size beforehand but usually it is not 
+a good idea to mess with these default values unless you really know what you are doing.
+
 
 
 ## The tail of a recursion
 
+So we have seen there are some severe problems with recursion. Yet all hope is not lost. Many compilers are smart enough to figure out your intend and can
+provide you some optimizations which are very handy. One of those optimizations is **tail calls**
 
 ## Continuation Passing Style
 
