@@ -18,14 +18,14 @@ excerpt_separator: <!--more-->
 
 # The tail of a recursion
 
-When I was younger I used to be scare of recursion. Reading them was fine, but writing a recursive algorithm from scratch was rather complicated for me as
-I'd always fall back to the impertive counter-parts. But after sharpening my skills a bit and doing the reading, now I have the opposite impression. Now recursion is rather easy and imperative ones look more difficult. So if you are challenged by the recursive algorithms like me, read on. I might change your idea.
+When I was younger I used to be scared of recursion. Trying to read some recursive funtion was fine, but writing a recursive algorithm from scratch was rather complicated for me as
+I'd always fall back to the impertive counter-parts. But after sharpening my skills a bit and doing some reading, now I have the opposite impression. Now recursion is rather easy and imperative ones look more difficult. So if you are challenged by the recursive algorithms like me, read on. I might change your idea.
 
 
 
 ## Base case and subproblem
 
-The simple fact it most typical recursive algorithms has two parts. A base case acts like an exit condition and a part that solves only a subpart of the problem. Let's see an example with a simple sorting algorithm. Please note that our goal is not to write the most efficient code here and the code is pseudo
+The simple fact it most typical recursive algorithms has two parts. A base case acts like an exit condition and a part that solves only a subpart of the problem. Let's see an example with a simple sorting algorithm. Please note that our goal is not to write the most efficient code here and the code is rather pseudo:
 
 Step 1: Write the base case
 
@@ -39,7 +39,7 @@ procedure sort(array)
 Here we have defined our base case, the exit condition. If the array is with 1 element there is nothing else required we could just return 
 the array itself. 
 
-Step2: Assume a solution function already exists but only for a subset of the problem
+Step2: Assume a solution function already exists but only for a subset of the problem:
 
 ```pseudocode
 procedure sort(array)
@@ -51,8 +51,8 @@ procedure sort(array)
 
 ```
 
-So we assumed there is already a working sort function called **sorting_already_works** and we pass the *tail* part of our array. Since that function is only working for smaller arrays than what we have. Now since the element is sorted, all we have to do is to insert the first element to the correct location.
-This is rather easy you can check the rest until a greater value is found and just insert **first_element** one before
+So we assumed there is already a working sort function called **sorting_already_works** and we pass the **tail** part of our array. Since that function is only working for smaller arrays than what we have. Now that the tail is sorted, all we have to do is to insert the first element to the correct location.
+This is rather easy as you could check the tail until a greater value is found and just insert **first_element** one before:
 
 
 ```pseudocode
@@ -68,7 +68,7 @@ procedure sort(array)
  
 ```
 
-and finally we replace **sort_already_works** with **sort**
+and finally we replace **sort_already_works** with **sort**:
 
 
 ```pseudocode
@@ -101,7 +101,7 @@ procedure find_permutations(array)
 ```
 
 
-You can see we have followed the exact same pattern as before. We just accumulate results into a List. Now the only thing required to insert **first_element** to every position of all returned lists:
+You can see we have followed the exact same pattern as before. Here we just accumulate results into a List and the only thing required to insert **first_element** to every position of all returned lists:
 
 ```pseudocode
 procedure find_permutations(array)
@@ -124,24 +124,29 @@ It's easy peasy.
 
 ## The story of stack and heap
 
-Before diving further, let's make some brief statements into stack and heap.
+Before diving further, let's make review our knowledge about stack and heap.
 
-Typically when you start a process, the OS creates some threads for you to execute your code. Each thread is given some contiguous memory usually between
-1 to 4 MB but that is entirely configurable. In the stack area, we are allowed to pop and push things. When we push things the stack grows and we pop things, the stack becomes smaller. The end of the stack is bookmarked by a stack pointer in the CPU. If we want to clean the stack, all we have to do is to move the stack pointer to an earlier location and we assume anything beyond the stack pointer is garbage. This way we don't have to clean
+Typically when you start a process, the OS creates some threads for you in order to execute your code. Each thread is given some contiguous memory usually between
+1 to 4 MB but that is also configurable. In the stack area, we are allowed to pop and push things. When we push things the stack grows and we pop things, the stack becomes smaller. The end of the stack is bookmarked by a stack pointer in the CPU. If we want to clean the stack, all we have to do is to move the stack pointer to an earlier location and we assume anything beyond the stack pointer is garbage. This way we don't have to clean
 the local variables. 
 
-Whereas if we want some sort of data to remain even after we return from a function call stack won't help us since the stack pointer will rewind and anything
-that is on the stack after the function returns will be considered as garbage. So for such cases, we use the heap area which is fairly large usually up to Terrabytes in an x64 system with virtual memory support. Typically we as the runtime to create a 
-new object and the runtime puts it to some known location and return us a reference. Then either a Garbage Collector tracks those items in the heap or it becomes our duty to track them.
+
+
+Whereas if we want some sort of data to remain even after we return from a function call, stack won't help us since the stack pointer will rewind and anything
+that is on the stack after the function returns will be considered as garbage. So for such cases, we use the heap area which is fairly large usually up to Terrabytes per process in an x64 system with virtual memory support. Typically we ask the runtime to create a 
+new object and the runtime puts it to some known location in the heap and return us a reference. Then either a Garbage Collector tracks those items in the heap or it becomes our duty to track and remove them when we are done.
 
 When we make a function call, we have to tell some details to the callee, such as the parameters passed and the return address which denotes where the callee
 should return when it is done. So we have to have a common protocol between the caller and callee. As a convention typically these parameters and return address are put into CPU registers and stack. For example, in x64, the return address has pushed the stack and the first 4 parameters are sent to rcx,rdx,r8, and r9 registers
 (assuming they are not floating-point) and if we have more than 4 parameters those extra parameters are also pushed to the stack. And depending on the agreement between the caller and callee, either caller and callee clean the stack when the call is done. In general, this is called creating a stack frame.
 
+[stack1]()
+
+[stack2]()
 
 ## The problems with recursion
 
-So by following 2 simple rules, by specifying a base case and assuming a solution function for the sub-problem exists we can solve most recursive problems.
+So by following 2 simple rules, by specifying a base case and assuming a solution function for the sub-problems exists we can solve most recursive problems.
 Having that said there a couple of problems with recursion. 
 
 1- Every recursive call is a function call: So as we have covered above, there is a lot of ceremony going on at each function call. That means
@@ -156,7 +161,7 @@ a good idea to mess with these default values unless you really know what you ar
 
 So we have seen there are some severe problems with recursion. Yet all hope is not lost. Many compilers are smart enough to figure out your intentions and can
 provide you some optimizations which are very handy. One of those optimizations is **tail call optimization**. If you call another function as the last statement
-before the return and you do not depend on any local variables in the current function then the compiler can skip the above ceremony and make the call as a direct continuation of the current function and can skip creating a stack frame and get-away with a jump statement. If the call is recursive then we have a specialized form of tail call optimization called tail recursion.
+before the return and you do not depend on any local variables in the current function then the compiler can skip the above ceremony and make the call as a direct continuation of the current function and can skip creating a stack frame and get-away with a jump statement. If the call is recursive then we have a specialized form of tail call optimization called **tail recursion**.
 
 More interestingly some functional programming languages like F# don't have a **break** keyword to exit from a loop. So it is not possible to exit in the middle of a loop.
 
@@ -235,7 +240,7 @@ How about JavaScript?
   
 printNthNumber(1000000)
 ```
-The answer is no fails with **Maximum call stack size exceeded**
+The answer is no for JavaScript, and it fails with **Maximum call stack size exceeded**
 
 And C++, well C++ is too smart, it eliminates everything and prints the number directly. So to force a loop I also print all numbers
 ```C++
@@ -254,7 +259,7 @@ int main()
   loop(0);
 }
 ```
-And if you call with optimizations you end up with below on Clang
+And if you call with optimizations you end up with below on Clang:
 ```assembly
 loop(int):                              
         push    rbp
@@ -292,7 +297,7 @@ public class HelloWorld{
      }
 }
 ```
-Nope, it will fail with stack overflow.
+Nope, Java will fail with stack overflow.
 
 Python?
 
@@ -307,15 +312,15 @@ def printNthNumber(n):
 
 printNthNumber(100000)
 ```
-Nope, fails with **maximum recursion depth exceeded in comparison**
+Nope, Python also fails with **maximum recursion depth exceeded in comparison**
 
 
 Lastly, F# code compiled against Fable and JavaScript also does tail recursion [Fable](https://fable.io/repl/#?code=DYUwLgBADgTglgOzAOTAC2QVwLYCMQwQAUCAXImAJQQC8AUBBKJDCAMZMD2nUEAHrQgNGEOADN+EADwQEEdCATCRI4N15EBAaggBGSsoghgAZxCGVsChIBEAUgCCN-sLU8IABmF0rSVBhx8Ql0PULC6IA&html=Q&css=Q)
 
 
 
-Well, it is true tail recursion is a necessity in functional programming languages and perhaps something nice to have on others. And not all recursive
-functions can be tail-called either. As an example, typical Fibonacci implementation, **fib(n-1) + fib(n-2)**,  will just fail on F# either since it has two recursive calls instead of just one last call. 
+Well, it is true rgR tail recursion is a necessity in functional programming languages and perhaps something nice to have on others. And not all recursive
+functions can be tail-called either. As an example, for typical Fibonacci implementation, **fib(n-1) + fib(n-2)**,  will just fail on F# either since this has two recursive calls instead of just one last call. 
 
 Having that said, I still appreciate this optimization which makes it easier to write some recursive ones. There are other topics like Continuation Passing Style
 and Y Combinator which I haven't covered in this post. Let them be a topic for another time.
