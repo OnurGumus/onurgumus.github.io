@@ -86,6 +86,7 @@ procedure sort(array)
  
 ```
 
+Of course, if you want efficiency, you'd better go with some [divide and conquer approach](https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm) and decrease the size of sub problems by some factor. But that's off topic for this post.
 
 Let's look at another example where we would like to find out all permutations of given array:
 
@@ -116,7 +117,7 @@ procedure find_permutations(array)
   
   for each result_item in result do
      for i = 1 to array.Length do
-        insert_at_index(first_element,result_item, i)
+        result.Add(insert_at_index(first_element,result_item, i))
      
   return result
 ```
@@ -179,20 +180,20 @@ So we are trying to print the  Nth number (which is useless I admit) and since w
 2-) Are we in the danger of stack overflowing?
 
 Well appearantly the answer is No.
-If we convert this code to C# by using (sharplab.io)[https://sharplab.io/#v2:EYLgxg9gTgpgtADwGwBYA0AbEAzAzgHwxgBcACABygEsA7YgOWIAt6BXAW2BilIAoaQtYgEpSAXgCwAKFKkiZWGDkQI5UgnGlps2VWzrSAHlI1SzGDW07rGFWt4aA1KQCMwq7JgZcMD9YrUdPoARACkAILB6la2qqQADFbSlEKMLBxcPC6JUkA==]
+If we convert this code to C# by using [sharplab.io](https://sharplab.io/#v2:EYLgxg9gTgpgtADwGwBYA0AbEAzAzgHwxgBcACABygEsA7YgOWIAt6BXAW2BilIAoaQtYgEpSAXgCwAKFKkiZWGDkQI5UgnGlps2VWzrSAHlI1SzGDW07rGFWt4aA1KQCMwq7JgZcMD9YrUdPoARACkAILB6la2qqQADFbSlEKMLBxcPC6JUkA==)
 
 We see it is actuall compiled to the following code:
 
 ```csharp
 while (x < n)
-        {
-            int num = n;
-            x++;
-            n = num;
-        }
-        PrintfFormat<FSharpFunc<int, Unit>, TextWriter, Unit, Unit> format = 
+{
+    int num = n;
+    x++;
+    n = num;
+}
+PrintfFormat<FSharpFunc<int, Unit>, TextWriter, Unit, Unit> format = 
           new PrintfFormat<FSharpFunc<int, Unit>, TextWriter, Unit, Unit, int>("%A");
-        PrintfModule.PrintFormatToTextWriter(Console.Out, format).Invoke(x);
+PrintfModule.PrintFormatToTextWriter(Console.Out, format).Invoke(x);
 ```
 So the compiler magically turned out recursion into a while loop hence no stack overflows.
 
@@ -214,11 +215,11 @@ Well  it is compiled to the below code:
 
 ```csharp
 internal static void <<Main>$>g__printNthNumber|0_0(int n)
-    {
-        <>c__DisplayClass0_0 <>c__DisplayClass0_ = default(<>c__DisplayClass0_0);
-        <>c__DisplayClass0_.n = n;
-        <<Main>$>g__loop|0_1(0, ref <>c__DisplayClass0_);
-    }
+{
+   <>c__DisplayClass0_0 <>c__DisplayClass0_ = default(<>c__DisplayClass0_0);
+   <>c__DisplayClass0_.n = n;
+   <<Main>$>g__loop|0_1(0, ref <>c__DisplayClass0_);
+}
  ```
 So no tail recursion for C# either. Though I admit there might some cases for JIT is generating tail calls, appearantly this is not the case here.
 
@@ -239,13 +240,88 @@ printNthNumber(1000000)
 ```
 The answer is no fails with **Maximum call stack size exceeded**
 
+And C++, well C++ is too smart, it eliminates everything and print the number directly. So to force a loop I also print all numbers
+```C++
+
+#include<iostream>
+int n = 1000000;
+void loop (int x) {
+    if (x < n){ 
+         std::cout << n;
+         loop (x + 1);}
+    else
+        std::cout << n;
+}
+int main()
+{
+  loop(0);
+}
+```
+And if you call with optimizations you end up with below on Clang
+```assembly
+loop(int):                              
+        push    rbp
+        push    rbx
+        push    rax
+        mov     ebx, edi
+        add     ebx, -1
+.LBB0_1:                               
+        mov     ebp, dword ptr [rip + n]
+        mov     edi, offset std::cout
+        mov     esi, ebp
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        add     ebx, 1
+        cmp     ebp, ebx
+        jg      .LBB0_1 # <--- tail recurse
+        add     rsp, 8
+        pop     rbx
+        pop     rbp
+        ret
+``` 
+Java? 
+
+```
+public class HelloWorld{
+    static int n = 1000000;
+    static void loop (int x) {
+    if (x < n){ 
+        
+         loop (x + 1);}
+    else
+         System.out.println(n);
+}
+     public static void main(String []args){
+        loop(0);
+     }
+}
+```
+Nope, it will fail with stackoverflow.
+
+Python?
+
+```python
+def printNthNumber(n):
+     def loop(x):
+        if (x < n):
+            loop (x + 1)
+        else:
+            print(x)
+     loop(0)
+
+printNthNumber(100000)
+```
+Nope, fails with **maximum recursion depth exceeded in comparison**
+
+
+Lastly F# code compiled against Fable and JavaScript also does tail recursion [Fable](https://fable.io/repl/#?code=DYUwLgBADgTglgOzAOTAC2QVwLYCMQwQAUCAXImAJQQC8AUBBKJDCAMZMD2nUEAHrQgNGEOADN+EADwQEEdCATCRI4N15EBAaggBGSsoghgAZxCGVsChIBEAUgCCN-sLU8IABmF0rSVBhx8Ql0PULC6IA&html=Q&css=Q)
 
 
 
+Well it is true tail recursion is a necessity in functional programming languages and perhaps something nice to have on others. And not all recursive
+functions can be tail called either. As an example, tpyical fibonacci implementation, **fib(n-1) + fib(n-2)**,  will just fail on F# either since it has two recursive calls instead of just one last call. 
 
-## Continuation Passing Style
+Having that said, I still appreciate this optimization which makes it easier to write some recursive ones. There are other topics like Continuation Passing Style
+and Y Combinator which I haven't covered in this post. Let them be a topic for another time.
 
-
-## Functional birds
 
 
