@@ -21,7 +21,7 @@ excerpt_separator: <!--more-->
 When I was younger I used to be scared of recursion. Trying to read some recursive funtion was fine, but writing a recursive algorithm from scratch was rather complicated for me as
 I'd always fall back to the impertive counter-parts. But after sharpening my skills a bit and doing some reading, now I have the opposite impression. Now recursion is rather easy and imperative ones look more difficult. So if you are challenged by the recursive algorithms like me, read on. I might change your idea.
 
-/assets/posts/2021-02-19-The-tail-of-a-recursion/y-comb.png
+![y-comb](/assets/posts/2021-02-19-The-tail-of-a-recursion/y-comb.png)
 <!--more-->
 
 ## Base case and subproblem
@@ -205,12 +205,12 @@ So the compiler magically turned out recursion into a while loop hence no stack 
 
 Let's try C# 
 ```csharp
-  static void printNthNumber (int n) {
+static void printNthNumber (int n) {
     void loop (int x) {
-    if (x < n) 
-         loop (x + 1);
-    else
-        System.Console.WriteLine(n);
+      if (x < n) 
+           loop (x + 1);
+      else
+          System.Console.WriteLine(n);
    }
   loop(0);
 }
@@ -232,7 +232,7 @@ So no tail recursion for C# either. Though I admit there might some cases for JI
 
 How about JavaScript?
 ```JavaScript
-  function printNthNumber (n) {
+function printNthNumber (n) {
   function loop (x) {
     if (x < n) 
         return loop (x + 1)
@@ -288,17 +288,19 @@ Java?
 
 ```
 public class HelloWorld{
+
     static int n = 1000000;
+    
     static void loop (int x) {
-    if (x < n){ 
-        
-         loop (x + 1);}
-    else
-         System.out.println(n);
-}
-     public static void main(String []args){
+      if (x < n){ 
+           loop (x + 1);
+      }
+      else
+           System.out.println(n);
+    }
+    public static void main(String []args){
         loop(0);
-     }
+    }
 }
 ```
 Nope, Java will fail with stack overflow.
