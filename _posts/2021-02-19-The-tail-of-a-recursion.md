@@ -203,7 +203,8 @@ PrintfModule.PrintFormatToTextWriter(Console.Out, format).Invoke(x);
 ```
 So the compiler magically turned out recursion into a while loop hence no stack overflows.
 
-Let's try C# 
+Let's try C#:
+
 ```csharp
 static void printNthNumber (int n) {
     void loop (int x) {
@@ -231,7 +232,7 @@ So no tail recursion for C# either. Though I admit there might some cases for JI
 
 
 How about JavaScript?
-```JavaScript
+```js
 function printNthNumber (n) {
   function loop (x) {
     if (x < n) 
@@ -247,7 +248,7 @@ printNthNumber(1000000)
 The answer is no for JavaScript, and it fails with **Maximum call stack size exceeded**
 
 And C++, well C++ is too smart, it eliminates everything and prints the number directly. So to force a loop I also print all numbers
-```C++
+```cpp
 
 #include<iostream>
 int n = 1000000;
@@ -286,7 +287,7 @@ loop(int):
 ``` 
 Java? 
 
-```
+```Java
 public class HelloWorld{
 
     static int n = 1000000;
