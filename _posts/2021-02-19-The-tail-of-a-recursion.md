@@ -8,9 +8,9 @@ date: 2021-02-15-00:00:00 -0000
 
 comments: true
 
-published: false
+published: true
 
-image: posts/2021-02-19-The-tail-of-a-recursion/latency.png
+image: posts/2021-02-19-The-tail-of-a-recursion/y-comb.png
 
 excerpt_separator: <!--more-->
 
@@ -136,13 +136,16 @@ Whereas if we want some sort of data to remain even after we return from a funct
 that is on the stack after the function returns will be considered as garbage. So for such cases, we use the heap area which is fairly large usually up to Terrabytes per process in an x64 system with virtual memory support. Typically we ask the runtime to create a 
 new object and the runtime puts it to some known location in the heap and return us a reference. Then either a Garbage Collector tracks those items in the heap or it becomes our duty to track and remove them when we are done.
 
+Stack of during a call:
+![stack1](/assets/posts/2021-02-19-The-tail-of-a-recursion/stack-frame1.png)
+
+
 When we make a function call, we have to tell some details to the callee, such as the parameters passed and the return address which denotes where the callee
 should return when it is done. So we have to have a common protocol between the caller and callee. As a convention typically these parameters and return address are put into CPU registers and stack. For example, in x64, the return address has pushed the stack and the first 4 parameters are sent to rcx,rdx,r8, and r9 registers
 (assuming they are not floating-point) and if we have more than 4 parameters those extra parameters are also pushed to the stack. And depending on the agreement between the caller and callee, either caller and callee clean the stack when the call is done. In general, this is called creating a stack frame.
 
-[stack1]()
-
-[stack2]()
+After the function returns, upper portion of the Stack pointer becomes garbage:
+![stack2](/assets/posts/2021-02-19-The-tail-of-a-recursion/stack-frame2.png)
 
 ## The problems with recursion
 
