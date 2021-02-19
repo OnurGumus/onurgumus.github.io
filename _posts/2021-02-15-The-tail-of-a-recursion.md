@@ -163,38 +163,83 @@ before the return and you do not depend on any local variables in the current fu
 More interestingly some functional programming languages like F# doesn't have a **break** keyword to exit from a loop. So it is not possible to exit in the middle of a loop.
 
 ```fsharp
-let printTillN (n:int) =
+let printNthNumber (n:int) =
   let rec loop x = 
-    if x <= n then 
-        printf "%i" x
+    if x < n then
         loop (x + 1)
+    else
+        printf "%A" x
   loop 0
   
-printTillN 10
+printNthNumber 10
 ```
 
-So we are trying to print the numbers till N and since we don't have a break keyword in F#, we decided to use a loop with recursion. Now two questions:
+So we are trying to print the  Nth number (which is useless I admit) and since we don't have a break keyword in F#, we decided to use a loop with recursion. Now two questions:
 1-) Isn't this in efficient, just as we are calling another function for everytime we loop hence creating a stack frame
 2-) Are we in the danger of stack overflowing?
 
 Well appearantly the answer is No.
-If we convert this code to C# by using (sharplab.io)[https://sharplab.io/#v2:EYLgxg9gTgpgtADwGwBYA0AbEAzAzgHwxgBcACABygEsA7YgFSowwDlSAKGkW4gSlIC8AWABQpUkTKwwEiBHKkEg0qPHiq2RaQA8A0jVLEAFjAOq1Fyj00AiAKRUbi8xfEY5C9koDUpAIy85u7ypAAM5qJWdIzMbH7hIkA==]
+If we convert this code to C# by using (sharplab.io)[https://sharplab.io/#v2:EYLgxg9gTgpgtADwGwBYA0AbEAzAzgHwxgBcACABygEsA7YgOWIAt6BXAW2BilIAoaQtYgEpSAXgCwAKFKkiZWGDkQI5UgnGlps2VWzrSAHlI1SzGDW07rGFWt4aA1KQCMwq7JgZcMD9YrUdPoARACkAILB6la2qqQADFbSlEKMLBxcPC6JUkA==]
 
 We see it is actuall compiled to the following code:
 
 ```csharp
- while (x <= n)
+while (x < n)
         {
-            PrintfFormat<FSharpFunc<int, Unit>, TextWriter, Unit, Unit> format = new PrintfFormat<FSharpFunc<int, Unit>, TextWriter, Unit, Unit, int>("%i");
-            PrintfModule.PrintFormatToTextWriter(Console.Out, format).Invoke(x);
             int num = n;
             x++;
             n = num;
         }
+        PrintfFormat<FSharpFunc<int, Unit>, TextWriter, Unit, Unit> format = 
+          new PrintfFormat<FSharpFunc<int, Unit>, TextWriter, Unit, Unit, int>("%A");
+        PrintfModule.PrintFormatToTextWriter(Console.Out, format).Invoke(x);
 ```
-
-
 So the compiler magically turned out recursion into a while loop hence no stack overflows.
+
+Let's try C# 
+```csharp
+  static void printNthNumber (int n) {
+    void loop (int x) {
+    if (x < n) 
+         loop (x + 1);
+    else
+        System.Console.WriteLine(n);
+   }
+  loop(0);
+}
+
+printNthNumber(10000000);
+```
+Well  it is compiled to the below code:
+
+```csharp
+internal static void <<Main>$>g__printNthNumber|0_0(int n)
+    {
+        <>c__DisplayClass0_0 <>c__DisplayClass0_ = default(<>c__DisplayClass0_0);
+        <>c__DisplayClass0_.n = n;
+        <<Main>$>g__loop|0_1(0, ref <>c__DisplayClass0_);
+    }
+ ```
+So no tail recursion for C# either. Though I admit there might some cases for JIT is generating tail calls, appearantly this is not the case here.
+
+
+How about JavaScript?
+```JavaScript
+  function printNthNumber (n) {
+  function loop (x) {
+    if (x < n) 
+        return loop (x + 1)
+    else
+        console.log(x)
+  }
+  loop(0);
+}
+  
+printNthNumber(1000000)
+```
+The answer is no fails with **Maximum call stack size exceeded**
+
+
 
 
 
