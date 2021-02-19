@@ -160,6 +160,43 @@ So we have seen there are some severe problems with recursion. Yet all hope is n
 provide you some optimizations which are very handy. One of those optimizations is **tail call optimization**. If you call another function as a last statement
 before the return and you do not depend on any local variables in the current function then the compiler can skip above ceremony and make the call as a direct continuation of the current function and can skip creating a stack frame and get-away with a jump statement. If the call is recursive then we have a specialized form of tail call optimization called tail recursion.
 
+More interestingly some functional programming languages like F# doesn't have a **break** keyword to exit from a loop. So it is not possible to exit in the middle of a loop.
+
+```fsharp
+let printTillN (n:int) =
+  let rec loop x = 
+    if x <= n then 
+        printf "%i" x
+        loop (x + 1)
+  loop 0
+  
+printTillN 10
+```
+
+So we are trying to print the numbers till N and since we don't have a break keyword in F#, we decided to use a loop with recursion. Now two questions:
+1-) Isn't this in efficient, just as we are calling another function for everytime we loop hence creating a stack frame
+2-) Are we in the danger of stack overflowing?
+
+Well appearantly the answer is No.
+If we convert this code to C# by using (sharplab.io)[https://sharplab.io/#v2:EYLgxg9gTgpgtADwGwBYA0AbEAzAzgHwxgBcACABygEsA7YgFSowwDlSAKGkW4gSlIC8AWABQpUkTKwwEiBHKkEg0qPHiq2RaQA8A0jVLEAFjAOq1Fyj00AiAKRUbi8xfEY5C9koDUpAIy85u7ypAAM5qJWdIzMbH7hIkA==]
+
+We see it is actuall compiled to the following code:
+
+```csharp
+ while (x <= n)
+        {
+            PrintfFormat<FSharpFunc<int, Unit>, TextWriter, Unit, Unit> format = new PrintfFormat<FSharpFunc<int, Unit>, TextWriter, Unit, Unit, int>("%i");
+            PrintfModule.PrintFormatToTextWriter(Console.Out, format).Invoke(x);
+            int num = n;
+            x++;
+            n = num;
+        }
+```
+
+
+So the compiler magically turned out recursion into a while loop hence no stack overflows.
+
+
 
 ## Continuation Passing Style
 
