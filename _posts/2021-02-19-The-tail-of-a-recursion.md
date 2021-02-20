@@ -6,7 +6,7 @@ title: The tail of a recursion
 description : "An journey into recursion"
 date: 2021-02-19-00:00:00 -0000
 
-comments: true
+comments: false
 
 published: true
 
@@ -326,7 +326,7 @@ Lastly, F# code compiled against Fable and JavaScript also does tail recursion [
 
 
 
-Well, it is true rgR tail recursion is a necessity in functional programming languages and perhaps something nice to have on others. And not all recursive
+Well, it is true that tail recursion is a necessity in functional programming languages and perhaps something nice to have on others. And not all recursive
 functions can be tail-called either. As an example, for typical Fibonacci implementation, **fib(n-1) + fib(n-2)**,  will just fail on F# either since this has two recursive calls instead of just one last call. 
 
 Having that said, I still appreciate this optimization which makes it easier to write some recursive ones. There are other topics like Continuation Passing Style
