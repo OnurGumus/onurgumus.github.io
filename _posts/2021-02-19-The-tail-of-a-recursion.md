@@ -32,19 +32,19 @@ Step 1: Write the base case
 
 ```pseudocode
 procedure sort(array)
-  if array.Lenght = 1 
+  if array.Length = 0
     return array
 
 ```
 
-Here we have defined our base case, the exit condition. If the array is with 1 element there is nothing else required we could just return 
+Here we have defined our base case, the exit condition. If the array is empty there is nothing else required we could just return 
 the array itself. 
 
 Step2: Assume a solution function already exists but only for a subset of the problem:
 
 ```pseudocode
 procedure sort(array)
-  if array.Lenght = 1 
+  if array.Length = 0 
     return array
     
   first_element, rest = split_first_element(array)
@@ -58,7 +58,7 @@ This is rather easy as you could check the tail until a greater value is found a
 
 ```pseudocode
 procedure sort(array)
-  if array.Lenght = 1 
+  if array.Length = 0 
     return array
     
   first_element, rest = split_first_element(array)
@@ -74,7 +74,7 @@ and finally we replace **sort_already_works** with **sort**:
 
 ```pseudocode
 procedure sort(array)
-  if array.Lenght = 1 
+  if array.Length = 0 
     return array
     
   first_element, rest = split_first_element(array)
@@ -92,8 +92,7 @@ Let's look at another example where we would like to find out all permutations o
 ```pseudocode
 procedure find_permutations(array)
   result = new List()
-  if array.Lenght == 1 then
-    result.Add(array)
+  if array.Length == 0 then
     return result
     
   first_element, rest = split_first_element(array)
@@ -107,8 +106,7 @@ You can see we have followed the exact same pattern as before. Here we just accu
 ```pseudocode
 procedure find_permutations(array)
   result = new List()
-  if array.Lenght == 1 then
-    result.Add(array)
+  if array.Length == 0 then
     return result
     
   first_element, rest = split_first_element(array)
