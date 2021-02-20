@@ -107,6 +107,7 @@ You can see we have followed the exact same pattern as before. Here we just accu
 procedure find_permutations(array)
   result = new List()
   if array.Length == 0 then
+    result.Add(array)
     return result
     
   first_element, rest = split_first_element(array)
