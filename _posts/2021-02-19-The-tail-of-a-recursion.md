@@ -92,8 +92,9 @@ Let's look at another example where we would like to find out all permutations o
 ```pseudocode
 procedure find_permutations(array)
   result = new List()
-  if array.Length == 0 then
-    return result
+  if array.Length = 0 then
+    result.Add(array)
+    result
     
   first_element, rest = split_first_element(array)
   result = find_permutations(rest)
@@ -106,7 +107,7 @@ You can see we have followed the exact same pattern as before. Here we just accu
 ```pseudocode
 procedure find_permutations(array)
   result = new List()
-  if array.Length == 0 then
+  if array.Length = 0 then
     result.Add(array)
     return result
     
