@@ -134,7 +134,7 @@ the local variables.
 
 
 Whereas if we want some sort of data to remain even after we return from a function call, stack won't help us since the stack pointer will rewind and anything
-that is on the stack after the function returns will be considered as garbage. So for such cases, we use the heap area which is fairly large usually up to Terrabytes per process in an x64 system with virtual memory support. Typically we ask the runtime to create a 
+that is on the stack after the function returns will be considered as garbage. So for such cases, we use the heap area which is fairly large usually up to Terabytes per process in an x64 system with virtual memory support. Typically we ask the runtime to create a 
 new object and the runtime puts it to some known location in the heap and return us a reference. Then either a Garbage Collector tracks those items in the heap or it becomes our duty to track and remove them when we are done.
 
 Stack of during a call:
