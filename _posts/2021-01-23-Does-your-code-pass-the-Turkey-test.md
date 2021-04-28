@@ -61,7 +61,7 @@ const getLanguage = () => navigator.userLanguage
 ```
 
 Perhaps one of the easiest ways to make case-insensitive but 
-safe comparisons are to use ToLocalUpperCase and ToLocalLowerCase:
+safe comparisons is to use ToLocaleUpperCase and ToLocaleLowerCase:
 
 
 ```javascript
