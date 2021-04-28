@@ -137,7 +137,7 @@ console.log(a.localeCompare(b, 'en', { sensitivity: 'accent' }));
 Notice here you must set the culture to 'tr' otherwise it won't work.
 
 ## Date and Time
-Most languages have different formats for dates so if we have **05/01/2021** does it mean January 5 or May 5?. Some people would argue we should use 
+Most languages have different formats for dates so if we have **05/01/2021** does it mean January 5th or May 1st?. Some people would argue we should use 
 **2021-05-01** but then your users will complain. How about 01 MAY 2021, this is good but then you have to localize MAY. So pick your poison. To make things more complicated, languages like Turkish use "." instead of "/" as a date separator.
 
 Furthermore, there is no built-in way to parse such strings to convert JavaScript date objects. You have to rely on external libs like moment.js and
