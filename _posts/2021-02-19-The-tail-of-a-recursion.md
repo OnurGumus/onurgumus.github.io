@@ -6,7 +6,7 @@ title: The tail of a recursion
 description : "An journey into recursion"
 date: 2021-02-19-00:00:00 -0000
 
-comments: false
+comments: true
 
 published: true
 
