@@ -101,4 +101,8 @@ I think you can see why the second FooA's retained size is 12 since it is the sa
 
 ![fooB](/2021-12-19-The-snapshot-of-a-memory-snapshot/FooA1.png)
 
-For FooA we have a the retained size of 128. How where does the this number come? Well obviously we have 12 bytes for the shallow size. The thing is since we have executed the following line ```window.fooA1.fooB = new FooB();``` this caused some disturbance in object's description mapping. Because we attached a property to FooA 
+For FooA we have a the retained size of 128. How where does the this number come? Well obviously we have 12 bytes for the shallow size. The thing is since we have executed the following line ```window.fooA1.fooB = new FooB();``` this caused some disturbance in object's description mapping. Because we attached a property to FooA our orignal map describing the type isn't valid so v8 creates a new map specific to this instance (since this is the only FooA instance with fooB property). Each map object has a back pointer to the that is derived from but that doesn't matter. In this case this map is specific to this FooA and if this FooA is gone then the map is gone hence we gain 84 bytes from there. So far 84 + 12 = 96. Since FooA is the only object that holds the FooB instance, if FooA is gone FooB will also be gone we add 12 for FooB making it 96 + 12 = 108. We still need 20. And you can see we have a new property property which contains
+the actual **fooB** property and is 20 bytes. And that adds up to 128. What about the visible 'foob' property directly under the object? That is mostly shown 
+as a convinience as the actually property is inside the property property. Phew, quite a bit calculation!
+
+But we are just getting started.
