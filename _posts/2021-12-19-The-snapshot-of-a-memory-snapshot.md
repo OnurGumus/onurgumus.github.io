@@ -47,7 +47,7 @@ window.fooA1.fooB = new FooB();
 
 
 We have created to classes **FooA** and **FooB** and then we attached 2 instances of FooA to the window and then we attach an instance of FooB to a FooA. Here
-we use **window** because window is a GC root which will permanently hold these objects until we clean them. We don't want the objects to be garbage collected right after we closed the console.
+we use **window** because window is a direct child of a GC root which will permanently hold these objects until we clean them. We don't want the objects to be garbage collected right after we closed the console.
 
 The next thing we do is to clear the console, switch to memory tab, close dev tools and reopen it. Id o this as a general practice  to prevent the console itself not to interfere with my analysis but note that each time you close dev tools, you will be losing the previous snapshots if you have any unless yous saved them. So be careful if you do snasphot comparison.
 
@@ -56,7 +56,16 @@ Once the dev tools is reopen, click to takesnapshot button and once the snapshit
 
 ![foo-bar](/2021-12-19-The-snapshot-of-a-memory-snapshot/snapshot-1.png)
 
-We can see our created 
+We can see our 2 FooA instances and a FooB instance. So let's try to understand what's going on here. 
 
+## Distance
+The distance value for FooA instances are 2. That's very natural because the distance refers to the shortest distance to the GC root. Earlier we mentioned the window object is a direct child of GC Root so window's distance is 1. Both FooA's are direct child of the window so their distances are 2. What about FooB, well it is the child of one of the FooA instance so the distance of it is 3. 
 
+This is as in:
+`
+GC Root ---1---> window ---2---> FooA ---3---> FooB
+
+GC Root ---1---> window ---2---> FooA
+
+`
 
