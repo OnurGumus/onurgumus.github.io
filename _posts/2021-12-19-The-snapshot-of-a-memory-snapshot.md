@@ -151,7 +151,7 @@ and 20 bytes of properties for each of these objects and they are adding up to 3
 ```js
 fooA1 --\
           \
-           | --> FooB
+           | --> FooB  <---weak ref--- fooA2
           /
 fooA3-- /
 ```
@@ -160,3 +160,7 @@ As demonstrated above, since both of them are holding FooB, neither of them are 
 It's not included in the fooA2 because it holds FooB as a weak ref. So in otherwords FooB's retained size is somewhat lost but only exist added to grant parent window object. In some cases the are other root objects such as websockets, network connections, other extensions and you for those cases some objects may never
 contribute to any of the retain sizes if they are shared multiple roots.
 
+
+As we have discussed, it is Retained size can be pretty confusing. What can we deduce from the retained size then? Well if the child's retained size isn't fully reflected to parent, then it means it is held by other reatiners which can be observed from the bottom of the pane in the Retainers section. If they are close then the parent is likely to be the sole owner.
+
+I hope this dispells the confusion about these numbers and you can have a more confident analysis next time when you look at your memory snapshots. In the next post I will talk about the mysterious map property I have described and why it does exist in the first place.
