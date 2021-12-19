@@ -99,10 +99,41 @@ If we look at the FooA instances however we see something a bit peculiar. The fi
 I think you can see why the second FooA's retained size is 12 since it is the same case as above. Let's look at the first FooA:
 
 
-![fooB](/2021-12-19-The-snapshot-of-a-memory-snapshot/FooA1.png)
+![fooA1](/2021-12-19-The-snapshot-of-a-memory-snapshot/FooA1.png)
 
 For FooA we have a the retained size of 128. How where does the this number come? Well obviously we have 12 bytes for the shallow size. The thing is since we have executed the following line ```window.fooA1.fooB = new FooB();``` this caused some disturbance in object's description mapping. Because we attached a property to FooA our orignal map describing the type isn't valid so v8 creates a new map specific to this instance (since this is the only FooA instance with fooB property). Each map object has a back pointer to the that is derived from but that doesn't matter. In this case this map is specific to this FooA and if this FooA is gone then the map is gone hence we gain 84 bytes from there. So far 84 + 12 = 96. Since FooA is the only object that holds the FooB instance, if FooA is gone FooB will also be gone we add 12 for FooB making it 96 + 12 = 108. We still need 20. And you can see we have a new property property which contains
 the actual **fooB** property and is 20 bytes. And that adds up to 128. What about the visible 'foob' property directly under the object? That is mostly shown 
 as a convinience as the actually property is inside the property property. Phew, quite a bit calculation!
 
-But we are just getting started.
+But we are just getting started. Let's execute the following in the console.
+
+```js
+window.fooA2.wref = new WeakRef(window.fooA1.fooB);
+```
+
+Then clear the console, switch to memory tab, close the devtools, reopen it and take another snapshot and search for **foo**. Then we see the following:
+
+![fooB](/2021-12-19-The-snapshot-of-a-memory-snapshot/FooA2.png)
+
+There is no change in FooB as expected but the first but the first FooA has been grown 20 bytes. And if we dig into that we see, first FooA's map property was the only thing that growed 20 so it adds up again. Why first FooA's map changed when we added a property two seconf FooA. It's an internal thing but possibly we the map is forked and grown to a tree now.
+```js
+                       |--> Map for FooA with fooB prop
+Map for orignal FooA ->
+                       |--> Map for FooA with wref prop
+```
+
+
+If we check the second FooA then we see a picture similar to an earlier case. The only difference is the property we have is a weakref to B which it's size is 16. Because it is a weakref, weakrefs are never cause the object to retain. That's the purpose of WeakRef's after all. They are weak references and GC just ignores them as holders. Then we have 12(shallow) + 68(map) + 16(wref + 20(properties) = 116. Great that adds up too. Now let's try something different.
+
+This time we execute:
+
+```js
+window.fooA3 = new FooA();
+window.fooA3.fooB = window.fooA1.fooB;
+```
+
+We create a new FooA instance, assign it to fooA3 then we assign FooA1's fooB to fooA3's fooB. 
+
+And again we clear the console, switch to memory tab, close and reopen dev tools, take screenshot and search for **foo**
+
+
