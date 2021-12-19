@@ -134,6 +134,29 @@ window.fooA3.fooB = window.fooA1.fooB;
 
 We create a new FooA instance, assign it to fooA3 then we assign FooA1's fooB to fooA3's fooB. 
 
-And again we clear the console, switch to memory tab, close and reopen dev tools, take screenshot and search for **foo**
+And again we clear the console, switch to memory tab, close and reopen dev tools, take screenshot and search for **foo**:
 
+![fooA3](/2021-12-19-The-snapshot-of-a-memory-snapshot/FooA3.png)
+
+No change for the retained size of FooB which is expected. The FooA with wref has further grown 116 to 152 and this can be attributed to it's map property is grown 36 bytes for whatever reason (due to we have to 2 instances of FooA and there is a enumcache mechanism internal to map which is the root cause.)
+
+But the most peculiar thing is for the other two FooA's our retained size has dropped to 32! Well we would expect them to be equal since they are identical,
+but the intersting bit is just because I created another instance of FooA and assinged a fooB to that, the original FooA with fooB's retained size dropped. 
+What's going on here? 
+
+The answer is within the definiton of retained size. In particular, they are both owners of FooB now so if one is garbage collected, the other one will still keep FooB and vice versa. So the size of FooB cannot be counted to neither of them. Their individual map properties are 104 bytes but because these to objects
+have identical proprties, they also utilize the same map object! So map can't be included in either of the balances. All we have left is 12 bytes of shallow size 
+and 20 bytes of properties for each of these objects and they are adding up to 32.
+
+```js
+fooA1 --\
+          \
+           | --> FooB
+          /
+fooA3-- /
+```
+
+As demonstrated above, since both of them are holding FooB, neither of them are the sole owner so FooB's retained size is excluded from their retained size.
+It's not included in the fooA2 because it holds FooB as a weak ref. So in otherwords FooB's retained size is somewhat lost but only exist added to grant parent window object. In some cases the are other root objects such as websockets, network connections, other extensions and you for those cases some objects may never
+contribute to any of the retain sizes if they are shared multiple roots.
 
