@@ -123,7 +123,7 @@ Map for orignal FooA ->
 ```
 
 
-If we check the second FooA then we see a picture similar to an earlier case. The only difference is the property we have is a weakref to B and weakref itself has a size of 16. Weakrefs never cause the object to retain. That's the purpose of WeakRef's after all. They are weak references and GC just ignores them as holders. As a sum, we have 12(shallow) + 68(map) + 16(wref + 20(properties) = 116. Great, that adds up too. Now let's try something different.
+If we check the second FooA then we see a picture similar to an earlier case. The only difference is the property we have is a weakref to B and weakref itself has a size of 16. Weakrefs never cause the object to retain. That's the purpose of WeakRef's after all. They are weak references and GC just ignores them as holders. As a sum, we have 12(shallow) + 68(map) + 16(wref) + 20(properties) = 116. Great, that adds up too. Now let's try something different.
 
 This time we execute:
 
@@ -158,7 +158,7 @@ fooA3-- /
 
 As demonstrated above, since both of them are holding FooB, neither of them are the sole owner so FooB's retained size is excluded from their retained size.
 It's not included in the fooA2 because it holds FooB as a weak ref. So in other words FooB's retained size is somewhat lost but only added to the grandparent window object. In some cases, the are other root objects such as WebSockets, network connections, other extensions and for those cases, some objects may never
-contribute to any of the retain sizes available if they are shared multiple roots.
+contribute to any of the retain sizes available if they are shared among multiple roots.
 
 
 As we have discussed, retained size concept can be pretty confusing. What can we deduce from the retained size then? Well if the child's retained size isn't fully reflected to the parent, then it means it is held by other retainers which can be observed from the bottom of the pane in the Retainers section. If the parent and sum of the children's retained sizes are close then the parent is likely to be the sole owner.
