@@ -43,7 +43,7 @@ window.fooA1 = new FooA();
 window.fooA2 = new FooA();
 window.fooA1.fooB = new FooB();
 ```
-![foo-bar](/2021-12-19-The-snapshot-of-a-memory-snapshot/foo-bar.png)
+![foo-bar](/assets/posts/2021-12-19-The-snapshot-of-a-memory-snapshot/foo-bar.png)
 
 
 We have created to classes **FooA** and **FooB** and then we attached 2 instances of FooA to the window and then we attach an instance of FooB to a FooA. Here
@@ -54,7 +54,7 @@ The next thing we do is to clear the console, switch to memory tab, close dev to
 
 Once the dev tools is reopen, click to takesnapshot button and once the snapshit is done search foo in the summary pane. Once we expand FooA and FooB then should look similar to below:
 
-![foo-bar](/2021-12-19-The-snapshot-of-a-memory-snapshot/snapshot-1.png)
+![foo-bar](/assets/posts/2021-12-19-The-snapshot-of-a-memory-snapshot/snapshot-1.png)
 
 We can see our 2 FooA instances and a FooB instance. So let's try to understand what's going on here. 
 
@@ -89,7 +89,7 @@ In otherwords, if we ask GC the following question: How much memory we would gai
 
 In our example for the Foo B instance we see the Retained Size is 12. Obviously retained size can't be smaller than the Shallow size since that would be the minimal we would gain if the object is cleaned up and that's prececisly what happens here. 
 
-![fooB](/2021-12-19-The-snapshot-of-a-memory-snapshot/FooB.png)
+![fooB](/assets/posts/2021-12-19-The-snapshot-of-a-memory-snapshot/FooB.png)
 
 If we look at the properties of FooB as in above we see two particlar items. **__proto__** and **map**. __proto__ represents the prototype of this class and **map** is contains description and offsets of the properties (more on that later). Both of these properties are actually affiliated with the FooB class/type itself not with the instance. So in otherwords even if the FooB instance is garbage collector, the FooB type is still there since we declared it as class and we could create subsequent instances. Hence that's why __proto__ and map for this type is not retained and not included in the retains size. Therefore for FooB our 
 retained size is the shallow size, 12.
@@ -99,7 +99,7 @@ If we look at the FooA instances however we see something a bit peculiar. The fi
 I think you can see why the second FooA's retained size is 12 since it is the same case as above. Let's look at the first FooA:
 
 
-![fooA1](/2021-12-19-The-snapshot-of-a-memory-snapshot/FooA1.png)
+![fooA1](/assets/posts/2021-12-19-The-snapshot-of-a-memory-snapshot/FooA1.png)
 
 For FooA we have a the retained size of 128. How where does the this number come? Well obviously we have 12 bytes for the shallow size. The thing is since we have executed the following line ```window.fooA1.fooB = new FooB();``` this caused some disturbance in object's description mapping. Because we attached a property to FooA our orignal map describing the type isn't valid so v8 creates a new map specific to this instance (since this is the only FooA instance with fooB property). Each map object has a back pointer to the that is derived from but that doesn't matter. In this case this map is specific to this FooA and if this FooA is gone then the map is gone hence we gain 84 bytes from there. So far 84 + 12 = 96. Since FooA is the only object that holds the FooB instance, if FooA is gone FooB will also be gone we add 12 for FooB making it 96 + 12 = 108. We still need 20. And you can see we have a new property property which contains
 the actual **fooB** property and is 20 bytes. And that adds up to 128. What about the visible 'foob' property directly under the object? That is mostly shown 
@@ -113,7 +113,7 @@ window.fooA2.wref = new WeakRef(window.fooA1.fooB);
 
 Then clear the console, switch to memory tab, close the devtools, reopen it and take another snapshot and search for **foo**. Then we see the following:
 
-![fooB](/2021-12-19-The-snapshot-of-a-memory-snapshot/FooA2.png)
+![fooB](/assets/posts/2021-12-19-The-snapshot-of-a-memory-snapshot/FooA2.png)
 
 There is no change in FooB as expected but the first but the first FooA has been grown 20 bytes. And if we dig into that we see, first FooA's map property was the only thing that growed 20 so it adds up again. Why first FooA's map changed when we added a property two seconf FooA. It's an internal thing but possibly we the map is forked and grown to a tree now.
 ```js
@@ -136,7 +136,7 @@ We create a new FooA instance, assign it to fooA3 then we assign FooA1's fooB to
 
 And again we clear the console, switch to memory tab, close and reopen dev tools, take screenshot and search for **foo**:
 
-![fooA3](/2021-12-19-The-snapshot-of-a-memory-snapshot/FooA3.png)
+![fooA3](/assets/posts/2021-12-19-The-snapshot-of-a-memory-snapshot/FooA3.png)
 
 No change for the retained size of FooB which is expected. The FooA with wref has further grown 116 to 152 and this can be attributed to it's map property is grown 36 bytes for whatever reason (due to we have to 2 instances of FooA and there is a enumcache mechanism internal to map which is the root cause.)
 
