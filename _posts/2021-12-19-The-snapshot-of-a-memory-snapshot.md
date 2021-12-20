@@ -8,9 +8,9 @@ date: 2021-12-19-00:00:00 -0000
 
 comments: true
 
-published: false
+published: true
 
-image: posts/2021-02-19-The-tail-of-a-recursion/y-comb.png
+image: posts/2021-12-19-The-snapshot-of-a-memory-snapshot/v8.png
 
 excerpt_separator: <!--more-->
 
