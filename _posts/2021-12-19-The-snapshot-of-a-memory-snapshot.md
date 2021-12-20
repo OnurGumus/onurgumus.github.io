@@ -3,7 +3,7 @@
 layout: default
 
 title: The snapshot of a memory snapshot
-description : "Understanding chrome/edge's memory snapshot-concepts"
+description : "Understanding chrome/edge's memory snapshot concepts"
 date: 2021-12-19-00:00:00 -0000
 
 comments: true
@@ -22,7 +22,7 @@ While the web apps slowly replacing the desktop apps, they are growing more and 
 Perhaps a decade ago a front end developer wouldn't much concerned about possible memory leaks but considering the complexity, analyzing memory leaks is becoming 
 a necessary skill. For apps that run inside the browser in particular Chrome/Edge, your first line of defence (and perhaps last unless you attempt to debug v8 engine itself)
 is the memory snapshot tool. And it is surprisingly easy to use. You open your developer tools go to memoryt tab and take a snapshot.
-![take-snapshot](/assets/posts/2021-12-19-The-snapshot-of-a-memory-snapshot./take-snapshot.png)
+![take-snapshot](/assets/posts/2021-12-19-The-snapshot-of-a-memory-snapshot/take-snapshot.png)
 <!--more-->
 
 ## The story of shallow size and retained size.
