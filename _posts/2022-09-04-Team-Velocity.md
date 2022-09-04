@@ -40,10 +40,8 @@ lost in this agile/scrum process, and they forget their objective is to deliver 
 Great Erik Meijer was a critique of the entire agile process, I can't say I agree with him about everything, but he does have a point.
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=2u0sNRO-QKQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2u0sNRO-QKQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4yZX1DzLbqg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 Once the story points are assigned, all left is for the developers to pick whichever they like from the pool, as their objective is to maximize 
