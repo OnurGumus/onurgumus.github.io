@@ -17,8 +17,9 @@ excerpt_separator: <!--more-->
 ---
 
 #  Team velocity
-Velocity and story points are underrated. We assign story points during a team meeting where most stakeholders, PMs/POs, and developers are available.
-
+Velocity and story points are underrated. We assign story points during a team meeting where most stakeholders, PMs/POs, and developers are available. Of course, one could argue that prioritization is the sole responsibility of the PM or PO. Depending on your needs, you can always limit who can decide the value of those store points. But as the number of people decreases, then it
+introduces some arbitrariness. Alternatively, you can let the team vote, and PM has the final saying. At least this way team can
+bias the PM for being more objective.
 <!--more-->
 
 Story points do not map to the difficulty or time span of tasks but rather their 'business impacts and urgencies. As the urgency of an issue increases,
