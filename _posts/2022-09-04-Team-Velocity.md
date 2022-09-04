@@ -19,6 +19,8 @@ excerpt_separator: <!--more-->
 #  Team velocity
 Velocity and story points are underrated. We assign story points during a team meeting where most stakeholders, PMs/POs, and developers are available.
 
+<!--more-->
+
 Story points do not map to the difficulty or time span of tasks but rather their 'business impacts and urgencies. As the urgency of an issue increases,
 the business impact increases.
 Velocity is the total story points delivered per given time. Thus it is an exact measurement of how much 'value' you deliver per team per given time 
@@ -37,7 +39,11 @@ How do you assign story points? I believe the good old way of planning poker is 
 lost in this agile/scrum process, and they forget their objective is to deliver value, not the process itself.
 Great Erik Meijer was a critique of the entire agile process, I can't say I agree with him about everything, but he does have a point.
 
+
 <iframe width="560" height="315" src="https://www.youtube.com/watch?v=2u0sNRO-QKQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4yZX1DzLbqg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 Once the story points are assigned, all left is for the developers to pick whichever they like from the pool, as their objective is to maximize 
