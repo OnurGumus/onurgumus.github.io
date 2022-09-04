@@ -8,7 +8,7 @@ date: 2022-09-04-00:00:00 -0000
 
 comments: true
 
-published: false
+published: true
 
 image: posts/2022-09-04-Team-Velocity2/nz6pmc4r.jpeg
 
