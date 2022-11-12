@@ -28,7 +28,7 @@ Before delving into purity, let's dissect the **function** in the functional pro
 I was baffled when I first heard the term functional programming many years ago. I said, "Hey, I have been using C. We already have functions there, and JavaScript also has functions, as many OOP languages
 have functions disguised as methods of the objects. So why is this new term?" 
 
-My first mistake was that functional programming was a familiar term. The conceptual origin of functional programming
+My first mistake was that functional programming was a new term. The conceptual origin of functional programming
 **lambda calculus** was developed as early as 1930 by Alonzo Church, and the first functional programming language, LISP was available by the late '50s. So functional programming wasn't
 something new at all. My second mistake was the confusion about the term "functional". The word function here does not represent the procedures that we call functions in the programming languages, but rather it refers to the mathematical functions just like Sine and Cosine. And it is **purity** that makes these mathematical functions different than the functions in those imperative programming languages. That is, given the same input for a pure function, that function will always yield the same output without any side effects. 
 
