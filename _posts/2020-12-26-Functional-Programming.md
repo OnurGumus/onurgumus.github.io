@@ -49,7 +49,7 @@ When we ask developers, what are the characteristics of good code or a good prog
 - Good code is extendable.
 - Good code is less buggy.
 
-Functional programming is not some sort of code, nor is it a language but a paradigm. You could probably go with functional programming by using any language. However, some languages embrace it as a first-class citizen (or even dictate it). In contrast, some languages tend to be challenging or become too long to go with functional programming. Thus above items about good code
+Functional programming is not some sort of code, nor is it a language but a paradigm. You could probably go with functional programming by using any language. However, some languages embrace it as a first-class citizen (or even dictate it). In contrast, some languages tend to be challenging or become too verbose to go with functional programming. Thus above items about good code
 are not really relevant to the functional programming paradigm. I would like to emphasize once more the following:
 
 - Functional programming **does not** necessarily lead to more maintainable code, nor does it aim for that.
