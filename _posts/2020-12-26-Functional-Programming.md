@@ -85,7 +85,7 @@ SomeOtherFunction(Car car){
 
 We have three problems here:
 
-1- As the author of SomeOtherfunction, how will I know if the Run method was called before? I need to look up the caller's code. Thus, it's an **extra burden** for the developer to find it out. 
+1- As the author of SomeOtherFunction, how will I know if the Run method was called before? I need to look up the caller's code. Thus, it's an **extra burden** for the developer to find it out. 
 One might argue, we could add an IsRunning property. However, nothing forces me to compile time to check that, and I could easily forget to do such a check. And not always
 such properties and methods related. So I am **burden**ed with reviewing the caller's code. Worse, if **SomeOtherFunction** is a public surface for my API, I have to be extra careful. I have to resort to defensive programming, document my API, clearly describe the expected input state, and pray for the caller to read the docs.
 
